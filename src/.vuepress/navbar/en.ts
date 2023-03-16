@@ -5,19 +5,21 @@ export const enNavbar = navbar([
   {
     text: "Guide",
     icon: "creative",
-    prefix: "/guide/",
+    prefix: "/docs",
     children: [
       {
-        text: "Bar",
+        text: "Greenfield BlockChain",
         icon: "creative",
-        prefix: "bar/",
-        children: ["baz", { text: "...", icon: "more", link: "" }],
-      },
-      {
-        text: "Foo",
-        icon: "config",
-        prefix: "foo/",
-        children: ["ray", { text: "...", icon: "more", link: "" }],
+        prefix: "/greenfield-blockchain/",
+        children: [
+          "introduction",
+          "core-concept",
+          "modules",
+          "api-sdk",
+          "cli",
+          "resources",
+          "run-node"
+        ],
       },
     ],
   },

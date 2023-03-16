@@ -5,11 +5,6 @@ import { enSidebar } from "./sidebar/index.js";
 export default hopeTheme({
   hostname: "https://vuepress-theme-hope-docs-demo.netlify.app",
 
-  author: {
-    name: "Mr.Hope",
-    url: "https://mrhope.site",
-  },
-
   iconAssets: "iconfont",
 
   logo: "/logo.svg",
@@ -20,6 +15,7 @@ export default hopeTheme({
 
   editLinkPattern: 'https://github.com/bnb-chain/greenfield-docs/edit/master/:path',
 
+
   locales: {
     "/": {
       // navbar
@@ -27,6 +23,8 @@ export default hopeTheme({
 
       // sidebar
       sidebar: enSidebar,
+
+      sidebarDepth: 10,
 
       footer: "Default footer",
 
@@ -81,7 +79,7 @@ export default hopeTheme({
       vPre: true,
       vuePlayground: true,
     },
-
+    
     // uncomment these if you want a pwa
     // pwa: {
     //   favicon: "/favicon.ico",
