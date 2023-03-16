@@ -1,9 +1,9 @@
 ---
 home: true
 icon: home
-title: Project home
+title: Home
 heroImage: /logo.svg
-heroText: Project name
+heroText: Greenfield
 tagline: You can place the description of the project here.
 actions:
   - text: How to Use 💡
