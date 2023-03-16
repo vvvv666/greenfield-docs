@@ -42,7 +42,7 @@ the server should bind to. Defaults to `0.0.0.0:9090`.
 :::
 
 Once the gRPC server is started, you can send requests to it using a gRPC client. Some examples are given in our 
-[Interact with the Node](../06.run-node/interact-node.md#using-grpc) tutorial.
+[Interact with the Node](../greenfield-blockchain/run-node/interact-node.md#using-grpc) tutorial.
 
 ## REST Server
 

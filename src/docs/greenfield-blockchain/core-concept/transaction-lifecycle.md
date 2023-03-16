@@ -14,7 +14,7 @@ The transaction will be referred to as `Tx`.
 ### Transaction Creation
 
 One of the main application interfaces is the command-line interface. The transaction `Tx` can be created by the user 
-inputting a command in the following format from the [command-line](../05.cli/cli.md), providing the type of transaction 
+inputting a command in the following format from the [command-line](../cli/readme.md), providing the type of transaction 
 in `[command]`, arguments in `[args]`, and configurations such as gas prices in `[flags]`:
 
 ```bash
@@ -29,7 +29,7 @@ the transaction is originating from. For example, if the transaction is sending 
 
 #### Gas and Fees
 
-Additionally, there are several [flags](../05.cli/cli.md) users can use to indicate how much they are willing to pay in [fees](./gas-fees.md):
+Additionally, there are several [flags](../cli/readme.md) users can use to indicate how much they are willing to pay in [fees](./gas-fees.md):
 
 * `--gas` refers to how much [gas](./gas-fees.md). Different from other cosmos blockchain where gas represents computational 
 resources, on greenfield blockchain, the gas of a transaction is predefined. It is suggested to be estimated by providing `auto` 
@@ -58,7 +58,7 @@ gnfd tx send <recipientAddress> 1000BNB --from <senderAddress> --gas auto
 #### Other Transaction Creation Methods
 
 The command-line is an easy way to interact with an application, but `Tx` can also be created using a 
-[gRPC or REST interface](../04.api-sdk/grpc_rest.md) or some other entry point defined by the application developer. 
+[gRPC or REST interface](../../api-sdk/grpc_rest.md) or some other entry point defined by the application developer. 
 From the user's perspective, the interaction depends on the web interface or wallet they are using 
 (e.g. creating `Tx` using [Lunie.io](https://lunie.io/#/) and signing it with a Ledger Nano S).
 

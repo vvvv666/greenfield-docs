@@ -95,6 +95,5 @@ Step 5: Launch your chain
 ## Reference
 The Greenfield chain is built using the `cosmos-sdk` and `Tendermint` core. There are various official configuration documents that can be referred to. These include:
 
-1. [Quick scripts for running a local testnet](../../deployment/readme.md)
-2. [Cosmos-sdk guide for running a node](https://docs.cosmos.network/main/run-node/run-node)
-3. [Tendermint Docs](https://docs.tendermint.com/master/nodes/configuration.html)
+1. [Cosmos-sdk guide for running a node](https://docs.cosmos.network/main/run-node/run-node)
+2[Tendermint Docs](https://docs.tendermint.com/master/nodes/configuration.html)

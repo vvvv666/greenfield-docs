@@ -54,7 +54,7 @@ Greenfield storage and its related economic traits to solve some
 problems of their users.
 
 ## Participate in the Ecosystem
-- [Become A Validator](../05.cli/validator-staking.md): validators secure the Greenfield by validating and relaying transactions,
+- [Become A Validator](../cli/validator-staking.md): validators secure the Greenfield by validating and relaying transactions,
   proposing, verifying and finalizing blocks.
-- [Become A Storage Provider](../05.cli/storage-provider.md): SPs store the objects' real data, i.e. the payload data. and get paid
+- [Become A Storage Provider](../cli/storage-provider.md): SPs store the objects' real data, i.e. the payload data. and get paid
   by providing storage services.
