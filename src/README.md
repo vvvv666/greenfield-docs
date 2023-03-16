@@ -100,7 +100,7 @@ features:
     link: https://theme-hope.vuejs.press/guide/feature/
 
 copyright: false
-footer: Theme by <a href="https://theme-hope.vuejs.press/" target="_blank">VuePress Theme Hope</a> | MIT Licensed, Copyright © 2019-present Mr.Hope
+footer: Copyright © 2023 BNB-Chain.
 ---
 
 This is an example of a project homepage. You can place your main content here.
