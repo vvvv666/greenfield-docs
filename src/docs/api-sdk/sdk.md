@@ -1,9 +1,9 @@
 ---
-title: SDK SDK
+title: SDK
 order: 3
 ---
 
-# Greenfield Development Kit
+# SDK
 
 ## Official SDK
 - [Official Go implementation SDK](https://github.com/bnb-chain/greenfield-go-sdk)

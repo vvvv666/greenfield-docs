@@ -1,5 +1,8 @@
 ---
-title: CLI
+title: Command Line
+index: true
+dir:
+  order: 4
 ---
 
 # Command-Line Interface

@@ -1,7 +1,8 @@
 ---
-title: Gov
+title: On-chain Governance
+order: 7
 ---
-# Using gnfd command to interact with governance module
+# On-chain Governance
 
 ## Quick Start
 

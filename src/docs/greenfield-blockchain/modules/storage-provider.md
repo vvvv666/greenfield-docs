@@ -1,8 +1,9 @@
 ---
-title: Storage Provider Management
+title: Storage Provider
+order: 2
 ---
 
-# Storage Provider Management
+# Storage Provider
 
 ## Abstract
 

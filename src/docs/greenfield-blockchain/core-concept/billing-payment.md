@@ -1,5 +1,6 @@
 ---
 title: Billing and Payment
+order: 4
 ---
 
 # Billing and Payment
@@ -28,4 +29,4 @@ The fees are paid on Greenfield in the style of
 "Stream" from users to the SPs at a constant rate. The fees are charged
 every second as they are used.
 
-For more tech details, please refer to the [stream payment module design](../03.modules/billing_and_payment.md).
+For more tech details, please refer to the [stream payment module design](../modules/billing_and_payment.md).

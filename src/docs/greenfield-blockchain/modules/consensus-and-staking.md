@@ -1,5 +1,6 @@
 ---
 title: Consensus and Staking
+order: 6
 ---
 
 # Consensus and Staking

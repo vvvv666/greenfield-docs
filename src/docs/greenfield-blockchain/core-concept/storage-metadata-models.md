@@ -1,5 +1,6 @@
 ---
 title: Storage Metadata Models
+order: 5
 ---
 
 # Storage Metadata Models

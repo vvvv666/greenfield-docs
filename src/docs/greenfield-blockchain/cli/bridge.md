@@ -1,7 +1,8 @@
 ---
-title: Bridge
+title: Cross Chain Transfer
+order: 5
 ---
-# Using gnfd command to interact with token bridge module
+# Cross Chain Transfer
 
 ## Abstract
 The bridge module is responsible for handling the BNB transfers between greenfield and BSC.

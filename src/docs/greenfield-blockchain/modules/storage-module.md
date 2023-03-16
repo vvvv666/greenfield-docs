@@ -1,8 +1,9 @@
 ---
-title: Storage Management Module
+title: Storage Module
+order: 1
 ---
 
-# Storage Management Module
+# Storage Module
 
 ## Concepts
 

@@ -1,9 +1,11 @@
 import { defineUserConfig } from "vuepress";
+import { searchProPlugin } from "vuepress-plugin-search-pro";
 import theme from "./theme.js";
 
 export default defineUserConfig({
   base: "/",
-
+  title: "BNB Greenfield",
+  description: "Greenfield is a decentralized storage platform",
   // locales: {
   //   "/": {
   //     lang: "en-US",
@@ -21,4 +23,22 @@ export default defineUserConfig({
 
   // Enable it with pwa
   // shouldPrefetch: false,
+
+  plugins: [
+    searchProPlugin({
+      // index all contents
+      indexContent: true,
+      // add supports for category and tags
+      customFields: [
+        {
+          getter: (page) => page.frontmatter.category,
+          formatter: "Category: $content",
+        },
+        {
+          getter: (page) => page.frontmatter.tag,
+          formatter: "Tag: $content",
+        },
+      ],
+    }),
+  ],
 });

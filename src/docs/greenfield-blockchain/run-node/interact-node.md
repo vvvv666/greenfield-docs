@@ -1,5 +1,6 @@
 ---
 title: Interacting with the Node
+order: 1
 ---
 
 # Interacting with the Node

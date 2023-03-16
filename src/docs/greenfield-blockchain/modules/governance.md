@@ -1,5 +1,6 @@
 ---
 title: Governance
+order: 7
 ---
 
 # Governance

@@ -1,9 +1,10 @@
 ---
-title: Bank
+title: Account Balance
+order: 2
 ---
 
 
-# Using gnfd command to interact with bank module
+# Account Balance
 
 ## Abstract
 The bank module is responsible for handling BNB transfers between

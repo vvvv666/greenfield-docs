@@ -1,6 +1,7 @@
 ---
 title: Resources
-order: 1
+dir:
+  order: 5
 ---
 
 # Resources

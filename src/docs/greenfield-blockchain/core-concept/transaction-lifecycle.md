@@ -1,5 +1,6 @@
 ---
 title: Transaction Lifecycle
+order: 6
 ---
 
 # Transaction Lifecycle

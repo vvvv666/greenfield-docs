@@ -1,5 +1,6 @@
 ---
 title: Data Availability Challenge
+order: 8
 ---
 
 # Data Availability Challenge

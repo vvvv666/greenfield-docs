@@ -1,5 +1,6 @@
 ---
 title: Gas and Fees
+order: 3
 ---
 
 # Gas and Fees

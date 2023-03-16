@@ -1,5 +1,6 @@
 ---
 title: Billing and Payment
+order: 3
 ---
 
 # Billing and Payment

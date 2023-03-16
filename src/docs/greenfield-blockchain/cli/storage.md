@@ -1,8 +1,9 @@
 ---
-title: Storage
+title: Storage Object
+order: 3
 ---
 
-# Using gnfd command to interact with storage module
+# Storage Object
 
 ## HeadBucket
 

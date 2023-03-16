@@ -1,8 +1,9 @@
 ---
 title: Validator Staking
+Order: 8
 ---
 
-# Using gnfd command to interact with staking module
+# Validator Staking
 
 The staking module is responsible for handling validator and delegator related operations.
 

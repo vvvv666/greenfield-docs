@@ -1,8 +1,9 @@
 ---
 title: Storage Provider
+order: 4
 ---
 
-# Using gnfd command to interact with storage provider module
+# Storage Provider
 
 ## QuickStart
 

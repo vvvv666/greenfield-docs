@@ -1,5 +1,6 @@
 ---
 title: Payment
+Order: 6
 ---
 
-# Using gnfd command to interact with payment module (TODO)
+# Payment (TODO)
