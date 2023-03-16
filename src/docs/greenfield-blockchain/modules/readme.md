@@ -1,5 +1,6 @@
 ---
 title: Modules
 index: false
-order: 3
+dir:
+  order: 3
 ---

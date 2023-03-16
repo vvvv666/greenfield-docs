@@ -1,5 +1,6 @@
 ---
 title: CLI
 index: false
-order: 4
+dir:
+  order: 4
 ---

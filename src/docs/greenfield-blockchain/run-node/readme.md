@@ -1,5 +1,6 @@
 ---
 title: Run Node
 index: false
-order: 6
+dir:
+  order: 6
 ---

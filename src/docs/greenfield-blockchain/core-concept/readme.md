@@ -1,5 +1,6 @@
 ---
 title: Core Concept
 index: false
-order: 2
+dir:
+  order: 2
 ---

@@ -8,6 +8,14 @@ export const enNavbar = navbar([
     prefix: "/docs",
     children: [
       {
+        text: "Overview",
+        icon: "creative",
+        prefix: "/",
+        children: [
+          "",
+        ],
+      },
+      {
         text: "Greenfield BlockChain",
         icon: "creative",
         prefix: "/greenfield-blockchain/",

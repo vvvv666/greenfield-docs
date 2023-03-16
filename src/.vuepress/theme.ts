@@ -15,7 +15,6 @@ export default hopeTheme({
 
   editLinkPattern: 'https://github.com/bnb-chain/greenfield-docs/edit/master/:path',
 
-
   locales: {
     "/": {
       // navbar
@@ -23,8 +22,7 @@ export default hopeTheme({
 
       // sidebar
       sidebar: enSidebar,
-
-      sidebarDepth: 10,
+      //sidebar: "heading",
 
       footer: "Default footer",
 
