@@ -22,9 +22,8 @@ export default hopeTheme({
 
       // sidebar
       sidebar: enSidebar,
-      //sidebar: "heading",
 
-      footer: "Default footer",
+      footer: "Copyright © 2023 BNB-Chain.",
 
       displayFooter: true,
 
