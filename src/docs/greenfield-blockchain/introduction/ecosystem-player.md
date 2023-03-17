@@ -6,7 +6,7 @@ order: 2
 ## Ecosystem Players
 There are several player roles for the whole Greenfield ecosystem.
 
-<div align="center"><img src="../../../asset/01-All%20Players%20of%20Greenfield.jpg"  height="80%" width="80%"></div>
+<div align="center"><img src="../../../asset/01-All-Players-of-Greenfield.jpg"  height="80%" width="80%"></div>
 <div align="center"><i>Figure All Players of Greenfield</i></div>
 
 ### Greenfield Validators
@@ -30,7 +30,7 @@ secure validator setup of PoS blockchains. "Sentry Nodes" are used to
 defend against DDoS and provide a secure private network, as shown in
 the below diagram.
 
-<div align="center"><img src="../../../asset/02-Greenfield%20Blockchain%20Network.jpg"  height="80%" width="80%"></div>
+<div align="center"><img src="../../../asset/02-Greenfield-Blockchain-Network.jpg"  height="80%" width="80%"></div>
 <div align="center"><i>Figure Greenfield Blockchain Network</i></div>
 
 ### Greenfield Relayers
