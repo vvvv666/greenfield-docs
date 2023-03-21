@@ -15,7 +15,7 @@ export const enSidebar = sidebar(
                     "dapp/",
                     "api-sdk/",
                     "release-note.md",
-                    "question-answer/",
+                    "faq/",
                 ],
             },
         ],

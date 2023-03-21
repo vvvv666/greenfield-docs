@@ -9,14 +9,14 @@ BNB remains the main utility token on Greenfield.
 
 BNB can be transferred from BSC to Greenfield blockchain, and vice versa. It is used as:
 
-- Staking token. It can be used to self-delegate and delegate as stake, which can earn gas rewards and may suffer slash for improper behaviors.
-- Gas token. It can be used to pay the gas to submit transactions on the Greenfield blockchain, which includes Greenfield local transactions or 
+- **Staking token**. It can be used to self-delegate and delegate as stake, which can earn gas rewards and may suffer slash for improper behaviors.
+- **Gas token**. It can be used to pay the gas to submit transactions on the Greenfield blockchain, which includes Greenfield local transactions or 
   cross-chain transactions between Greenfield and BSC. This is charged at the time of transaction submission and dispatched to 
   Greenfield validators, and potentially Greenfield Storage Providers for some transactions. Fee distribution is done in-protocol and 
   a protocol specification is [described here](https://github.com/bnb-chain/greenfield-cosmos-sdk/blob/master/docs/spec/fee_distribution/f1_fee_distr.pdf).
-- Storage service fee token. It can be used to pay fees for the object storage and download bandwidth data package. This is charged 
+- **Storage service fee token**. It can be used to pay fees for the object storage and download bandwidth data package. This is charged 
   as time goes on and dispatched to Greenfield Storage Providers.
-- Governance token. BNB holders may govern the Greenfield by voting on proposals with their staked BNB (not day 1).
+- **Governance token**. BNB holders may govern the Greenfield by voting on proposals with their staked BNB (not day 1).
 
 No initial donors, foundation, or company will get funds in the genesis setup.
 
@@ -38,11 +38,11 @@ total supply:
 2. The transfer-in blockchain will unlock the amount from module account or contract and send it to target addresses.
 3. Both networks will never mint BNB.
 
-Refer to [cross chain model](../modules/cross-chain.md) to get more details about the mechanism.
+Refer to [cross chain model](../greenfield-blockchain/modules/cross-chain.md) to get more details about the mechanism.
 
 ## How to Participate in the Ecosystem
-- [Become A Validator](../cli/validator-staking.md): validators secure the Greenfield by validating and relaying transactions, 
+- [Become A Validator](../greenfield-blockchain/cli/validator-staking.md): validators secure the Greenfield by validating and relaying transactions, 
    proposing, verifying and finalizing blocks.
-- [Become A Storage Provider](../cli/storage-provider.md): SPs store the objects' real data, i.e. the payload data. and get paid 
+- [Become A Storage Provider](../greenfield-blockchain/cli/storage-provider.md): SPs store the objects' real data, i.e. the payload data. and get paid 
   by providing storage services.
-- [Store/Manage Data](../cli/storage.md): store and manage your data in a decentralized way, control and own it all by yourself.
+- [Store/Manage Data](../greenfield-blockchain/cli/storage.md): store and manage your data in a decentralized way, control and own it all by yourself.

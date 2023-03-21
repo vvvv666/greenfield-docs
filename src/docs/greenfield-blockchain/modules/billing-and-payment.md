@@ -5,8 +5,6 @@ order: 3
 
 # Billing and Payment
 
-> The associated white-paper section locates at <https://github.com/bnb-chain/greenfield-whitepaper/blob/main/part3.md#21-billing-and-payment>.
-
 Greenfield will charge the users in two parts. Firstly, every
 transaction will require gas fees to pay the Greenfield validator to
 write the metadata on-chain. Secondly, the SPs charge the users for
