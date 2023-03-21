@@ -2,6 +2,6 @@
 title: FAQ
 icon: ask
 dir:
-  order: 7
+  order: 8
 index: false
 ---

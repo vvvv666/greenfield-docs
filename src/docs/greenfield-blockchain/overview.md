@@ -1,7 +1,5 @@
 ---
 title: Overview
-dir:
-  order: 1
 order: 1
 ---
 # Overview

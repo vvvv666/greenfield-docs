@@ -14,6 +14,7 @@ export const enSidebar = sidebar(
                     "storage-provider/",
                     "dapp/",
                     "api-sdk/",
+                    "resources.md",
                     "release-note.md",
                     "faq/",
                 ],

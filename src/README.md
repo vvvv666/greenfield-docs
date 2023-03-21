@@ -2,7 +2,6 @@
 home: true
 icon: home
 title: Home
-heroImage: /logo.svg
 heroText: BNB Greenfield
 tagline:  Unleash the power of decentralized blockchain and storage technology on data ownership and data economy ✨.
 actions:

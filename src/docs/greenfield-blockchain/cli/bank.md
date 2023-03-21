@@ -1,6 +1,8 @@
 ---
 title: Account Balance
 order: 2
+category:
+  - cli
 ---
 
 
