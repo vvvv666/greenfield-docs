@@ -17,7 +17,7 @@ export const enSidebar = sidebar(
                     "api-sdk/",
                     "resources.md",
                     "release-note.md",
-                    "faq/",
+                    "faq.md",
                 ],
             },
         ],
