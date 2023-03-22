@@ -39,5 +39,9 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           # This is the branch where the docs are deployed to
-          branch: gh-pages
+          branch: gh-pages-builded
           folder: src/.vuepress/dist
+          force: true
+          git-config-name: ${{ vars.GH_NAME }}
+          repository-name: ${{ vars.GH_REPO }}
+          token: ${{ secrets.GH_ACCESS_SECRET }}
