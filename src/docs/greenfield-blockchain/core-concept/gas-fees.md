@@ -9,16 +9,26 @@ This document describes how Greenfield charge fee to different transaction types
 
 ## Introduction to `Gas` and `Fees`
 
-In the Cosmos SDK, `gas` is a special unit that is used to track the consumption of resources during execution. 
+In the Cosmos SDK, `gas` unit is designated to track resource consumption during execution.
 
-However, on application-specific blockchains like Greenfield, the primary factor determining the transaction fee 
-is no longer the computational cost of storage, but rather the incentive mechanism of Greenfield. For example, 
-creating and deleting a storage object consumes similar I/O and computational resources, but Greenfield 
-incentives users to delete unused storage objects to free up more storage space, resulting in much cheaper 
-transaction fees for the latter.
+On application-specific blockchains such as Greenfield, computational cost of storage is no 
+longer the main factor in determining transaction fees, but rather, it is the incentive mechanism 
+of Greenfield. For instance, creating and deleting a storage object use similar I/O and computational 
+resources, but Greenfield encourages users to delete unused storage objects to optimize storage space, 
+resulting in lower transaction fees.
 
-Therefore, we abandoned the gas meter design of cosmos-sdk and redesigned the gashub module to determine the gas 
-consumption based on the type and content of the transaction, rather than the consumption of storage and computational resources.
+**As a result, Greenfield Blockchain has deviated from the gas meter design in Cosmos SDK and re-engineered the gashub
+module to calculate gas consumption based on the transaction type and content, rather than just 
+storage and computational resource consumption.**
+
+Unlike networks like Ethereum, Greenfield transactions do not feature a gas price field. 
+Instead, they consist of a fee and a gas wanted field. The gas price is inferred during 
+the execution process and competes for entry into the transaction pool based on the gas price.
+
+::: warning
+**This means that Greenfield does not refund any excess gas fees to the transaction sender. 
+Therefore, when constructing transactions, it is important to exercise caution when specifying the fees.**
+:::
 
 
 ## GasHub
@@ -42,12 +52,64 @@ type MsgGasParams_GrantAllowanceType struct {
 
 ### Block Gas Meter
 
-`ctx.BlockGasMeter()` is the gas meter used to track gas consumption per block and make sure it does not go above a certain limit. 
+`ctx.BlockGasMeter()` serves as the gas meter designed to monitor and restrict gas consumption per block.
 
-However, Greenfield may charge a substantial fee for certain types of transactions, resulting in significant gas 
-consumption. As a result, Greenfield does not impose any limitations on the gas usage of a block. Greenfield limits the 
-block size to under 1MB in order to prevent excessively large blocks.
+However, certain types of transactions may incur a high cost in Greenfield, leading to significant gas consumption. 
+Consequently, Greenfield refrains from imposing any gas usage constraints on a block. Instead, Greenfield sets a block 
+size limit, preventing blocks from exceeding 1MB in size and mitigating the risk of excessively large blocks.
+
+
+::: info
+There is no gas limitation of a block on Greenfield Blockchain.
+:::
 
 ## Fee Table
-TODO(coming soon)
+
+Please note that the following information can be updated at any time and may not be immediately reflected in the 
+documentation.
+
+| Msg Type                                    | Gas Used           | Gas Price | Expected Fee(assuming BNB $300) |
+|---------------------------------------------|--------------------|-----------|---------------------------------|
+| authz.MsgExec                               | 1.20E+04           | 5 gwei    | $0.018                          |
+| authz.MsgRevoke                             | 1.20E+04           | 5 gwei    | $0.018                          |
+| bank.MsgSend                                | 1.20E+04           | 5 gwei    | $0.018                          |
+| distribution.MsgSetWithdrawAddress          | 1.20E+04           | 5 gwei    | $0.018                          |
+| distribution.MsgWithdrawDelegatorReward     | 1.20E+04           | 5 gwei    | $0.018                          |
+| distribution.MsgWithdrawValidatorCommission | 1.20E+04           | 5 gwei    | $0.018                          |
+| feegrant.MsgRevokeAllowance                 | 1.20E+04           | 5 gwei    | $0.018                          |
+| gov.MsgDeposit                              | 1.20E+04           | 5 gwei    | $0.018                          |
+| gov.MsgSubmitProposal                       | 2.00E+08           | 5 gwei    | $300                            |
+| gov.MsgVote                                 | 2.00E+07           | 5 gwei    | $30                             |
+| gov.MsgVoteWeighted                         | 2.00E+07           | 5 gwei    | $30                             |
+| oracle.MsgClaim                             | 1.00E+03           | 5 gwei    | $0.0015                         |
+| slashing.MsgUnjail                          | 1.20E+04           | 5 gwei    | $0.018                          |
+| staking.MsgBeginRedelegate                  | 1.20E+04           | 5 gwei    | $0.018                          |
+| staking.MsgCancelUnbondingDelegation        | 1.20E+04           | 5 gwei    | $0.018                          |
+| staking.MsgCreateValidator                  | 2.00E+08           | 5 gwei    | $300                            |
+| staking.MsgDelegate                         | 1.20E+04           | 5 gwei    | $0.018                          |
+| staking.MsgEditValidator                    | 2.00E+07           | 5 gwei    | $30                             |
+| staking.MsgUndelegate                       | 1.20E+04           | 5 gwei    | $0.018                          |
+| bridge.MsgTransferOut                       | 1.20E+04           | 5 gwei    | $0.018                          |
+| sp.MsgDeposit                               | 1.20E+04           | 5 gwei    | $0.018                          |
+| sp.MsgEditStorageProvider                   | 2.00E+07           | 5 gwei    | $30                             |
+| staking.MsgCreateStorageProvider            | 2.00E+08           | 5 gwei    | $300                            |
+| storage.MsgCopyObject                       | 1.20E+04           | 5 gwei    | $0.018                          |
+| storage.MsgDeleteObject                     | 1.20E+04           | 5 gwei    | $0.018                          |
+| storage.MsgCreateBucket                     | 2.40E+04           | 10 gwei   | $0.036                          |
+| storage.MsgCreateGroup                      | 2.40E+04           | 10 gwei   | $0.036                          |
+| storage.MsgCreateObject                     | 1.20E+04           | 5 gwei    | $0.018                          |
+| storage.MsgDeleteBucket                     | 1.20E+04           | 5 gwei    | $0.018                          |
+| storage.MsgDeleteGroup                      | 1.20E+04           | 5 gwei    | $0.018                          |
+| storage.MsgLeaveGroup                       | 1.20E+04           | 5 gwei    | $0.018                          |
+| storage.MsgRejectSealObject                 | 1.20E+05           | 50 gwei   | $0.18                           |
+| storage.MsgSealObject                       | 1.20E+04           | 5 gwei    | $0.018                          |
+| storage.MsgUpdateGroupMember                | 1.20E+04           | 5 gwei    | $0.018                          |
+| storage.MsgCreatePaymentAccount             | 2.00E+06           | 5 gwei    | $3                              |
+| storage.MsgPutPolicy                        | 2.40E+04           | 10 gwei   | $0.036                          |
+| storage.MsgDeletePolicy                     | 1.20E+04           | 5 gwei    | $0.018                          |
+| storage.MsgWithdraw                         | 1.20E+04           | 5 gwei    | $0.018                          |
+| storage.MsgDisableRefund                    | 1.20E+04           | 5 gwei    | $0.018                          |
+| authz.MsgGrant                              | 8e3 + 8e3 per item | 5 gwei    | $0.012 per item                 |
+| bank.MsgMultiSend                           | 8e3 + 8e3 per item | 5 gwei    | $0.012 per item                 |
+| feegrant.MsgGrantAllowance                  | 8e3 + 8e3 per item | 5 gwei    | $0.012 per item                 |
 

@@ -5,14 +5,22 @@ order: 2
 
 # Key Management
 
-The [greenfield-cosmos-sdk](https://github.com/bnb-chain/greenfield-cosmos-sdk) provides a flexible and secure way to 
-manage private keys for blockchain applications. The `Keyring` interface is used to define the methods that a type needs 
+The [greenfield-cosmos-sdk](https://github.com/bnb-chain/greenfield-cosmos-sdk) offers a versatile and highly 
+secure approach to handling private keys for blockchain applications.
+
+The `Keyring` interface is used to define the methods that a type needs 
 to implement to be used as a key storage backend. This document provides an overview of the different backend 
 options available and the supported sign algorithms.
 
-And to interact with BSC(BNB-smart-chain) more convenient and user-friendly, we add 
+To make the interaction between our system and Binance Smart Chain (BSC) more convenient and user-friendly 
+as well as reducing the unnecessary wallet management, we add 
 [EIP-712](https://eips.ethereum.org/EIPS/eip-712) support. Any Ethereum wallet could connect to 
 a greenfield node and sign an EIP-712 transaction directly.
+
+::: tip
+It means you don't have to follow the `Keyring` interface to manage your key, any existing Ethereum wallets are applicable to
+Greenfield as well.
+:::
 
 ## EIP-712 Support
 
@@ -26,7 +34,7 @@ To achieve this, the following changes have been made.
 2. Same signing algorithm(`eth_scep256k1`) as Ethereum.
 
 For developers, they can refer to [greenfield-go-sdk](https://github.com/bnb-chain/greenfield-go-sdk) and 
-[greenfield-js-sdk](https://github.com/bnb-chain/greenfield-js-sdk) for more infos.
+[greenfield-js-sdk](https://github.com/bnb-chain/greenfield-js-sdk) for easy integration.
 
 ## Keyring Interface
 
@@ -70,8 +78,8 @@ Ethereum and Tendermint ecosystems.
 
 ## Conclusion
 
-In conclusion, key management is a critical aspect of building secure blockchain applications. By understanding 
-the available backend options and supported sign algorithms in the greenfield-cosmos-sdk, you can build applications 
-that are both secure and user-friendly. The `Keyring` interface provides a flexible way to manage private keys, 
-and by implementing the required methods, you can create a custom key storage backend that meets the specific 
-needs of your application.
+In conclusion, effective key management is a crucial aspect of developing secure blockchain applications. 
+By familiarizing yourself with the available backend options and supported sign algorithms in the `greenfield-cosmos-sdk`, 
+you can build applications that are secure, user-friendly, and tailored to your unique requirements. 
+The `Keyring` interface offers a flexible approach to managing private keys, allowing you to create a custom key 
+storage backend that satisfies the specific needs of your application by implementing the necessary methods.

@@ -16,7 +16,7 @@ and permission and billing information associated with this storage.
 Transactions conducted on the Greenfield blockchain can alter the aforementioned states. These states and transactions 
 make up the majority of the BNB Greenfield economic data.
 
-## How Greenfield Blockchain works
+## How Greenfield Blockchain Works
 The **Greenfield Blockchain** utilizes the [Tendermint consensus](https://tutorials.cosmos.network/) mechanism, 
 implementing a [Proof-of-Stake](https://ethereum.org/en/developers/docs/consensus-mechanisms/pos/) approach to ensure network security. 
 Validator election and governance are managed through a [proposal-vote mechanism](modules/governance.md), following 
@@ -59,7 +59,7 @@ In addition to ensuring network security, the validators of greenfield blockchai
   to ensure the healthy and sustainable development of Greenfield's ecosystem.
 
 
-## Getting Started with the Greenfield Blockchain
+## Get Started with Greenfield Blockchain
 - [Quick start with Greenfield Blockchain](run-node/interact-node.md)
 - [Learn more about the ecosystem players of Greenfield](../introduction/ecosystem-player.md)
 - [Learn more about the module design of Greenfield Blockchain](modules/storage-module.md)
