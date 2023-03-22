@@ -1,9 +1,9 @@
 ---
-title: GRPC REST
+title: Blockchain GRPC REST
 order: 2
 ---
 
-# GRPC, REST, and Tendermint Endpoints
+# Greenfield Blockchain GRPC, REST, and Tendermint Endpoints
 
 This document presents an overview of all the endpoints a node exposes: gRPC, REST as well as some other endpoints.
 
