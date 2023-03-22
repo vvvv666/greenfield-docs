@@ -5,33 +5,23 @@ order: 1
 
 # Storage Module
 
-## Models
+## Concepts
 
 ### Bucket
 
-A bucket is a logical container for storing objects in Greenfield. Each bucket has a unique name that is assigned by the
-user when the bucket is created. Bucket names must be globally unique within the Greenfield namespace,
-which means that no two buckets can have the same name. The name must also comply with DNS naming conventions,
-which requires that it be a series of one or more labels separated by periods.
+A bucket serves as a logical container for storing objects in Greenfield. Each bucket is assigned a unique name by the user at the time of creation. It's essential that bucket names be globally unique within the Greenfield namespace to avoid duplication of names. Additionally, bucket names must conform to DNS naming conventions, consisting of one or more labels separated by periods.
 
-Once a bucket has been created, objects can be uploaded to it using various methods such as the gnfd cmd or SDKs.
-Objects within a bucket can be organized and managed like folders (also called "prefixes").
-Additionally, each object can be given a unique key (a string value) that identifies it within the bucket.
+Objects can be uploaded to a bucket using various methods, such as the gnfd cmd or SDKs, after the bucket has been created. Objects within a bucket can be organized and managed like folders, also referred to as "prefixes". Besides, each object is assigned a unique key (a string value) to identify it within the bucket.
 
-Every user account can create several buckets. The account will become the "owner" of the bucket.
-
-Each bucket should be associated with its own Primary SP, and the payment accounts for Read and Store. The owner's
-address will be the default payment account.
+Each user account can create multiple buckets, with the account owning each created bucket. Every bucket should have its Primary SP associated with it, along with payment accounts for Read and Store. The owner's address will be the default payment account.
 
 ### Object
 
-An object is a fundamental unit of storage in Greenfield, which represents a file consisting of data and its associated
-metadata. Each object is uniquely identified within a bucket by its object name (a string value).
-While objects are commonly used to store files, they can contain any type of data, including text,
-images, videos, and program binaries.
+An object represents a fundamental unit of storage in Greenfield, consisting of both data and associated metadata. Each object has a unique name (a string value) within a bucket, identifying it.
 
-Users can upload objects to Greenfield using various methods, including the gnfd cmd and SDKs. They can also download,
-copy, or move objects to and from in a similar way.
+Although objects are primarily used to store files in Greenfield, they can contain any data type, including text, images, videos, and program binaries. Users can upload, download, copy, or move objects using various methods such as the gnfd cmd and SDKs.
+
+Objects in Greenfield have several critical features, including their name and ID, owner, hosting bucket, size and timestamps, content type, checkSums for storage pieces, storage status, and associated SP information. Object metadata is stored using the bucket name as its prefix, allowing iteration through all objects within the same bucket. However, doing so for a large bucket with numerous objects may require considerable effort.
 
 Objects in Greenfield have several important characteristics, including:
 - name and ID
@@ -43,16 +33,11 @@ Objects in Greenfield have several important characteristics, including:
 - storage status
 - associated SP information
 
-Object metadata is stored with the bucket name as the prefix of the key. It is possible to iterate through all
-objects under the same bucket, but it may be a heavy-lifting job for a large bucket with lots of objects.
+## Group
 
-### Group
+A Group is a collection of accounts that share the same permissions. The group name cannot be duplicated under the same user. However, a group cannot create or own any resources, nor can it be a member of another group.
 
-A Group is a collection of accounts with the same permissions. The group name is not allowed to be duplicated under the
-same user. However, a group can not create or own any resource. A group can not be a member of another group either.
-
-A resource can only have a limited number of groups associated with it for permissions. This ensures that the on-chain
-permission check can be finished within a constant time.
+To ensure that the on-chain permission check can be completed within a constant time, only a limited number of groups can be associated with a resource for permissions.
 
 ## State
 
