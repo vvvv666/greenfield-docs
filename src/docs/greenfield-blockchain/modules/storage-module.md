@@ -5,21 +5,35 @@ order: 1
 
 # Storage Module
 
-## Concepts
+## Models
 
 ### Bucket
 
-Bucket is the unit to group storage "objects". BucketName has to be globally unique. Every user account can create a
-bucket. The account will become the "owner" of the bucket.
+A bucket is a logical container for storing objects in Greenfield. Each bucket has a unique name that is assigned by the
+user when the bucket is created. Bucket names must be globally unique within the Greenfield namespace,
+which means that no two buckets can have the same name. The name must also comply with DNS naming conventions,
+which requires that it be a series of one or more labels separated by periods.
+
+Once a bucket has been created, objects can be uploaded to it using various methods such as the gnfd cmd or SDKs.
+Objects within a bucket can be organized and managed like folders (also called "prefixes").
+Additionally, each object can be given a unique key (a string value) that identifies it within the bucket.
+
+Every user account can create several buckets. The account will become the "owner" of the bucket.
 
 Each bucket should be associated with its own Primary SP, and the payment accounts for Read and Store. The owner's
 address will be the default payment account.
 
 ### Object
 
-Object is the basic unit to store data on Greenfield. The metadata for the object will be stored on the Greenfield
-blockchain:
+An object is a fundamental unit of storage in Greenfield, which represents a file consisting of data and its associated
+metadata. Each object is uniquely identified within a bucket by its object name (a string value).
+While objects are commonly used to store files, they can contain any type of data, including text,
+images, videos, and program binaries.
 
+Users can upload objects to Greenfield using various methods, including the gnfd cmd and SDKs. They can also download,
+copy, or move objects to and from in a similar way.
+
+Objects in Greenfield have several important characteristics, including:
 - name and ID
 - owner
 - bucket that hosts it

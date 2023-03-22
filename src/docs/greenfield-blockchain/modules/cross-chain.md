@@ -3,58 +3,19 @@ title: Cross Chain
 order: 5
 ---
 
-# Cross Chain
-
-The real power of the Greenfield ecosystem lies in that the platform is not only designed to store the data, but also to
-support the creation of value based on the data assets and its related economy.
-
-The asset traits of the data are firstly established on the permissions, e.g. the permission to read the data. When 
-this right is disconnected from the data itself, they become tradable assets and enlarge the value of the data. This 
-can be amplified when the data itself can be executable (a new type of "Smart Code"), interact with each other, and 
-generate new data. This creates a lot of room to imagine building a new, data-intensive, trustless computing environment.
-
-Secondly, the data permissions can be transferred cross-chain onto BSC and become digital assets there. This creates a 
-variety of possibilities to integrate these assets with the existing DeFi protocols and models on BSC.
-
-This gets even further enhanced by the smart contracts on BSC, which enjoy the same address format as accounts on the 
-Greenfield blockchain and can be the owners of the data objects and inherit different permissions. This will unleash 
-many new business opportunities based on the data and its operations.
-
-## Cross-Chain with BSC
-
-The cross-chain model expects to achieve the following goals:
-
-- integratable with the existing systems: try to reuse the current
-  infrastructure and dApps as much as possible, such as NFT
-  Marketplace, data indexing, and blockchain explorers.
-
-- programmable: dApps can define how they want to wrap the assets from Greenfield.
-
-- secure and recoverable.
-
-The native cross-chain bridge is maintained and secured by the
-validators of Greenfield, via a new relayer system based on an
-aggregated multisig scheme (more details in the later sections).
-Validators will run the relayers to facilitate the high
-bandwidth and fast bridge.
-
-BNB will be transferred from BSC to Greenfield as the first cross-chain
-action. The initial validator set of Greenfield at the genesis will
-first lock a certain amount of BNB into the "Greenfield Token Hub"
-contract on BSC. This contract will also be used as part of the native
-bridge for BNB transferring after the genesis. These initial locked BNB
-will be used as the self-stake of validators and early days gas fees.
-
 ## Framework
 
-<div align="center"><img src="../../../asset/03-Cross-chain-Architecture.jpg"  height="80%" width="80%"></div>
+<div align="center"><img src="../../../asset/03-Cross-chain-Architecture.jpg"  height="95%" width="95%"></div>
 <div align="center"><i>Figure Cross-chain Architecture</i></div>
 
-The bottom layer is a cross-chain **Communication Layer**, which focuses
-on primitive communication package handling and verification. The middle
-layer implements the **Resource Mirror**. It is responsible for managing
+Above figure shows the layered design of cross-chain:
+
+1. The bottom layer is a cross-chain **Communication Layer**, which focuses
+on primitive communication package handling and verification. 
+2. The middle layer implements the **Resource Mirror**. It is responsible for managing
 the resource assets that are defined on Greenfield but mirrored onto
-BSC. The top layer is the **Application Layer**, which are the smart
+BSC. 
+3. The top layer is the **Application Layer**, which are the smart
 contracts implemented by community developers on BSC to operate the
 mirrored resource entities with their primitives; Greenfield does not have
 such an application layer since itself does not provide programmability yet.
@@ -62,7 +23,7 @@ The real dApps will have some part in this Application Layer and also
 interact with Greenfield Core and all sorts of supporting infrastructures.
 
 Because of the asymmetric framework, BSC focuses more on the
-application/control plane, while Greenfield is the data plane. To avoid
+**application/control plane**, while Greenfield is the **data plane**. To avoid
 state racing, the following rules are introduced:
 
 - Any resources that are initiated to create by BSC can only be controlled by BSC.
@@ -90,39 +51,143 @@ The communication layer is composed of a set of **Greenfield Relayers**:
   assemble a cross-chain package transaction and submit it to BSC or
   Greenfield network.
 
+Here more details about the communication layer and economics will be explained.
+
+### Vote Poll
+A new p2p communication across the cross-chain relayers will be
+introduced, called "Vote Poll". This Vote Poll will gossip about the
+signed votes within the network. To avoid message flooding, all the
+signed votes will expire after a fixed time. The Greenfield relayers can
+either put votes to or fetch votes from the poll and assemble it as
+cross-chain package transactions.
+
+### Channel and Sequence
+To allow multiplexing and replay attack resistance, "Channel" and
+"Sequence" concepts are introduced to manage any type of communication.
+Following is an example definition:
+
+```go
+type Package struct {
+    PackType     uint8 // SYN, ACK or FAIL_ACK
+    SrcChainId   uint16
+    DstChainId   uint16
+    Sequence     int64
+    ChannelId    uint16
+    Payload      []byte
+    BLSSignature sdk.Sig
+    BLSBits      sdk.Bits // indicate the signer of the package
+}
+```
+
+The packages in the same channel must be processed in sequence, while
+they can be processed in parallel if they belong to different channels.
+
+The operation messages on different Greenfield resources are mapped to
+different channels. For example, buckets and storage objects belong to
+different channels.
+
+### Reliability Protocol
+Here a protocol is defined to ensure reliable stream delivery of data
+between BSC and Greenfield.
+
+The protocol must recover the scenarios when the cross-chain data is
+damaged, duplicated, or delivered out of order by the relayers. It
+assigns a sequence number to each package and requires a positive
+acknowledgment (`ACK`) from the target chain. Here there are three kinds
+of packages:
+
+1. `SYN`: the initial cross-chain packages started by either users or dApps.
+
+2. `ACK`: the positive acknowledgment sent by the resource layer of the
+   target chain.
+
+3. `FAIL_ACK`: the negative acknowledgment sent by the communication
+   layer of the target chain, usually caused by damaged data or
+   protocol inconsistency triggered by the edge case.
+
+Each communication package must start with `SYN` and end with ACK or
+`FAIL_ACK`. The handler code and contracts on each side must handle these
+primitives.
+
+### Validator Update
+
+With an aggregatable multi-signature scheme, e.g. BLS, the cross-chain
+can be quite light-weighted. However, sufficient data must be appended
+onto the package to indicate the validators who sign the events, this
+can be achieved by combining a bitmap and a validator set on-chain.
+However, the Greenfield validator set is volatile, Greenfield validators
+have to sync the information to BSC once there is an update about the
+Greenfield validator set. This is implemented by building a Greenfield
+light client on BSC, which is similar to the light client implemented
+for BNB Beacon Chain on BSC.
+
+### Economic
+
+The Greenfield relayers play an important role in relaying inter-chain
+packages. A proper incentive is introduced to keep relayers making their
+long-term contribution.
+
+#### Fee and Reward of Cross-Chain Packages
+
+Both `SYN` and `ACK`/`FAIL_ACK` packages cost gas to relay, the users (or
+smart contracts) will need to pay the fee to cover both of them when
+they start the `SYN` cross-chain packages.
+
+To encourage Greenfield relayers to sign cross-chain packages:
+
+1. The package deliverer will get a fixed ratio of the relay fee as a reward.
+
+2. The rest relay fee will be distributed equally among those who sign the vote.
+
+#### Race to Deliver Cross-Chain Packages
+
+There are multiple Greenfield relayers, and they may compete to submit
+the aggregated multi-signed packages onto the Greenfield blockchain and
+BSC. To avoid racing transactions caused by the competition, which
+wastes gas, the relayers are rotated to relay transactions, e.g. taking
+shifts every 10 minutes. Each cross-chain package gets a timestamp, if
+it is not relayed within a limited delay when the designated relayer
+doesn't perform the duty, any other Greenfield relayers are allowed to
+relay such a package.
+
+#### Callbacks and Limited Gas
+
+BSC dApps, i.e. smart contracts on BSC, are allowed to implement their
+own logic to handle `ACK` or `FAIL_ACK` packages. The smart contracts can
+register callback functions to handle the `ACK` packages. As it is
+impossible for the cross-chain infrastructure to predict the gas
+consumption of the callback, a gas limitation estimate should be defined
+from the smart contracts that register the callbacks.
+
+For any cross-chain packages that start from BSC, the smart contract
+needs to specify the gas limitation for the `ACK` or `FAIL_ACK` package, the
+relayer fee is prepaid accordingly on BSC. Relayers may refund the
+excessive fees later.
+
 ## Resource Mirror Layer
 
 ### Resource Entity Mirror
 
 The purposes of almost all the cross-chain packages are to change the
 state of the resource entities on the Greenfield blockchain. Thus, the
-below resource entities should be able to be mirrored on BSC:
-
-1. Account
-
-2. BNB
-
-3. Bucket
-
-4. Object
-
-5. Group
+below resource entities should be able to be mirrored on BSC: Account, BNB, Bucket, Object and Group.
 
 The account mapping is natural: as BSC and Greenfield use the same
 address scheme. The same address values on both sides mean the same
 account. They do not require an actual mirror.
 
 BNB is a natively pegged token from the genesis of Greenfield. The
-"Token Hub" contract is a smart contract built on BSC to ensure
+`Token Hub` contract is a smart contract built on BSC to ensure
 that Greenfield cannot inflate BNB and secure the total circulation of
 BNB.
 
 Bucket, Object, and Group are mirrored onto BSC as NFTs of a new BEP
-revised from the ERC-721 standard. These NFTs have corresponding
-metadata information for the resources. The ownerships of the NFTs on
-BSC stand for the ownerships of these resources on Greenfield. As these
-ownerships are not transferable on Greenfield, these NFTs are not
-transferable on BSC.
+revised from the [ERC-721](https://eips.ethereum.org/EIPS/eip-721) and 
+[ERC-1155](https://eips.ethereum.org/EIPS/eip-1155) standard. 
+These NFTs have corresponding metadata information for the resources. 
+The ownerships of the NFTs on BSC stand for the ownerships of these 
+resources on Greenfield. As these ownerships are not transferable on 
+Greenfield, these NFTs are not transferable on BSC.
 
 ### Cross-Chain Operating Primitives
 
@@ -177,4 +242,4 @@ these events and relay them over to Greenfield and BSC. As the change
 will happen asynchronously, there will be specific cross-chain packages
 for acknowledgments or errors, which can trigger a callback. The caller
 of the primitives should pay the fees upfront for cross-chain operations
-and also for the potential callback. More details are discussed in Part 3.
+and also for the potential callback. 

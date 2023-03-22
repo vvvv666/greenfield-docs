@@ -18,6 +18,10 @@ Collaboration between Greenfield and storage providers is essential in ensuring 
 especially for aspect #2. To enhance user confidence that data is being stored as promised, 
 a ["Proof-of-Challenge"](../greenfield-blockchain/modules/data-availability-challenge.md) approach is introduced.
 
+::: info
+"Proof-of-Challenge" is proposed based on the assumptions: **Greenfield is a self-sustained, service-oriented ecosystem.**
+:::
+
 Stakeholders can trigger challenges in various ways, such as through user or storage provider-initiated transactions or 
 via internal events on the Greenfield blockchain. Following a challenge, Greenfield validators must conduct 
 an **off-chain audit** of challenged data from storage providers. Consortium members will vote on the challenge results, 

@@ -7,22 +7,18 @@ order: 2
 
 ## Abstract
 
-SPs play a different role from Greenfield validators, although the same organizations or individuals can run both SPs
-and validators if they follow all the rules and procedures to get elected.
+Storage Providers (SP) are storage service infrastructures that organizations or individuals provide and the
+corresponding roles they play. They use Greenfield as the ledger and the single source of truth. Each SP can and
+will respond to users' requests to write (upload) and read (download) data, and serve as the gatekeeper for
+user rights and authentications.
 
-The SP module is responsible for managing and maintaining storage providers in the BNB Greenfield decentralized
-storage network.
+The SP module is responsible for managing and keeping storage providers in the network. This includes:
 
-- Metadata: The basic information about the SP, including address, tokens, status, and so on.
-- Deposit: Each SP who wants to join the storage network should stake tokens to ensure that it can provide storage
-  services normally
-- Slash: The data stored on the SP will be challenged from time to time. When a challenge is successful, the SP will be
-  slashed, and deducted some tokens.
-- Reputation: We will introduce a reputation system to evaluate SP's service quality. Users can choose one SP to store
-  data based on its reputation score.
-- Exit: A SP can leave voluntarily by following some specific rules and get back the staked tokens. At the same time,
-  Greenfield can force it to exit when it has insufficient staked tokens or its reputation score is too low to meet
-  basic requirements as one SP.
+- **Metadata**: Basic information, such as address, tokens, and status, about each SP.
+- **Deposit**: Aspiring SPs must stake tokens to guarantee their capacity to offer storage services.
+- **Slash**: Stored data on an SP is occasionally challenged. If the challenge succeeds, the SP is penalized by losing some of its staked tokens.
+- **Reputation**: We are implementing a reputation system to assess the quality of each SP's service. Users can select an SP based on its reputation score to store their data.
+- **Exit**: SPs can leave voluntarily as long as they adhere to specific rules and recover their staked tokens. Greenfield may also force an SP to exit if it lacks sufficient staked tokens or its reputation score falls below the minimum requirements for an SP.
 
 ## Key Workflow
 

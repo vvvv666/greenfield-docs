@@ -110,8 +110,9 @@ deposit, several fields will be recorded for this stream account:
 
 *Buffer Balance = - Netflow Rate \* pre-configed ReserveTime if Netflow Rate is negative*
 
-<div align="center"><img src="https://github.com/bnb-chain/greenfield-whitepaper/blob/main/assets/21.1%20How%20a%20User%20Receives%20Inflow%20and%20Outflow%20of%20Funds.jpg"  height="60%" width="60%"></div>
-<div align="center"><i>Figure 21.1 How a User Receives Inflow and Outflow of Funds</i></div>
+<div align="center"><img src="../../../asset/04-Funds-Flow.jpg"  height="80%" width="80%"></div>
+<div align="center"><i>How a User Receives Inflow and Outflow of Funds</i></div>
+
 
 Every time a user creates, updates, or deletes a payment stream, many
 variables in the above formulas will be updated and the users' stream accounts in the

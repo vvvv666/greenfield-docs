@@ -50,7 +50,7 @@ providers and coordinates data backup and recovery.
     making it highly customizable as per individual requirements.
 - **Flow of data value**: Data assetization on BSC promotes the flow of data value through various decentralized applications (dapps).
 
-In addition to ensuring network security, the validators of greenfield blockchain also play other important roles.
+In addition to ensuring network security, the validators of **Greenfield Blockchain** also play other important roles:
 - Validators are responsible for reaching consensus on cross-chain events and relaying cross-chain packets to BSC and Greenfield,
   providing secure, fast, stable, and inexpensive cross-chain services.
 - Validators need to challenge the data availability of service providers (SPs) in a specific or random manner, and 

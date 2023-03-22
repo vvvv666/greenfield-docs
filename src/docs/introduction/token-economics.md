@@ -38,7 +38,7 @@ total supply:
 2. The transfer-in blockchain will unlock the amount from module account or contract and send it to target addresses.
 3. Both networks will never mint BNB.
 
-Refer to [cross chain model](../greenfield-blockchain/modules/cross-chain.md) to get more details about the mechanism.
+Refer to [cross chain model](../concept/cross-chain.md) to get more details about the mechanism.
 
 ## How to Participate in the Ecosystem
 - [Become A Validator](../greenfield-blockchain/cli/validator-staking.md): validators secure the Greenfield by validating and relaying transactions, 

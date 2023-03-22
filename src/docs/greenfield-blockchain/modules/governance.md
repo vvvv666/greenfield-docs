@@ -12,21 +12,20 @@ The Greenfield BlockChain utilizes on-chain governance, which is achieved by ste
 - Execution: After voting period, the votes are tallied and if proposal `passed`, the messages in the proposal will be executed
 
 There are various types of proposals. Include but not limited to:
-- Proposals for creating and editing validators, staking rewards distribution, details as described in [staking_model](consensus-and-staking.md)
-- Proposals for creating and removing storage provider which specified in [storage_provider_model](storage-provider.md)
+- Proposals for creating and editing validators, staking rewards distribution, details as described in [staking module](consensus-and-staking.md)
+- Proposals for creating and removing storage provider which specified in [storage provider module](storage-provider.md)
 - Parameters change proposal for `Greenfield` modules
-- Parameters change and upgrade proposals for `BSC` smart contracts 
+- Parameters change proposals for `BSC` smart contracts 
+- `BSC` smart contracts upgrade proposals
 
 
 ## Governance Parameters
-Several of the numbers involved in governance are parameters and can thus be changed by passing a parameter change proposal.
-- Minimum deposit: 1000000000000000000 BNB
-- Maximum deposit period: 300s
-- Voting period: 300s
-- Quorum: 33.40% of participating voting power
-- Pass threshold: 50% of participating voting power
-- Veto threshold: 33.40% of participating voting power
-
+- Minimum deposit: The threshold for transiting a proposal from deposit period to vote period
+- Maximum deposit period: The most lasting time for depositing a proposal. If reaches min_deposit, this period ends immediately.
+- Voting period: The time lasted for validators and delegator to vote on proposal.
+- Quorum: Minimum proportion of participating voting power, measured by number of bonded BNB
+- Pass threshold: Minimum proportion of Yes votes (excluding Abstain votes), measured by number of bonded BNB
+- Veto threshold: Maximum proportion of NoWithVeto (counts as No but also adds a Veto vote)
 
 ## Submit proposal:
 
