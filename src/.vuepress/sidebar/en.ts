@@ -10,6 +10,7 @@ export const enSidebar = sidebar(
                 children: [
                     "introduction/",
                     "get-started.md",
+                    "concept/",
                     "greenfield-blockchain/",
                     "storage-provider/",
                     "dapp/",

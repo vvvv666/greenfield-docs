@@ -1,6 +1,6 @@
 ---
 title: Transaction Lifecycle
-order: 6
+order: 7
 ---
 
 # Transaction Lifecycle
@@ -14,7 +14,7 @@ The transaction will be referred to as `Tx`.
 ### Transaction Creation
 
 One of the main application interfaces is the command-line interface. The transaction `Tx` can be created by the user 
-inputting a command in the following format from the [command-line](../cli/readme.md), providing the type of transaction 
+inputting a command in the following format from the [command-line](../../../../cli/readme.md), providing the type of transaction 
 in `[command]`, arguments in `[args]`, and configurations such as gas prices in `[flags]`:
 
 ```bash
@@ -24,14 +24,14 @@ gnfd tx [command] [args] [flags]
 This command will automatically **create** the transaction, **sign** it using the account's private key, and **broadcast** 
 it to the specified peer node.
 
-There are several required and optional flags for transaction creation. The `--from` flag specifies which [account](./accounts.md) 
+There are several required and optional flags for transaction creation. The `--from` flag specifies which [account](accounts.md) 
 the transaction is originating from. For example, if the transaction is sending coins, the funds will be drawn from the specified `from` address.
 
 #### Gas and Fees
 
-Additionally, there are several [flags](../cli/readme.md) users can use to indicate how much they are willing to pay in [fees](./gas-fees.md):
+Additionally, there are several [flags](../../../../cli/readme.md) users can use to indicate how much they are willing to pay in [fees](gas-fees.md):
 
-* `--gas` refers to how much [gas](./gas-fees.md). Different from other cosmos blockchain where gas represents computational 
+* `--gas` refers to how much [gas](gas-fees.md). Different from other cosmos blockchain where gas represents computational 
 resources, on greenfield blockchain, the gas of a transaction is predefined. It is suggested to be estimated by providing `auto` 
 as the value for `--gas`.
 * `--gas-prices` specifies how much the user is willing to pay per unit of gas, which can be one or multiple denominations of tokens. 
@@ -58,7 +58,7 @@ gnfd tx send <recipientAddress> 1000BNB --from <senderAddress> --gas auto
 #### Other Transaction Creation Methods
 
 The command-line is an easy way to interact with an application, but `Tx` can also be created using a 
-[gRPC or REST interface](../../api-sdk/grpc_rest.md) or some other entry point defined by the application developer. 
+[gRPC or REST interface](../api-sdk/grpc_rest.md) or some other entry point defined by the application developer. 
 From the user's perspective, the interaction depends on the web interface or wallet they are using 
 (e.g. creating `Tx` using [Lunie.io](https://lunie.io/#/) and signing it with a Ledger Nano S).
 

@@ -2,5 +2,6 @@
 title: Core Concept
 index: false
 dir:
-  order: 2
+  order: 3
+icon: discover
 ---

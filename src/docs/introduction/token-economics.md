@@ -45,4 +45,4 @@ Refer to [cross chain model](../greenfield-blockchain/modules/cross-chain.md) to
    proposing, verifying and finalizing blocks.
 - [Become A Storage Provider](../greenfield-blockchain/cli/storage-provider.md): SPs store the objects' real data, i.e. the payload data. and get paid 
   by providing storage services.
-- [Store/Manage Data](../greenfield-blockchain/cli/storage.md): store and manage your data in a decentralized way, control and own it all by yourself.
+- [Store Data](../greenfield-blockchain/cli/storage.md): store and manage your data in a decentralized way, control and own it all by yourself.

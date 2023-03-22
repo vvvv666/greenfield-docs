@@ -5,50 +5,42 @@ order: 8
 
 # Data Availability Challenge
 
-Data availability means the data is correctly stored on storage providers and can be correctly downloaded by users.
-The challenge module is designed and used to detect whether a data segment/piece is correctly stored on a
-specified storage provider. For this kind of challenge, there will be three steps:
+Data availability refers to the correct storage and accessibility of data on storage providers for users.
+To determine if a specific data segment or piece is correctly stored on a designated storage provider,
+a challenge module is employed. The challenge comprises three steps:
 
-1. Each validator asks the challenged SP for this data piece and the local manifest of the object, if the validator
-   can't get the expected piece, the piece should be regarded as unavailable.
-2. Compute the hash of the local manifest, and compare with the related global manifest that recorded in the metadata of
-   the object, once they are different, the piece should be regarded as unavailable.
-3. Compute the hash of the challenged data piece, compare it with the related data that recorded in the local manifest,
-   once they are different, the piece should be regarded as unavailable.
+1. The validator requests the data piece and local manifest of the object from the challenged storage provider.
+   If the expected piece is not obtained, it is considered unavailable.
+2. The validator computes the hash of the local manifest and compares it with the global manifest recorded in the
+   object's metadata. If they differ, the piece is considered unavailable.
+3. The validator computes the hash of the challenged data piece and compares it with the data recorded in the local
+   manifest. If they differ, the piece is considered unavailable.
 
-The validator collects challenge signatures, if there are more than 2/3 validators voted the same result for the current
-challenge, the validator will aggregate these signatures and assemble a data challenge attestation, submit this
-attestation on-chain through a transaction, the first one submits the attestation can get reward, the later transaction
-which submits the attestation won't pass the verification. Only the validators whose votes wrapped into the attestation
-will be rewarded, so it may be that some validators voted, but their votes were not assembled, they won't get reward
-for this data availability challenge.
+The validator collects challenge signatures and if more than two-thirds of validators vote the same result,
+those signatures are aggregated to create a data challenge attestation. This attestation is then submitted on-chain
+via a transaction that awards the first submitter. Subsequent submissions of the same attestation will fail verification.
+Only the validators whose votes were included in the attestation are rewarded, therefore, some validators who voted but
+were not included will not be rewarded for the data availability challenge.
 
 ## Workflow
 
-The data availability challenge workflow is as below:
-
-1. Anyone can submit a transaction to challenge data availability, the challenge information would be recorded on-chain
-   temporarily, and also would be written into the typed event after the transaction has been executed.
-2. By default, at the end block phase of each block, we will use a random algorithm to generate some data availability
-   challenge typed events. All challenge information will be persisted in storage until it has been confirmed or
-   expired.
-3. The off-chain data availability detect module keeps tracking the on-chain challenge information, and then initiates
-   an
-   off-chain data availability detect.
-4. The validator uses its BLS private key to sign a data challenge vote according to the result, the vote data should be
-   the same for all validators to sign, it should include block header, data challenge information, and the challenge
-   result.
-5. The validator keeps collecting data challenge votes, aggregates the signatures, assembles data challenge attestation.
-6. The validator submits the attestation when there are more than 2/3 validators that have reached an agreement.
-7. The data challenge attestation transaction will be executed, verify the attestation, clean the data challenge
-   storage,
-   slash the malicious SP, distribute the reward, and set a cooling-off period for successful data challenges to avoid
-   attacking.
-8. The cooling-off period is set for the validator to regain, recover, or shift this piece of data, once the cooling off
-   period time expires, this data availability can be challenged again, if this piece of data is still unavailable, the
-   validator would be slashed again.
 <div align="center"><img src="https://raw.githubusercontent.com/bnb-chain/greenfield-whitepaper/main/assets/19.2%20Data%20Availability%20Challenge.jpg"  height="80%" width="80%"></div>
 <div align="center"><i>Data Availability Challenge Workflow</i></div>
+
+The Workflow for the Data Availability Challenge is as Follows:
+
+1. Any user can submit a transaction to challenge the availability of data. The related information will be recorded
+   temporarily on-chain and also be included in typed events once the transaction is executed.
+2. At the end block phase of each block, a random algorithm is used to generate data availability challenge events by
+   default. All challenge information will be stored until confirmed or expired.
+3. The off-chain data availability detection module tracks on-chain challenge information and initiates off-chain detection.
+4. The validator uses their BLS private key to sign a data challenge vote that includes block header, data challenge information, and the result.
+5. The validator collates data challenge votes, aggregates the signatures, and creates a data challenge attestation.
+6. Once 2/3 validators have reached an agreement, the validator submits the attestation.
+7. The data challenge attestation transaction is executed, and the attestation is verified, and the challenge storage is cleared.
+   Malicious nodes are penalized, and rewards are distributed. A cooling-off period is implemented to avoid repeated attacks.
+8. During the cooling-off period, the validator can regain, recover, or shift the data.
+   Once the cooling-off period expires, the data can be challenged again. If the data is still unavailable, the validator will be penalized once more.
 
 ## Create Challenge
 
