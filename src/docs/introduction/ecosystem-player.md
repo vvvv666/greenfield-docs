@@ -3,13 +3,10 @@ title: Ecosystem Players
 order: 2
 ---
 
-## Ecosystem Players
+# Ecosystem Players
 From storage provider and BNB staker to developers, there are a variety of individuals and entities that play a critical 
-role in the growth and success of Greenfield. Today, we'll dive into the unique contributions and responsibilities of 
-each of these groups, and explore how they work together to shape the future of Greenfield.
-
-<div align="center"><img src="../../asset/01-All-Players-of-Greenfield.jpg"  height="80%" width="80%"></div>
-<div align="center"><i>Figure All Players of Greenfield</i></div>
+role in the growth and success of Greenfield. We'll dive into the unique contributions and responsibilities of 
+each group, and explore how they work together to shape the future of Greenfield.
 
 ### Greenfield Validators
 
@@ -25,18 +22,6 @@ to operate on the objects stored on the Greenfield blockchain. They are responsi
 Greenfield and ensure that the blockchain state acts as a control panel for both Storage Providers (SPs) and users. 
 Both parties rely on the validators to accurately update and utilize this state in order to operate, store, 
 and access their object storage.
-
-### Greenfield Relayers
-The Greenfield Relayer is a powerful bi-directional relaying service designed to facilitate seamless communication between 
-Greenfield and BSC. It can only be operated by Greenfield validators and functions as a standalone process.
-
-This innovative system independently monitors and tracks cross-chain events that take place on both the Greenfield and 
-BSC networks, storing this data securely in a database. When an event is confirmed, the relayer generates a BLS signed 
-message that is then shared through the P2P network on the Greenfield network, known as "the vote".
-
-As more votes are collected, the Greenfield Relayer assembles the necessary cross-chain package transaction and 
-submits it to either the BSC or Greenfield network. This streamlined process ensures that communication between the two 
-networks is efficient and error-free.
 
 ### Storage Providers (SPs)
 Storage Providers (SPs) are an essential component of the Greenfield blockchain, providing storage service 
@@ -59,8 +44,35 @@ easy for dApp developers to integrate these features into their applications.
 This user-friendly approach allows developers to efficiently build and deploy 
 dApps that can solve real-world problems.
 
-## Participate in the Ecosystem
+### Greenfield Relayers
+The Greenfield Relayer is a powerful bi-directional relaying service designed to facilitate seamless communication between
+Greenfield and BSC. It can only be operated by Greenfield validators and functions as a standalone process.
+
+This innovative system independently monitors and tracks cross-chain events that take place on both the Greenfield and
+BSC networks, storing this data securely in a database. When an event is confirmed, the relayer generates a BLS signed
+message that is then shared through the P2P network on the Greenfield network, known as "the vote".
+
+As more votes are collected, the Greenfield Relayer assembles the necessary cross-chain package transaction and
+submits it to either the BSC or Greenfield network. This streamlined process ensures that communication between the two
+networks is efficient and error-free.
+
+### Challenge Verifier
+Challenge Verifier is an off-chain service that verifies data availability, data integrity and service quality by accessing the 
+storage provider. This mechanism works by penalizing and gradually eliminating storage providers with poor service quality, 
+in order to ensure the good performance and reliability of the entire network.
+
+To elaborate, Challenge Verifier constantly checks the storage providers in the network by tasking them with challenges 
+to prove their reliability. The challenges may include storing specific pieces of data or responding to requests within 
+a certain time limit. Providers that fail these challenges will be punished by slash their staked BNB.
+
+By using Challenge Verifier, the network can ensure that only reliable and trustworthy storage providers are allowed 
+to participate, protecting the network from any potential data loss, corruption, or low-quality service. 
+Additionally, Challenge Verifier creates a competitive environment for storage providers, motivating them to 
+continuously improve their services to avoid penalties and stay in the network.
+
+## How to Participate in the Ecosystem
 - [Become A Validator](../greenfield-blockchain/cli/validator-staking.md): validators secure the Greenfield by validating and relaying transactions,
   proposing, verifying and finalizing blocks.
 - [Become A Storage Provider](../greenfield-blockchain/cli/storage-provider.md): SPs store the objects' real data, i.e. the payload data. and get paid
   by providing storage services.
+- [Store Data](../greenfield-blockchain/cli/storage.md): store and manage your data in a decentralized way, control and own it all by yourself.

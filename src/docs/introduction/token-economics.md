@@ -18,18 +18,15 @@ BNB can be transferred from BSC to Greenfield blockchain, and vice versa. It is 
   as time goes on and dispatched to Greenfield Storage Providers.
 - **Governance token**. BNB holders may govern the Greenfield by voting on proposals with their staked BNB (not day 1).
 
-No initial donors, foundation, or company will get funds in the genesis setup.
-
-## Genesis Setup
-BNB is transferred from BSC to Greenfield as the first cross-chain action. The initial validator set and storage provider
-of Greenfield at the genesis will first lock a certain amount of BNB into the "Greenfield Token Hub" contract on BSC. This contract 
-is used as part of the native bridge for BNB transferring after the genesis. These initial locked BNB will be used as 
-the self-stake of validators, the deposit of storage provider and early days gas fees.
-
-The initial BNB allocation on greenfield is around 1M BNB. (TODO: not finalized)
+## Revenue Sharing
+The main economic drive of Greenfield comes from their storage providers who charge users fees for their storage services. 
+Meanwhile, validators play a crucial role in supervising the network's security, maintaining stability and ensuring service quality. 
+While validators may earn transaction fees, this alone may not be enough to guarantee sufficient staking for network security. 
+Therefore, Greenfield has designed validators to receive a reasonable proportion of fees from the storage services they provide.
+This approach ensures that users' data is not only stored but that the network is also safe and secure.
 
 ## Circulation Model
-There is no inflation of BNB in greenfield. Due to the dual chain structure, cross chain transfer is implemented to 
+There is no inflation of BNB in greenfield. Due to the dual chain structure, cross chain transfer is implemented to
 enable BNB flow between Greenfield and Smart Chain bi-directionally. The total circulation of BNB on Greenfield is volatile.
 
 Greenfield use Lock/Unlock mechanism to ensure the total circulation of BNB on both chain is always less than the initial
@@ -40,9 +37,16 @@ total supply:
 
 Refer to [cross chain model](../concept/cross-chain.md) to get more details about the mechanism.
 
-## How to Participate in the Ecosystem
-- [Become A Validator](../greenfield-blockchain/cli/validator-staking.md): validators secure the Greenfield by validating and relaying transactions, 
-   proposing, verifying and finalizing blocks.
-- [Become A Storage Provider](../greenfield-blockchain/cli/storage-provider.md): SPs store the objects' real data, i.e. the payload data. and get paid 
-  by providing storage services.
-- [Store Data](../greenfield-blockchain/cli/storage.md): store and manage your data in a decentralized way, control and own it all by yourself.
+## Genesis Setup
+BNB is transferred from BSC to Greenfield as the first cross-chain action. The initial validator set and storage provider
+of Greenfield at the genesis will first lock a certain amount of BNB into the "Greenfield Token Hub" contract on BSC. This contract 
+is used as part of the native bridge for BNB transferring after the genesis. These initial locked BNB will be used as 
+the self-stake of validators, the deposit of storage provider and early days gas fees.
+
+The initial BNB allocation on greenfield is around 1M BNB. (TODO: not finalized)
+
+::: tip
+No initial donors, foundation, or company will get funds in the genesis setup.
+
+No token inflation.
+:::
