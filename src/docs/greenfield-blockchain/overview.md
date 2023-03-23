@@ -33,6 +33,8 @@ principles of an application chain built on Tendermint.
 :::
 
 ## Why Greenfield Blockchain
+
+### Core of Greenfield Blockchain
 The **Greenfield Blockchain**'s core revolves around data and includes several key aspects:
 
 - **Decentralized storage of data**: Any individual or organization can register as a storage provider on the Greenfield 
@@ -50,14 +52,24 @@ providers and coordinates data backup and recovery.
     making it highly customizable as per individual requirements.
 - **Flow of data value**: Data assetization on BSC promotes the flow of data value through various decentralized applications (dapps).
 
-In addition to ensuring network security, the validators of **Greenfield Blockchain** also play other important roles:
-- Validators are responsible for reaching consensus on cross-chain events and relaying cross-chain packets to BSC and Greenfield,
-  providing secure, fast, stable, and inexpensive cross-chain services.
-- Validators need to challenge the data availability of service providers (SPs) in a specific or random manner, and 
-  punish SPs that engage in malicious behavior or have poor service quality.
-- Validators need to vote through governance to determine the future development direction and adjust various network parameters 
-  to ensure the healthy and sustainable development of Greenfield's ecosystem.
+### Validator from Greenfield Blockchain
+The validators of the Greenfield Blockchain are integral to the network's security and reliability. 
+  However, their responsibilities extend well beyond that:
 
+1. Validators are tasked with achieving consensus on cross-chain events and relaying cross-chain packets 
+   to both Greenfield and BNB Smart Chain. This ensures that cross-chain transactions are executed quickly, 
+   securely, and with minimal cost.
+
+2. Validators play a key role in ensuring the integrity and availability of data provided by 
+   service providers (SPs). By challenging the data availability of SPs in a specific or random manner, 
+   validators can weed out malicious actors and those who provide subpar services. 
+    Punishing such actors through appropriate measures - such as slashing their stake, for example - helps 
+    to ensure the quality and reliability of services in the Greenfield ecosystem.
+
+3. Validators also have a say in the governance of the network. They vote on issues related to the future development 
+   of Greenfield's ecosystem and adjust various network parameters as necessary. 
+   This ensures that the network remains healthy and sustainable over time, 
+   while accommodating the changing needs and demands of its users.
 
 ## Get Started with Greenfield Blockchain
 - [Quick start with Greenfield Blockchain](run-node/interact-node.md)

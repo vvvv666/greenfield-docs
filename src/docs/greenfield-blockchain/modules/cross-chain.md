@@ -8,29 +8,29 @@ order: 5
 <div align="center"><img src="../../../asset/03-Cross-chain-Architecture.jpg"  height="95%" width="95%"></div>
 <div align="center"><i>Figure Cross-chain Architecture</i></div>
 
-Above figure shows the layered design of cross-chain:
+The Greenfield ecosystem consists of three distinct layers.
 
-1. The bottom layer is a cross-chain **Communication Layer**, which focuses
-on primitive communication package handling and verification. 
-2. The middle layer implements the **Resource Mirror**. It is responsible for managing
-the resource assets that are defined on Greenfield but mirrored onto
-BSC. 
-3. The top layer is the **Application Layer**, which are the smart
-contracts implemented by community developers on BSC to operate the
-mirrored resource entities with their primitives; Greenfield does not have
-such an application layer since itself does not provide programmability yet.
-The real dApps will have some part in this Application Layer and also
-interact with Greenfield Core and all sorts of supporting infrastructures.
+### Communication Layer 
+Communication Layer is responsible for handling and verifying
+the communication packages between different blockchain networks. This layer serves as the backbone of
+the entire ecosystem, ensuring the smooth and secure transfer of information between different platforms.
 
-Because of the asymmetric framework, BSC focuses more on the
-**application/control plane**, while Greenfield is the **data plane**. To avoid
-state racing, the following rules are introduced:
+### Resource Mirror Layer 
+Resource Mirror Layer provides a bridge between Greenfield and Binance Smart Chain (BSC).
+This layer manages the resource assets defined on Greenfield, which are then mirrored onto BSC.
+The Resource Mirror Layer enables users to interact with these assets on BSC using smart contracts,
+which operate on the primitives defined by Greenfield. This layer plays a critical role in the
+Greenfield ecosystem, enabling seamless cross-chain asset management and more efficient resource allocation.
 
-- Any resources that are initiated to create by BSC can only be controlled by BSC.
-
-- Any resources that are controlled by BSC can not transfer control rights to Greenfield.
-
-- Any resources that are controlled by Greenfield can transfer control rights to BSC.
+### Application Layer
+At the top of the Greenfield ecosystem is the Application Layer. This layer consists of smart contracts
+that are developed by the community on BSC, enabling them to operate the mirrored resource entities on
+the Resource Mirror Layer. While Greenfield itself does not currently offer programmability, the Application
+Layer allows for the creation of decentralized applications (dApps) that can interact with Greenfield
+Core and other supporting infrastructures. The Application Layer represents the true power and
+potential of the Greenfield ecosystem, enabling developers and users to create and leverage a
+wide range of innovative and decentralized applications while benefiting from Greenfield's robust
+infrastructure and cross-chain capabilities.
 
 ## Communication Layer
 
@@ -188,6 +188,14 @@ These NFTs have corresponding metadata information for the resources.
 The ownerships of the NFTs on BSC stand for the ownerships of these 
 resources on Greenfield. As these ownerships are not transferable on 
 Greenfield, these NFTs are not transferable on BSC.
+
+To avoid state racing, the following rules are introduced:
+
+- Any resources that are initiated to create by BSC can only be controlled by BSC.
+
+- Any resources that are controlled by BSC can not transfer control rights to Greenfield.
+
+- Any resources that are controlled by Greenfield can transfer control rights to BSC.
 
 ### Cross-Chain Operating Primitives
 

@@ -1,9 +1,9 @@
 ---
-title: Programmability
+title: Cross-Chain Programmability
 order: 6
 ---
 
-# Programmability
+# Cross-Chain Programmability
 
 The real power of the Greenfield ecosystem lies in that the platform is not only designed to store the data, but also to
 support the creation of value based on the data assets and its related economy.
@@ -25,56 +25,44 @@ It does not mean developers have to build dapp based on BSC network. Excellent i
 and tools can be built directly on the Greenfield network.
 :::
 
-## Cross-Chain with BSC
-
-The cross-chain model expects to achieve the following goals:
-
-- integratable with the existing systems: try to reuse the current
-  infrastructure and dApps as much as possible, such as NFT
-  Marketplace, data indexing, and blockchain explorers.
-
-- programmable: dApps can define how they want to wrap the assets from Greenfield.
-
-- secure and recoverable.
-
-The native cross-chain bridge is maintained and secured by the
-validators of Greenfield, via a new relayer system based on an
-aggregated multisig scheme (more details in the later sections).
-Validators will run the relayers to facilitate the high
-bandwidth and fast bridge.
-
-BNB will be transferred from BSC to Greenfield as the first cross-chain
-action. The initial validator set of Greenfield at the genesis will
-first lock a certain amount of BNB into the "Greenfield Token Hub"
-contract on BSC. This contract will also be used as part of the native
-bridge for BNB transferring after the genesis. These initial locked BNB
-will be used as the self-stake of validators and early days gas fees.
-
 ## Framework
 
 <div align="center"><img src="../../asset/03-Cross-chain-Architecture.jpg"  height="95%" width="95%"></div>
 <div align="center"><i>Figure Cross-chain Architecture</i></div>
 
-The bottom layer is a cross-chain **Communication Layer**, which focuses
-on primitive communication package handling and verification. The middle
-layer implements the **Resource Mirror**. It is responsible for managing
-the resource assets that are defined on Greenfield but mirrored onto
-BSC. The top layer is the **Application Layer**, which are the smart
-contracts implemented by community developers on BSC to operate the
-mirrored resource entities with their primitives; Greenfield does not have
-such an application layer since itself does not provide programmability yet.
-The real dApps will have some part in this Application Layer and also
-interact with Greenfield Core and all sorts of supporting infrastructures.
+The Greenfield ecosystem consists of three distinct layers. 
+The first layer is the Cross-Chain Communication Layer, which is responsible for handling and verifying 
+the communication packages between different blockchain networks. This layer serves as the backbone of 
+the entire ecosystem, ensuring the smooth and secure transfer of information between different platforms.
 
-Because of the asymmetric framework, BSC focuses more on the
-application/control plane, while Greenfield is the data plane. To avoid
-state racing, the following rules are introduced:
+The second layer is the Resource Mirror Layer, which provides a bridge between Greenfield and Binance Smart Chain (BSC). 
+This layer manages the resource assets defined on Greenfield, which are then mirrored onto BSC. 
+The Resource Mirror Layer enables users to interact with these assets on BSC using smart contracts, 
+which operate on the primitives defined by Greenfield. This layer plays a critical role in the 
+Greenfield ecosystem, enabling seamless cross-chain asset management and more efficient resource allocation.
 
-- Any resources that are initiated to create by BSC can only be controlled by BSC.
+At the top of the Greenfield ecosystem is the Application Layer. This layer consists of smart contracts 
+that are developed by the community on BSC, enabling them to operate the mirrored resource entities on
+the Resource Mirror Layer. While Greenfield itself does not currently offer programmability, the Application 
+Layer allows for the creation of decentralized applications (dApps) that can interact with Greenfield 
+Core and other supporting infrastructures. The Application Layer represents the true power and 
+potential of the Greenfield ecosystem, enabling developers and users to create and leverage a 
+wide range of innovative and decentralized applications while benefiting from Greenfield's robust 
+infrastructure and cross-chain capabilities.
 
-- Any resources that are controlled by BSC can not transfer control rights to Greenfield.
+## Cross-Chain Bridge
+The native cross-chain bridge is an essential part of the Greenfield ecosystem, 
+as it enables seamless interoperability between different blockchain networks. 
+To ensure the security and integrity of the bridge, the validators of Greenfield 
+have implemented a new relayer system based on an aggregated multisig scheme.
 
-- Any resources that are controlled by Greenfield can transfer control rights to BSC.
+Under this system, multiple validators will collaborate to approve and execute cross-chain transactions, 
+with each transaction requiring a certain threshold of signatures to be deemed valid. 
+The use of an aggregated multisig scheme not only ensures greater security but also 
+facilitates a higher bandwidth and faster bridge.
+
+The relayer system will be continuously monitored and maintained by the validators to 
+ensure that it is running at optimal efficiency.
 
 More details are discussed in [Cross Chain Module design](../greenfield-blockchain/modules/cross-chain.md).
 

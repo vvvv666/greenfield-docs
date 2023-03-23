@@ -5,14 +5,15 @@ order: 1
 
 # Blockchain Events
 
-There are two types of events doc:
-1. Some old modules introduced in the cosmos-sdk don't emit typed events.
-   Their events are listed in a Markdown document under the module's spec folder.
-2. The new modules introduced in the cosmos-sdk or developed by the Greenfield
-   team emit typed events. Their typed events are defined in a protobuf file.
-   For these modules, we can refer to their protobuf file directly.
+There are two categories of events in the cosmos-sdk documentation:
 
-Following are the events that the Greenfield blockchain emits, grouped by modules:
+1. Old modules may not have typed events, which means their events are listed in a 
+Markdown document under the module's spec folder.
+
+2. New modules introduced in the cosmos-sdk or developed by the Greenfield team emit typed events, 
+  which are defined in a protobuf file. Therefore, for these modules, we can refer directly to their protobuf file.
+
+Here are the events grouped by modules that are emitted by the Greenfield blockchain:
 
 * [Authz](https://github.com/bnb-chain/gnfd-cosmos-sdk/blob/master/proto/cosmos/authz/v1beta1/event.proto)
 

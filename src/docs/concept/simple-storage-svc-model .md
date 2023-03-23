@@ -4,7 +4,8 @@ order: 5
 ---
 
 # Simple Storage Service Model
-Greenfield provides developers with similar API primitives and models as the most popular Web2 cloud storage: AWS s3.
+Greenfield offers developers comparable API primitives and models to the AWS s3 cloud storage which 
+is most utilized in Web2.
 
 ## Abstract
 Below are the basic data models for Greenfield storage:

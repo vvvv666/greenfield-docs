@@ -22,11 +22,11 @@ a ["Proof-of-Challenge"](../greenfield-blockchain/modules/data-availability-chal
 "Proof-of-Challenge" is proposed based on the assumptions: **Greenfield is a self-sustained, service-oriented ecosystem.**
 :::
 
-Stakeholders can trigger challenges in various ways, such as through user or storage provider-initiated transactions or 
-via internal events on the Greenfield blockchain. Following a challenge, Greenfield validators must conduct 
-an **off-chain audit** of challenged data from storage providers. Consortium members will vote on the challenge results, 
-and the failed outcomes will reduce the corresponding storage providers' rewards. Participants who submitted the challenge 
-and the validators receive rewards for their involvement in this process.
+Stakeholders can trigger challenges in various ways, such as through user or 
+via random events on the Greenfield blockchain. Following a challenge, [Challenge Verifier](../introduction/ecosystem-player.md#challenge-verifier) must conduct 
+an **off-chain audit** of challenged data from storage providers. Verifier Consortium will vote on the challenge results, 
+and the failed outcomes will reduce the corresponding storage providers' staked BNB. Participants who submitted the challenge 
+and the verifier receive rewards for their involvement in this process.
 
 Data that failed to pass a challenge will not face another challenge for a specific time to allow storage providers to 
 restore the data. 

@@ -52,7 +52,7 @@ availability, and service quality of your data while penalizing the correspondin
 You can continue to receive rewards until the storage provider fully recovers your data or provides the service.
 
 ### How can I make my valuable data circulate?
-You can mirror your data and access permissions to the Binance Smart Chain network, 
+You can mirror your data and access permissions to the BNB Smart Chain network, 
 and trade your data through various DApps and data trading platforms.
 
 ### How long can the data uploaded to the testnet be saved?

@@ -70,6 +70,8 @@ to participate, protecting the network from any potential data loss, corruption,
 Additionally, Challenge Verifier creates a competitive environment for storage providers, motivating them to 
 continuously improve their services to avoid penalties and stay in the network.
 
+Challenge Verifier can only be operated by Greenfield validators right now, and will open to public in the future.
+
 ## How to Participate in the Ecosystem
 - [Become A Validator](../greenfield-blockchain/cli/validator-staking.md): validators secure the Greenfield by validating and relaying transactions,
   proposing, verifying and finalizing blocks.

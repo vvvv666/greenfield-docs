@@ -5,17 +5,26 @@ order: 6
 
 # Consensus and Staking
 
-BNB Greenfield blockchain uses Proof-of-Stake based on Tendermint-consensus for its own network security. Blocks are
-created every 2 seconds on the Greenfield chain by a group of validators. BNB will be the staking token on this blockchain.
+The BNB Greenfield blockchain places a strong emphasis on network security, 
+which is achieved through a Proof-of-Stake (PoS) consensus mechanism based on Tendermint. 
+Validators play a crucial role in this process, with a new block being created every 
+2 seconds by a group of elected validators. Notably, BNB serves as the staking token on this blockchain.
 
-There will be a validators set in the genesis state, the staked BNB for these validators would be locked in the BSC side.
-For the other validators, they should submit a create-validator proposal to become a validator, and if the validator
-doesn't behave well, they can be impeached, once the impeach-validator proposal is passed, the validator would be jailed
-forever.
+Upon genesis state, a set of validators will be established, with their staked BNB locked 
+in the Binance Smart Chain (BSC) side. Other validators can apply to become part of 
+the network by submitting a create-validator proposal. Should a validator fail to uphold 
+their responsibilities, they can be impeached. If the impeach-validator proposal is approved, 
+the validator is removed and jailed permanently.
 
-It should be mentioned that the validators are separated from the storage provider. The validators are responsible for
-generating the blocks, challenging the data availability, and cross-chain communication. The storage providers are
-responsible for storing the data objects, there is no strong binding relationship between them.
+It is important to note that validators are distinct from storage providers within the Greenfield 
+ecosystem. While validators are responsible for generating blocks, ensuring data availability, 
+and managing cross-chain communication, storage providers focus on storing data objects. 
+Though their roles are closely related, there is no stringent binding relationship between the two.
+
+Overall, the Greenfield blockchain's PoS consensus mechanism, Validator set, and impeachment 
+process serve to maintain network security and ensure the integrity of the ecosystem. 
+The separation of duties between validators and storage providers enables a more efficient 
+and streamlined network architecture.
 
 ## Create Validator
 
@@ -51,17 +60,21 @@ validator would be jailed forever. Here are the steps for impeaching a validator
 
 ## Staking Reward Distribution
 
-In BNB Greenfield blockchain, rewards gained from transaction fees are paid to validators. The fee distribution
-module fairly distributes the rewards to the validators' constituent delegators.
+In the BNB Greenfield blockchain, validators receive rewards from transaction fees. 
+To ensure fairness, the fee distribution module allocates these rewards to the validators' 
+delegators in a proportional and transparent manner.
 
-Rewards are calculated per period. The period is updated each time a validator's delegation changes, for example, when
-the validator receives a new delegation. The rewards for a single validator can then be calculated by taking the total
-rewards for the period before the delegation started, minus the current total rewards.
+Rewards are calculated over specific periods, which are updated every time there is a change in 
+a validator's delegation, such as when a new delegation is received. 
+To determine the rewards for a validator during a particular period, 
+their total rewards from the previous period are subtracted from the current total rewards.
 
-The commission to the validator is paid when the validator is removed or when the validator requests a withdrawal.
-The commission is calculated and incremented at every `BeginBlock` operation to update accumulated fee amounts.
+When a validator is removed or requests a withdrawal, their commission 
+is paid based on the accumulated fee amounts calculated and updated with 
+each `BeginBlock` operation.
 
-The rewards to a delegator are distributed when the delegation is changed or removed, or a withdrawal is requested.
-Before rewards are distributed, all slashes to the validator that occurred during the current delegation are applied.
+Delegators receive their rewards either when they change or remove their delegation, 
+or when they request a withdrawal. Before distributing the rewards, any penalties imposed on 
+the validator for that delegation period are taken into account.
 
 The detailed fee distribution rules is [described here](https://github.com/bnb-chain/greenfield-cosmos-sdk/blob/master/docs/spec/fee_distribution/f1_fee_distr.pdf)
