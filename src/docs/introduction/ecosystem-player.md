@@ -4,7 +4,9 @@ order: 2
 ---
 
 ## Ecosystem Players
-There are several player roles for the whole Greenfield ecosystem.
+From storage provider and BNB staker to developers, there are a variety of individuals and entities that play a critical 
+role in the growth and success of Greenfield. Today, we'll dive into the unique contributions and responsibilities of 
+each of these groups, and explore how they work together to shape the future of Greenfield.
 
 <div align="center"><img src="../../asset/01-All-Players-of-Greenfield.jpg"  height="80%" width="80%"></div>
 <div align="center"><i>Figure All Players of Greenfield</i></div>
