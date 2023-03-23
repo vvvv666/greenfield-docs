@@ -1,13 +1,13 @@
 ---
-title: World State of Greenfield Blockchain
+title: World State
 ---
 
-# World State of Greenfield Blockchain
-All Greenfield validators have such active data in full (at least the latest state). Anyone can join the blockchain as
-full nodes to synchronize these data for free.
+# World State
+All Greenfield validators have access to up-to-date active data in full. Anyone can join the blockchain as a 
+full node and freely synchronize this data.
 
-These data are on-chain and can be only changed through transactions onto the Greenfield blockchain. It has several types
-as described below.
+The active data is stored on-chain and can only be updated through transactions on the Greenfield blockchain. 
+There are several types of active data, which are described below.
 
 ## Accounts and Balance
 Each user has their "Owner Address" as the identifier for their owner account to "own" the data resources. There is
