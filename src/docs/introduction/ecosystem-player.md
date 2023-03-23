@@ -11,43 +11,51 @@ There are several player roles for the whole Greenfield ecosystem.
 
 ### Greenfield Validators
 
-As a PoS blockchain, the Greenfield blockchain has its own validators.
-These validators are elected based on the Proof-of-Stake logic.
+The Greenfield blockchain operates as a Proof-of-Stake (PoS) blockchain and has its own set of validators 
+that are chosen through an election process based on PoS logic.
 
-These validators are responsible for the security of the Greenfield
-blockchain. They get involved in the governance and staking of the
-blockchain. They form a P2P network that is similar to other PoS
-blockchain networks.
+The validators play a crucial role in ensuring the security of the Greenfield blockchain and are actively 
+involved in the governance and staking of the blockchain. They also form a peer-to-peer network that functions 
+similarly to other PoS blockchain networks.
 
-Meanwhile, they accept and process transactions to allow users to
-operate their objects stored on Greenfield. They maintain the metadata
-of Greenfield as the blockchain state, which is the control panel for
-both Storage Providers (SPs) and users. These two parties use and update
-these states to operate the object storage.
+In addition to their governance responsibilities, validators also accept and process transactions, which enables users 
+to operate on the objects stored on the Greenfield blockchain. They are responsible for maintaining the metadata of 
+Greenfield and ensure that the blockchain state acts as a control panel for both Storage Providers (SPs) and users. 
+Both parties rely on the validators to accurately update and utilize this state in order to operate, store, 
+and access their object storage.
 
 ### Greenfield Relayers
-The Greenfield Relayer is a bidirectional relaying tool that facilitates communication between 
-Greenfield and BSC. This standalone process can only be run by Greenfield validators. The relayer
-independently monitors cross-chain events occurring on BSC and Greenfield, and persists them into
-a database. Once a few blocks confirm the event and reach finality, the relayer will sign a message
-using the BLS private key to confirm the event, and broadcast the signed event (known as "the vote")
-through the P2P network on the Greenfield network. Once enough votes from the Greenfield relayer are
-collected, the relayer will assemble a cross-chain package transaction and submit it to the BSC or
-Greenfield network.
+The Greenfield Relayer is a powerful bi-directional relaying service designed to facilitate seamless communication between 
+Greenfield and BSC. It can only be operated by Greenfield validators and functions as a standalone process.
+
+This innovative system independently monitors and tracks cross-chain events that take place on both the Greenfield and 
+BSC networks, storing this data securely in a database. When an event is confirmed, the relayer generates a BLS signed 
+message that is then shared through the P2P network on the Greenfield network, known as "the vote".
+
+As more votes are collected, the Greenfield Relayer assembles the necessary cross-chain package transaction and 
+submits it to either the BSC or Greenfield network. This streamlined process ensures that communication between the two 
+networks is efficient and error-free.
 
 ### Storage Providers (SPs)
-Storage Providers (SP) are storage service infrastructures that organizations or individuals provide and the 
-corresponding roles they play. They use Greenfield as the ledger and the single source of truth. Each SP can and 
-will respond to users' requests to write (upload) and read (download) data, and serve as the gatekeeper for 
-user rights and authentications.
+Storage Providers (SPs) are an essential component of the Greenfield blockchain, providing storage service 
+infrastructures that can be offered by both individuals and organizations. SPs utilize the Greenfield blockchain 
+as the ledger and single source of truth to maintain secure and reliable storage.
+
+Each SP is responsible for processing user requests to upload and download data, acting as the gatekeeper for 
+user rights and authentications. As a result, they play a critical role in ensuring that user data remains secure 
+and accessible at all times.
 
 ### Greenfield dApps
-Greenfield dApps are applications that provide functions based on
-Greenfield storage and its related economic traits to solve some
-problems of their users. When users want to create and use the data on Greenfield, 
-they may interact with the BNB Greenfield Core Infrastructure via BNB Greenfield dApps 
-(decentralized applications). Greenfield provides a friendly smart contract library on the cross-chain facility, 
-which can be easily integrated into dapps.
+Greenfield dApps are applications that leverage the unique features of the Greenfield blockchain to 
+solve various problems for their users. These dApps are designed to utilize Greenfield storage and 
+related economic traits, providing a reliable and secure platform for creating and managing data.
+
+Users can interact with the BNB Greenfield Core Infrastructure through the use of BNB Greenfield dApps, 
+which are decentralized applications that enable seamless interaction with the Greenfield ecosystem. Furthermore, 
+the Greenfield blockchain provides an intuitive smart contract library on the cross-chain facility, making it 
+easy for dApp developers to integrate these features into their applications. 
+This user-friendly approach allows developers to efficiently build and deploy 
+dApps that can solve real-world problems.
 
 ## Participate in the Ecosystem
 - [Become A Validator](../greenfield-blockchain/cli/validator-staking.md): validators secure the Greenfield by validating and relaying transactions,
