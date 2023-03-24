@@ -56,8 +56,7 @@ weaknesses, and the choice of backend will depend on your specific use case. Her
 1. **os**: The os backend uses the operating system's default credentials store to handle key storage operations securely. 
 The keyring may be kept unlocked for the whole duration of the user session.
 
-2. **file**: This backend more closely resembles the previous keyring storage used prior to cosmos-sdk v0.38.1. It 
-stores the keyring encrypted within the app's configuration directory. This keyring will request a password each time 
+2. **file**: It stores the keyring encrypted within the app's configuration directory. This keyring will request a password each time 
 it is accessed, which may occur multiple times in a single command resulting in repeated password prompts.
 
 3. **kwallet**: This backend uses the KDE Wallet Manager as a credentials management application.
