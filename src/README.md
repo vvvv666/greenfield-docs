@@ -6,7 +6,7 @@ heroText: BNB Greenfield
 tagline:  Unleash the power of decentralized blockchain and storage technology on data ownership and data economy ✨.
 actions:
   - text: Docs
-    link: /docs/introduction/overview
+    link: /docs/introduction/overview.html
     type: primary
   - text: white paper 📖
     link: https://github.com/bnb-chain/greenfield-whitepaper
