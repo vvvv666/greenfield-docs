@@ -16,7 +16,7 @@ the communication packages between different blockchain networks. This layer ser
 the entire ecosystem, ensuring the smooth and secure transfer of information between different platforms.
 
 ### Resource Mirror Layer 
-Resource Mirror Layer provides a bridge between Greenfield and Binance Smart Chain (BSC).
+Resource Mirror Layer provides a bridge between Greenfield and BNB Smart Chain (BSC).
 This layer manages the resource assets defined on Greenfield, which are then mirrored onto BSC.
 The Resource Mirror Layer enables users to interact with these assets on BSC using smart contracts,
 which operate on the primitives defined by Greenfield. This layer plays a critical role in the

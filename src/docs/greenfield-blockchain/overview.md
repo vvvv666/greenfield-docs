@@ -22,7 +22,7 @@ implementing a [Proof-of-Stake](https://ethereum.org/en/developers/docs/consensu
 Validator election and governance are managed through a [proposal-vote mechanism](modules/governance.md), following 
 the governance module of Cosmos SDK. Greenfield's validators produce blocks every **2 seconds**.
 
-As for the blockchain's native token, **BNB** serves as both gas and governance token. The initial BNB is locked on Binance 
+As for the blockchain's native token, **BNB** serves as both gas and governance token. The initial BNB is locked on BNB 
 Smart Chain (BSC) and subsequently re-minted on Greenfield. Cross-chain communication enables smooth flow of BNB and 
 data operation primitives between Greenfield and BSC. The total circulation of BNB remains unaffected and will 
 continue moving along the BNB Beacon Chain, BSC, and Greenfield.
@@ -43,7 +43,7 @@ providers and coordinates data backup and recovery.
 - **Data ownership**: Greenfield empowers users with comprehensive data ownership management functions. Users can grant 
    access, modify, create, delete, and execute permissions for their data to individuals or groups. On Greenfield, 
    users can exercise complete control over their own data.
-- **Data assetization**: All data and access permissions on Greenfield can be presented as NFT assets on the Binance 
+- **Data assetization**: All data and access permissions on Greenfield can be presented as NFT assets on the BNB 
    Smart Chain network. Users' operations on these NFT assets, like minting or burning, will ultimately transform into 
     changes in their data permissions on Greenfield through cross-chain technology. These NFT assets follow the 
     [ERC721](https://ethereum.org/en/developers/docs/standards/tokens/erc-721/) and [ERC1155](https://ethereum.org/en/developers/docs/standards/tokens/erc-1155/) 

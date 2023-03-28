@@ -11,7 +11,7 @@ Validators play a crucial role in this process, with a new block being created e
 2 seconds by a group of elected validators. Notably, BNB serves as the staking token on this blockchain.
 
 Upon genesis state, a set of validators will be established, with their staked BNB locked 
-in the Binance Smart Chain (BSC) side. Other validators can apply to become part of 
+in the BNB Smart Chain (BSC) side. Other validators can apply to become part of 
 the network by submitting a create-validator proposal. Should a validator fail to uphold 
 their responsibilities, they can be impeached. If the impeach-validator proposal is approved, 
 the validator is removed and jailed permanently.
