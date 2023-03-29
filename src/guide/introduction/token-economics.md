@@ -35,7 +35,7 @@ total supply:
 2. The transfer-in blockchain will unlock the amount from module account or contract and send it to target addresses.
 3. Both networks will never mint BNB.
 
-Refer to [cross chain model](../concept/cross-chain.md) to get more details about the mechanism.
+Refer to [cross chain model](../concept/programmability.md) to get more details about the mechanism.
 
 ## Genesis Setup
 BNB is transferred from BSC to Greenfield as the first cross-chain action. The initial validator set and storage provider

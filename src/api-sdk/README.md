@@ -1,6 +1,6 @@
 ---
 title: API Reference
-icon: generic
+icon: code
 index: false
 dir:
   order: 5

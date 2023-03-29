@@ -58,7 +58,7 @@ gnfd tx send <recipientAddress> 1000BNB --from <senderAddress> --gas auto
 #### Other Transaction Creation Methods
 
 The command-line is an easy way to interact with an application, but `Tx` can also be created using a 
-[gRPC or REST interface](../api-sdk/grpc_rest.md) or some other entry point defined by the application developer. 
+[gRPC or REST interface](../../api-sdk/grpc-rest.md) or some other entry point defined by the application developer. 
 From the user's perspective, the interaction depends on the web interface or wallet they are using 
 (e.g. creating `Tx` using [Lunie.io](https://lunie.io/#/) and signing it with a Ledger Nano S).
 

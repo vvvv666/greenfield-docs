@@ -1,5 +1,6 @@
 ---
 title: SDK
+icon: stack
 order: 3
 ---
 

@@ -1,6 +1,7 @@
 ---
 title: Blockchain Events
-order: 1
+icon: actions
+order: 2
 ---
 
 # Blockchain Events
