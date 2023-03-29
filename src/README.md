@@ -13,5 +13,6 @@ actions:
 copyright: false
 footer: Copyright © 2023 BNB-Chain.
 
-redirectTo: /guide
+# do not change it
+redirectTo: /docs/guide
 ---
