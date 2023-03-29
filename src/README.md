@@ -12,7 +12,6 @@ actions:
     link: https://github.com/bnb-chain/greenfield-whitepaper
 copyright: false
 footer: Copyright © 2023 BNB-Chain.
+
+redirectTo: /guide
 ---
-
-
-#### XXx
