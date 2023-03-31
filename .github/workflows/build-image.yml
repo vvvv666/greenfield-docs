@@ -37,7 +37,7 @@ jobs:
       - name: Build image
         run: |
           docker build . \
-          --build-arg "BASE_PATH=docs"
+          --build-arg "BASE_PATH=docs" \
           --label "org.opencontainers.image.source=${{ vars.IMAGE_SOURCE }}" \
           --label "org.opencontainers.image.revision=$(git rev-parse HEAD)" \
           --label "org.opencontainers.image.version=$(git describe --tags --abbrev=0)" \
