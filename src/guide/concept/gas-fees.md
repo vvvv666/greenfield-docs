@@ -17,9 +17,7 @@ of Greenfield. For instance, creating and deleting a storage object use similar 
 resources, but Greenfield encourages users to delete unused storage objects to optimize storage space, 
 resulting in lower transaction fees.
 
-**As a result, Greenfield Blockchain has deviated from the gas meter design in Cosmos SDK and re-engineered the gashub
-module to calculate gas consumption based on the transaction type and content, rather than just 
-storage and computational resource consumption.**
+**Greenfield Blockchain has taken a different approach from the gas meter design in Cosmos SDK. Instead, it has redesigned the gashub module to calculate gas consumption based on the type and content of the transaction, rather than just the consumption of storage and computational resources.**
 
 Unlike networks like Ethereum, Greenfield transactions do not feature a gas price field. 
 Instead, they consist of a fee and a gas wanted field. The gas price is inferred during 
@@ -35,16 +33,29 @@ Therefore, when constructing transactions, it is important to exercise caution w
 All transaction types need to register their gas calculation logic to gashub. Currently, four types of calculation logic 
 are supported:
 
+**MsgGasParams_FixedType**:
 ```go
 type MsgGasParams_FixedType struct {
 	FixedType *MsgGasParams_FixedGasParams 
 }
+```
+
+**MsgGasParams_GrantType**:
+```go
 type MsgGasParams_GrantType struct {
 	GrantType *MsgGasParams_DynamicGasParams 
 }
+```
+
+**MsgGasParams_MultiSendType**:
+```go
 type MsgGasParams_MultiSendType struct {
 	MultiSendType *MsgGasParams_DynamicGasParams 
 }
+```
+
+**MsgGasParams_GrantAllowanceType**:
+```go
 type MsgGasParams_GrantAllowanceType struct {
 	GrantAllowanceType *MsgGasParams_DynamicGasParams 
 }

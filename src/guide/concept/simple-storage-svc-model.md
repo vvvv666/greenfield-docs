@@ -15,26 +15,23 @@ Below are the basic data models for Greenfield storage:
 - Group
 - Permission
 
-These metadata are stored as blockchain state into the persistent storage of the Greenfield blockchain.
+These metadata are permanently stored in the Greenfield blockchain state.
 
 ## Models
 
 ### Bucket
-A bucket is a logical container for storing objects in Greenfield. Each bucket has a unique name that is assigned by the 
-user when the bucket is created. Bucket names must be globally unique within the Greenfield namespace, 
-which means that no two buckets can have the same name. The name must also comply with DNS naming conventions, 
-which requires that it be a series of one or more labels separated by periods. 
+In Greenfield, a bucket is a virtual container for storing objects. Users must assign each bucket a unique name that complies with DNS naming conventions, consisting of one or more labels separated by periods. It's crucial that the bucket name be globally unique within the Greenfield namespace to prevent two buckets from sharing the same name. 
 
-Once a bucket has been created, objects can be uploaded to it using various methods such as the gnfd cmd or SDKs. 
+Once a bucket has been created, objects can be uploaded to it using various methods such as the `gnfd` command line or the `SDKs`. 
 Objects within a bucket can be organized and managed like folders (also called "prefixes"). 
-Additionally, each object can be given a unique key (a string value) that identifies it within the bucket.
+Additionally, it's possible to assign a unique key (a string value) to each object within the bucket to distinguish it from other objects.
 
 Every user account can create several buckets. The account will become the "owner" of the bucket.
 
-Each bucket should be associated with its own Primary SP, and the payment accounts for Read and Store. The owner's
+Each bucket should be associated with its own Primary SP, and the payment accounts for Read and Store functions. The owner's
 address will be the default payment account.
 
-The prototype definition of a bucket:
+**Prototype definition of a bucket**
 
 ```protobuf
 message BucketInfo {
@@ -70,8 +67,8 @@ metadata. Each object is uniquely identified within a bucket by its object name 
 While objects are commonly used to store files, they can contain any type of data, including text, 
 images, videos, and program binaries.
 
-Users can upload objects to Greenfield using various methods, including the gnfd cmd and SDKs. They can also download, 
-copy, or move objects to and from in a similar way.
+Users can upload objects to Greenfield using various methods, including the `gnfd` command line and `SDKs`. They can also download, 
+copy, or move objects in a similar way.
 
 Objects in Greenfield have several important characteristics, including:
 - name and ID
@@ -86,7 +83,7 @@ Objects in Greenfield have several important characteristics, including:
 Object metadata is stored with the bucket name as the prefix of the key. It is possible to iterate through all
 objects under the same bucket, but it may be a heavy-lifting job for a large bucket with lots of objects.
 
-The prototype definition of an object:
+**Prototype definition of an object**
 
 ```protobuf
 
@@ -129,7 +126,7 @@ same user. However, a group can not create or own any resource. A group can not 
 A resource can only have a limited number of groups associated with it for permissions. This ensures that the on-chain
 permission check can be finished within a constant time.
 
-The prototype definition of a group:
+**Prototype definition of a group**
 
 ```protobuf
 message GroupInfo {

@@ -47,8 +47,8 @@ The storage module keeps state of the following primary objects:
 * ObjectInfo
 * GroupInfo
 
-These primary objects should be primarily stored and accessed by the `ID` which is a auto-incremented sequence. An
-additional indices are maintained per primary objects in order to compatibility with the S3 object storage.
+The primary objects are intended to be stored and accessed mainly using the auto-incremented sequence `ID`. 
+However, additional indices are also maintained for each primary object to ensure compatibility with the S3 object storage.
 
 * BucketInfo: `0x11 | hash(bucketName) -> BigEndian(bucketId)`
 * ObjectInfo: `0x12 | hash(bucketName)_hash(objectName) -> BigEndian(objectId)`
@@ -73,9 +73,11 @@ they can be updated with governance.
 
 ## Messages
 
+In this section, we'll list out the various messages that are associated with storage modules.
+
 ### MsgCreateBucket
 
-Used to create a bucket, a bucket is used to contain storage objects.
+Used to create a new bucket. Buckets are used to contain storage objects.
 
 ```protobuf
 message MsgCreateBucket {
@@ -101,7 +103,7 @@ message MsgCreateBucket {
 
 ### MsgDeleteBucket
 
-Used to delete bucket. It is important to note that you cannot delete a non-empty bucket.
+Used to delete an existing bucket. It is important to note that you cannot delete a non-empty bucket.
 
 ```protobuf
 message MsgDeleteBucket {
@@ -116,7 +118,8 @@ message MsgDeleteBucket {
 ```
 
 ### MsgUpdateBucketInfo
-Used to update bucket info.
+
+Used to update the information in a bucket.
 
 ```protobuf
 message MsgUpdateBucketInfo {
@@ -187,7 +190,7 @@ message MsgDeleteObject {
 ```
 ### MsgSealObject
 
-Storage provider seal an object once the underlying files are well saved by both primary and second SPs.
+With this message, Storage providers seal an object once the underlying files are well saved by both primary and second SPs.
 
 ```protobuf
 message MsgSealObject {
@@ -209,7 +212,7 @@ message MsgSealObject {
 ```
 ### MsgCopyObject
 
-Used to copy an exact same object to another user.
+Used to send a copy of an object to another user.
 
 ```protobuf
 message MsgCopyObject {
@@ -231,7 +234,7 @@ message MsgCopyObject {
 ```
 ### MsgRejectSealObject
 
-A storage provider may reject to seal an object if it refuses to, or it can not because of unexpect error.
+A storage provider may reject to seal an object if it refuses to, or be unable to do so due to unexpected errors.
 
 ```protobuf
 message MsgRejectSealObject {
@@ -246,7 +249,7 @@ message MsgRejectSealObject {
 ```
 ### MsgCancelCreateObject
 
-User are able to cancel an initial object before it is sealed.
+The users are able to cancel an initial object before it is sealed with this message.
 
 ```protobuf
 message MsgCancelCreateObject {
@@ -261,7 +264,7 @@ message MsgCancelCreateObject {
 ```
 ### MsgCreateGroup
 
-Used to create group.
+Used to create a new group.
 
 ```protobuf
 message MsgCreateGroup {
@@ -277,7 +280,7 @@ message MsgCreateGroup {
 ```
 ### MsgDeleteGroup
 
-Used to delete group that is no longer used. Please note that the underlying members are not deleted yet.
+Used to delete a group that is no longer used. Please note that the underlying members are not deleted yet.
 
 ```protobuf
 message MsgDeleteGroup {
@@ -292,7 +295,7 @@ message MsgDeleteGroup {
 ```
 ### MsgLeaveGroup
 
-A group member can choose to leave a group. 
+A group member can choose to leave a group by sending this message. 
 
 ```protobuf
 message MsgLeaveGroup {

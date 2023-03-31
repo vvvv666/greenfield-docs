@@ -21,7 +21,7 @@ The above command will create a local Greenfield chain network, which initialize
 The CLI `query` commands allow users to query `sp` state. You can use it to query the status of the storage provider, where params include minimum bond, bond denom, etc.; storage-provider can query the SP at a specific address; storage-providers can query all SPs.
 
 ```shell
-$ ./build/bin/gnfd query sp help
+$ ./build/bin/gnfd query sp --help
 Querying commands for the sp module
 
 Usage:

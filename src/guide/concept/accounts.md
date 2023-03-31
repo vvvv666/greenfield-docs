@@ -60,5 +60,4 @@ Greenfield only supports [secp256k1](https://en.bitcoin.it/wiki/Secp256k1) key s
 `Addresses` and `PubKey`s are both public information that identifies actors in the application. `Account` is used to 
 store authentication information. The basic account implementation is provided by a `BaseAccount` object.
 
-Unlike Cosmos SDK who defines 3 types of addresses, Greenfield only use the `AccAddress`, and the address 
-format follows [ERC-55](https://eips.ethereum.org/EIPS/eip-55).
+To identify users, Greenfield uses the variable `AccAddress`. The address format follows [ERC-55](https://eips.ethereum.org/EIPS/eip-55).

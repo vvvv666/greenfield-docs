@@ -4,11 +4,11 @@ icon: generic
 order: 1
 ---
 
-# Greenfield Blockchain GRPC, REST, and Tendermint Endpoints
+# Greenfield Blockchain Endpoints
 
 This document presents an overview of all the endpoints a node exposes: gRPC, REST as well as some other endpoints.
 
-## An Overview of All Endpoints
+## An Overview of All the Endpoints
 
 Each node exposes the following endpoints for users to interact with a node, each endpoint is served on a different port. 
 Details on how to configure each endpoint is provided in the endpoint's own section.

@@ -4,7 +4,7 @@ order: 4
 ---
 
 # Billing and Payment
-Greenfield will charge the users in two parts:
+In Greenfield, users are required to pay two different types of fees:
 - Firstly, every transaction will require gas fees to pay the Greenfield validator to
   write the metadata on-chain as described in [Gas and Fee](gas-fees.md) part.
 - Secondly, the SPs charge the users for their storage service. Such payment also happens on the Greenfield.
@@ -12,17 +12,13 @@ Greenfield will charge the users in two parts:
 The storage service fee will be charged on Greenfield in a steam payment style like [Superfluid](https://docs.superfluid.finance/superfluid/protocol-overview/in-depth-overview/super-agreements/constant-flow-agreement-cfa).
 
 ## Storage Service Fee
-There are two kinds of fees for Greenfield: **object storage fee** and **data package fee**.
+There are two kinds of storage service fees in Greenfield: **object storage fee** and **data package fee**.
 
 For storage, every object stored on Greenfield is charged at the price calculated by size, replica numbers, 
 a base price ratio, and other parameters. Once the object is stored, the total charge of 
 storage will be mainly only related to time and the base price.
 
-For data downloading, there is a free, time-based quota for each bucket of users' objects. 
-If it's exceeded, users can promote their data package to get more quota. Every data package 
-has a fixed price for the defined period. Once the data package is picked, the total charge 
-of downloading will be only related to time and the data package price, until the data package setting 
-is changed again.
+Users are granted a free, time-based quota for downloading data, with each bucket corresponding to a set of their objects. If the quota is exceeded, users can upgrade their data package to obtain additional quota. The price for each data package is fixed for a certain period, during which users will only be charged based on the amount of time they spend downloading and the package price. This charging scheme remains in effect until the user modifies their data package settings.
 
 ### Payment Account
 By default, the object owner's address will be used to pay for the objects it owns. 
@@ -50,11 +46,9 @@ deleted.**
 :::
 
 ### Trust or Shift
-Here there is trust between the users and the SPs for data download.
+In Greenfield, there is trust between the users and the SPs for data download.
 
-As the extra downloading bandwidth will charge a fee and the download journal 
-is not fully stored on the Greenfield blockchain. SPs provide an endpoint interface for users to query the download 
-billing details with detailed logs and downloaders' signatures. 
+Since downloading bandwidth incurs additional fees and the download journal is not completely stored on the Greenfield blockchain, Storage Providers (SPs) offer an endpoint interface for users to access detailed logs and downloaders' signatures for download billing.
 If the users and the SPs cannot agree on the bill, users may just select another Primary SP.
 
 For more tech details, please refer to the [stream payment module design](../greenfield-blockchain/modules/billing-and-payment.md).

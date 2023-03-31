@@ -10,7 +10,9 @@ The permission module serves as the foundation for basic permission control mana
 All data resources, such as objects, buckets, payment accounts, and groups, require specific permissions to be accessed. 
 These authorizations dictate the actions that can be taken by each account.
 
-Groups are collections of accounts that share the same permissions, allowing them to be handled as a single entity. Examples of permissions include:
+**Note**: Groups are collections of accounts that share the same permissions, allowing them to be handled as a single entity.
+
+Examples of permissions include:
 
 * Put, List, Get, Delete, Copy, and Execute data objects;
 * Create, Delete, and List buckets
@@ -44,26 +46,26 @@ Buckets, objects, and groups are all considered resources, and each has its own 
 
 Bucket subresources consist of the following:
 
-- **BucketInfo**: Allows for modification of specific fields in a bucket, such as `IsPublic`, `ReadQuota`, `paymentAccount`, etc.
-- **Policy**: Stores permissions information for the bucket.
-- **Objects**: Every object must be stored within a bucket.
+- **BucketInfo**: Allows for modification of specific fields in a bucket, such as `IsPublic`, `ReadQuota`, `paymentAccount`, etc;
+- **Policy**: Stores permissions information for the bucket;
+- **Objects**: Every object must be stored within a bucket;
 - **Object ownership**: Newly uploaded objects are automatically transferred to the bucket owner, regardless of who uploaded them.
 
 
 Object subresources consist of the following:
 
-- **ObjectInfo**: Allows for modification of certain fields within an object, such as `IsPublic`, etc.
+- **ObjectInfo**: Allows for modification of certain fields within an object, such as `IsPublic`, etc;
 - **Policy**: Stores access permissions information for the object.
 
 Group subresources consist of the following:
 
-- **GroupInfo**: Allows for modification of specific fields within a group, such as members, user-meta, etc.
-- **Policy**: Stores access permissions information for the group.
+- **GroupInfo**: Allows for modification of specific fields within a group, such as members, user-meta, etc;
+- **Policy**: Stores access permissions information for the group;
 - **GroupMember**: Any account in Greenfield has the ability to join a group, but a group cannot become a member of another group.
 
 ### Ownership
 
-The resources owner refers to the account that creates the resource. By default, only the resource owner has permission
+The resources owner refers to the account that creates the resource. By default, only the resource owner has the permission
 to access its resources.
 
 - The resource creator owns the resource.
@@ -74,7 +76,7 @@ to access its resources.
 
 ### Definitions
 
-- **Ownership Permission**: By default, the owner has all permissions to the resource.
+- **Ownership Permission**: By default, the owner has all permissions on the resource.
 - **Public or Private Permission**: By default, the resource is private, only the owner can access the resource. If a resource is public, anyone can access it.
 - **Shared Permission**: These permissions are managed by the permission module. It usually manages who has permission for which resources.
 
@@ -88,49 +90,49 @@ should also be removed, even if the user does not initiate the deletion – this
 If too many accounts have permission to delete an object, the processing time required may become excessively lengthy for 
 a single transaction to handle.
 
-### Example
+### Examples
 
 Let's say Greenfield has two accounts, Bob(0x1110) and Alice(0x1111). A basic example scenario would be:
 
-* Bob uploaded a picture named avatar.jpg into a bucket named "profile";
-* Bob grants the GetObject action permission for the object avatar.jpg to Alice, it will store a key 0x11 | ResourceID(
-profile_avatar.jpg) | Address(Alice) into a permission state tree.
-* when Alice wants to read the avatar.jpg, the SP should check the Greenfield blockchain that whether the key Prefix(
-ObjectPermission) | ResourceID(profile_avatar.jpg) | Address(Alice) existed in the permission state tree, and whether
+* Bob uploaded a picture named `avatar.jpg` into a bucket named "profile";
+* Bob grants the `GetObject` action permission for the object `avatar.jpg` to Alice, it will store a `key 0x11 | ResourceID(
+profile_avatar.jpg) | Address(Alice)` into a permission state tree;
+* when Alice wants to read the `avatar.jpg`, the SP should check the Greenfield blockchain that whether the `key Prefix(
+ObjectPermission) | ResourceID(profile_avatar.jpg) | Address(Alice)` existed in the permission state tree, and whether
 the action list contains GetObject.
 
 Let's move on to more complex scenarios:
 
-* Bob created a bucket named "profile"
-* Bob grants the PutObject action permission for the bucket "profile" to Alice, the key 0x10 | ResourceID(profile) |
-Address(Alice) will be put into the permission state tree.
-* When Alice wants to upload an object named avatar.jpg into the bucket profile, it creates a PutObject transaction and
-will be executed on the chain.
-* The Greenfield blockchain needs to confirm that Alice has permission to operate, so it checks whether the key 0x10 |
-ResourceID(profile) | Address(Alice) existed in the permission state tree and got the permission information if it
-existed.
-* If the permission info shows that Alice has the PutObject action permission of the bucket profile, then she can do
-PutObject operation.
+* Bob created a bucket named "profile";
+* Bob grants the `PutObject` action permission for the bucket "profile" to Alice, the key `0x10 | ResourceID(profile) |
+Address(Alice)` will be put into the permission state tree;
+* When Alice wants to upload an object named `avatar.jpg` into the bucket profile, it creates a `PutObject` transaction and
+will be executed on the chain;
+* The Greenfield blockchain needs to confirm that Alice has permission to operate, so it checks whether the key `0x10 |
+ResourceID(profile) | Address(Alice)` existed in the permission state tree and got the permission information if it
+existed;
+* If the permission info shows that Alice has the `PutObject` action permission of the bucket profile, then she can do
+`PutObject` operation.
 
 Another more complex scenario that contains groups:
 
 * Bob creates a group named "Games", and creates a bucket named "profile".
-* Bob adds Alice to the Games group, the key 0x12 | ResourceID(Games) | Address(Alice) will be put into the permission
+* Bob adds Alice to the Games group, the `key 0x12 | ResourceID(Games) | Address(Alice)` will be put into the permission
 state tree
-* Bob put a picture avatar.jpg to the bucket profile and grants the CopyObject action permission to the group Games
+* Bob put a picture `avatar.jpg` to the bucket profile and grants the `CopyObject` action permission to the group Games
 * When Alice wants to copy the object avatar.jpg . First, Greenfield blockchain checks whether she has permission via the
-key 0x11 | ResourceID(avatar.jpg) | Address(Alice); if it is a miss, Greenfield will iterate all groups that the object
-avatar.jpg associates and check whether Alice is a member of one of these groups by checking, e.g. if the key 0x21 |
-ResourceID(group, e.g. Games) existed, then iterate the permissionInfo map, and determine if Alice is in a group which
-has the permission to do CopyObject operation via the key 0x12| ResourceID(Games) | Address(Alice)
+`key 0x11 | ResourceID(avatar.jpg) | Address(Alice)`; if it is a miss, Greenfield will iterate all groups that the object
+`avatar.jpg `associates and check whether Alice is a member of one of these groups by checking, e.g. if the 
+`key 0x21 | ResourceID(group, e.g. Games)` existed, then iterate the `permissionInfo` map, and determine if Alice is in a group which
+has the permission to do `CopyObject` operation via the key `0x12| ResourceID(Games) | Address(Alice)`
 
 ## State
 
-The permission module keeps state of the following primary objects.
+The permission module keeps state of the following primary objects:
 
-1. `Policy`: The owner account of the resource grant its specify permission to another account
+1. `Policy`: The owner account of the resource grant its specify permission to another account;
 2. `PolicyGroup`: A limited list of `Policy`, and each `Policy` items defines the owner account of the resource grant
-   its specify permission to a group
+   its specify permission to a group.
 
 These primary objects should be primarily stored and accessed by the `ID` which is an auto-incremented sequence. An
 additional indices are maintained per primary objects in order to compatibility with the S3 object storage.
@@ -204,7 +206,7 @@ message Params {
 
 ### PutPolicy
 
-Use to create a policy for the resource.
+Used to create a policy for a resource.
 
 ```protobuf
 message MsgPutPolicy {
@@ -226,7 +228,7 @@ message MsgPutPolicy {
 
 ### DeletePolicy
 
-Use to delete the policy which associate with an account or a group and a resource.
+Used to delete the policy that is associated with an account, group, and resource.
 
 ```protobuf
 message MsgDeletePolicy {
@@ -242,7 +244,3 @@ message MsgDeletePolicy {
   string resource = 3;
 }
 ```
-
-## Events
-
-

@@ -24,7 +24,7 @@ programmability to the ecosystem. More tech details is explained [here](../guide
 smart contract with Greenfield following the [tutorial](../guide/dapp/quick-start.md).
 
 ### What consensus algorithm does Greenfield run on?
-[Tendermint is the consensus engine](https://blog.cosmos.network/tendermint-explained-bringing-bft-based-pos-to-the-public-blockchain-domain-f22e274a0fdb) that powers Cosmos BPoS.
+[Tendermint is the consensus engine](https://blog.cosmos.network/tendermint-explained-bringing-bft-based-pos-to-the-public-blockchain-domain-f22e274a0fdb) that powers Greenfield BPoS.
 
 
 ### Is the file permanently stored in Greenfield?
@@ -56,7 +56,7 @@ You can mirror your data and access permissions to the BNB Smart Chain network,
 and trade your data through various DApps and data trading platforms.
 
 ### How long can the data uploaded to the testnet be saved?
-Testnet is used for testing, so it won't keep user's data for a long time. It is expected to be dropped after 7days.
+Testnet is used for testing, so it won't keep user's data for a long time. It is expected to be dropped after 7 days.
 
 ### Where can I get Developer support?
 Check out the Greenfield Developer Discord for technical support.

@@ -5,17 +5,13 @@ order: 2
 
 # Key Management
 
-Greenfield blockchain is an application-specific chain without EVM, the
-transaction data structure and API are different from BSC. Greenfield
-will not support full functions in existing wallets, e.g. Transfer, Send
-Transactions, etc. But it will enable the existing wallets to sign
-transactions with the
-[EIP712](https://eips.ethereum.org/EIPS/eip-712) standard.
-This standard allows wallets to display data in signing prompts in a
-structured and readable format. This is an
-[example](https://medium.com/metamask/eip712-is-coming-what-to-expect-and-how-to-use-it-bb92fd1a7a26)
-of how to use it in Metamask. Eventually, wallets will start supporting
-Greenfield directly.
+Greenfield blockchain is an application-specific chain without EVM.
+As a result, its transaction data structure and API are different from those of BSC.
+Greenfield will not support full functions in existing wallets, e.g. Transfer, Send Transactions, etc. 
+However, these wallets can still sign transactions using the [EIP712](https://eips.ethereum.org/EIPS/eip-712) standard.
+This standard allows wallets to display data in signing prompts in a structured and readable format. 
+This is an [example](https://medium.com/metamask/eip712-is-coming-what-to-expect-and-how-to-use-it-bb92fd1a7a26) of how to use it in Metamask. 
+Eventually, wallets will start supporting Greenfield directly.
 
 ## EIP-712 Support
 
@@ -50,24 +46,27 @@ Greenfield as well.
 
 ## Backend Options
 
-The greenfield-cosmos-sdk provides several backend options for key storage. Each backend has its own strengths and 
-weaknesses, and the choice of backend will depend on your specific use case. Here are the available options:
+The greenfield-cosmos-sdk provides different options for key storage, each with its own strengths and weaknesses. The choice of backend will depend on your specific use case. Here are the available options:
 
-1. **os**: The os backend uses the operating system's default credentials store to handle key storage operations securely. 
+### System Options
+
+- **os**: This backend backend uses the `operating system`'s default credentials store to handle key storage operations securely. 
 The keyring may be kept unlocked for the whole duration of the user session.
 
-2. **file**: It stores the keyring encrypted within the app's configuration directory. This keyring will request a password each time 
-it is accessed, which may occur multiple times in a single command resulting in repeated password prompts.
-
-3. **kwallet**: This backend uses the KDE Wallet Manager as a credentials management application.
-
-4. **pass**: This backend uses the `pass` command line utility to store and retrieve keys.
-
-5. **test**: This backend stores keys insecurely to disk. It does not prompt for a password to be unlocked and should 
-only be used for testing purposes.
-
-6. **memory**: This backend uses a transient storage. Keys are discarded when the process terminates or the type 
+- **memory**: This backend uses a transient storage, meaning that Keys are discarded when the process terminates or the type 
 instance is garbage collected.
+
+### Tools Options
+
+- **file**: This backend stores the keyring encrypted within the app's configuration directory. This keyring will request a password each time it is accessed, which may occur multiple times in a single command resulting in repeated password prompts.
+
+- **kwallet**: This backend uses the `KDE Wallet Manager` as a credentials management application.
+
+- **pass**: This backend uses the `pass` command line utility to store and retrieve keys.
+
+- **test**: This backend stores keys insecurely to disk. It does not prompt for a password to be unlocked and should 
+only be used for testing purposes.
+ 
 
 ## Supported Sign Algorithms
 

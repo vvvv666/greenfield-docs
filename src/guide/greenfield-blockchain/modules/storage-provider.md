@@ -7,7 +7,7 @@ order: 2
 
 ## Abstract
 
-Storage Providers (SP) are storage service infrastructures that organizations or individuals provide and the
+The storage providers (SP) are storage service infrastructures that organizations or individuals provide and the
 corresponding roles they play. They use Greenfield as the ledger and the single source of truth. Each SP can and
 will respond to users' requests to write (upload) and read (download) data, and serve as the gatekeeper for
 user rights and authentications.
@@ -24,18 +24,18 @@ The SP module is responsible for managing and keeping storage providers in the n
 
 ### Join the network
 
-SPs have to register themselves first by depositing on the Greenfield blockchain as their "Service Stake". 
-Validators will go through a dedicated governance procedure to vote for the SPs of their election. SPs are encouraged to
+SPs have to register themselves first by depositing BNB tokens on the Greenfield blockchain as their "Service Stake". 
+The validators will go through a dedicated governance procedure to vote for the SPs of their election. SPs are encouraged to
 advertise their information and prove to the community their capability, as SPs have to provide a professional storage
 system with high-quality SLA.
 
 It will take several transactions to join the greenfield storage network for storage provider.
 
-1. The funding account of sp should grant the governance module account to deduct tokens for staking.
-2. The SP submit a `CreateStorageProvider` proposal to governance module
-3. Deposit enough tokens for this proposal
-4. The validators should vote for this proposal. Pass or reject.
-5. When enough validators vote the proposal, the storage provider will be automatically created on chain.
+1. The funding account of SP should grant the governance module account to deduct tokens for staking;
+2. The SP submit a `CreateStorageProvider` proposal to governance module;
+3. Deposit enough BNB tokens for the proposal;
+4. The validators should either vote `Pass` or `reject` for the proposal;
+5. When more than half of the validators have voted, the storage provider will be automatically created on chain.
 
 ### Leave the network
 
@@ -51,15 +51,15 @@ We'll introduce a reputation system for storage provider to evaluate the quality
 
 ### StorageProvider
 
-Storage Provider can be one of several statuses:
+The storage provider can be in one of these several statuses:
 
-* `STATUS_IN_SERVICE`: The sp is in service. it can serve user's Create/Upload/Download request.
-* `STATUS_IN_JAILED`: The sp has been slashed many times, and its deposit tokens is insufficient.
+* `STATUS_IN_SERVICE`: The SP is in service. it can serve user's Create/Upload/Download request.
+* `STATUS_IN_JAILED`: The SP has been slashed many times, and its deposit tokens is insufficient.
 * `STATUS_GRACEFUL_EXITING`: The SP is exiting gracefully. All the object stored in it will be shifted to another sp.
 * `STATUS_OUT_OF_SERVICE`: The SP is out of service. it can be a short-lived service unavailable. Users are unable
   to store or get payload data on it.
 
-Storage providers metadata should be primarily stored and accessed by the `OperatorAddr`, an EIP712 account address
+The storage providers metadata should be primarily stored and accessed by the `OperatorAddr`, an EIP712 account address
 for the operator of the storage provider. Three additional indices are maintained per storage provider metadata in
 order to fulfill required lookups for SealObject/Deposit/Slash/GetApproval.
 
@@ -101,7 +101,7 @@ message StorageProvider {
 ### Params
 
 Params is a module-wide configuration structure that stores system parameters
-and defines overall functioning of the sp module.
+and defines overall functioning of the SP module.
 
 ```protobuf
 // Params defines the parameters for the module.
@@ -122,7 +122,7 @@ message Params {
 
 ### Deposit Pool
 
-Sp module use its module account to manage all the staking tokens which deposit by storage providers.
+The SP module uses its module account to manage all the staking tokens deposited by storage providers.
 
 ## Message
 
@@ -147,9 +147,9 @@ message MsgCreateStorageProvider {
 
 This message is expected to fail if:
 
-* another storage provider with this operator/seal/funding/approval address is already registered.
-* the initial deposit tokens are of a denom not specified as the deposit denom of sp module
-* the deposit tokens is insufficient
+* Another storage provider with this operator/seal/funding/approval address is already registered;
+* The initial deposit tokens do not belong to the denomination that is specified as the deposit denomination of the SP module;
+* The deposit tokens is insufficient.
 
 ### MsgEditStorageProvider
 
@@ -168,8 +168,8 @@ message MsgEditStorageProvider {
 
 This message is expected to fail if:
 
-* the storage provider is not existed
-* the description fields are too large
+* The storage provider is not existed;
+* The description fields are too large.
 
 ### MsgDeposit
 
@@ -181,7 +181,7 @@ deposit tokens.
 message MsgDeposit {
   option (cosmos.msg.v1.signer) = "creator";
 
-  // creator is the msg signer, it should be sp address or sp's fund address
+  // creator is the msg signer, it should be SP address or sp's fund address
   string creator = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
   // sp_address is the operator address of sp
   string sp_address = 2 [(cosmos_proto.scalar) = "cosmos.AddressString"];
@@ -192,5 +192,5 @@ message MsgDeposit {
 
 This message is expected to fail if:
 
-* the storage provider is not existed
-* the deposit tokens are of a denom not specified as the deposit denom of sp module
+* The storage provider doesn't existed;
+* The tokens that are deposited do not belong to the denomination that is specified as the deposit denomination of the SP module.

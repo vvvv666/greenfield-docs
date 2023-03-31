@@ -5,28 +5,10 @@ order: 3
 
 # Billing and Payment
 
-Greenfield will charge the users in two parts. Firstly, every
-transaction will require gas fees to pay the Greenfield validator to
-write the metadata on-chain. Secondly, the SPs charge the users for
-their storage service. Such payment also happens on the Greenfield. This
-document is about the latter: how such off-chain service fees are billed
-and charged.
-
-There are two kinds of fees for the off-chain service: object storage
-fee and read fee:
-
-1. Every object stored on Greenfield is charged a fee based on its
-   size. The storage price is determined by the service providers.
-
-2. There is a free quota for users' objects to be read based on their
-   size, content types, and more. If exceeded, i.e. the object data
-   has been downloaded too many times, SP will limit the bandwidth
-   for more downloads. Users can raise their read quota to
-   get more download quota. The read quota price is determined by the
-   Primary Storage Provider users selected.
+If you need a remind on the different type of fees, we invite you to the [following page](../../concept/billing-payment.md).
 
 The fees are paid on Greenfield in the style of
-"Stream" from users to the SPs at a constant rate. The fees are charged
+`Stream` from users to the SPs at a constant rate. The fees are charged
 every second as they are used.
 
 ## Concepts and Formulas
@@ -41,50 +23,50 @@ elapses.
 
 ### Terminology
 
-- **Payment Module:** This is a special module and ledger system
-  managing the billing and payment on the Greenfield blockchain.
-  Funds will be deposited or charged into it from users' balance or
-  payment accounts in this Payment Module.
+- **Payment Module:** This module is a special ledger system designed
+ to manage billing and payments on the Greenfield blockchain. 
+ Funds will be deposited or charged into it from users' balance or 
+ payment accounts via the Payment Module;
 
 - **Stream Account**: The Payment Module has its own ledger for
   billing management. Users can deposit and withdraw funds into
   their corresponding "accounts" on the payment module ledger. These
-  accounts are called "Stream Account", which will directly interact
+  accounts are called `Stream Account`, which will directly interact
   with the stream payment functions and bill the users for the
-  storage and data service.
+  storage and data service;
 
 - **Payment Account**: Payment account has been discussed in other
   sections of Part 1 and Part 3 already. It is actually a type of
   Stream Account. Users can create different payment accounts and
-  associate it with different buckets for different purposes.
+  associate it with different buckets for different purposes;
 
-- **Payment Stream:** Whenever the users add/delete/change a storage
+- **Payment Stream:** Whenever the users add, delete or change a storage
   object or download a data package, they add or change one or more
-  "payment streams" for that service provided by SPs.
+  `payment streams` for that service provided by SPs;
 
 - **Flow Rate**: The per-second rate at which a sender decreases its
   net outflow stream and increases a receiver's net inflow stream
-  when creating or updating a payment stream.
+  when creating or updating a payment stream;
 
 - **Netflow Rate**: The per-second rate that an account's balance is
   changing. It is the sum of the account's inbound and outbound
-  flow rates.
+  flow rates;
 
 - **Sender**: The stream account that starts the payment stream by
   specifying a receiver and a flow rate at which its net flow
-  decreases.
+  decreases;
 
 - **Receiver**: The stream account on the receiving end of one or more payment streams.
 
-- **CRUD Timestamp**: The timestamp of when the user creates, updates,
-  or deletes a payment stream.
+- **CRUD Timestamp**: The timestamp that indicates when a user 
+  creates, updates, or deletes a payment stream;
 
-- **Delta Balance**: The amount of the stream account's balance has
+- **Delta Balance**: The amount of the stream account's balance that has
   changed since the latest CRUD timestamp due to the flow. It can be
-  positive or negative.
+  positive or negative;
 
 - **Static Balance**: The balance of the stream account at the latest
-  CRUD timestamp.
+  CRUD timestamp;
 
 - **Dynamic Balance**: The actual balance of a stream account. It is
   the sum of the Static Balance and the Delta Balance.
@@ -92,23 +74,23 @@ elapses.
 When a user's stream account is initiated in the payment module by
 deposit, several fields will be recorded for this stream account:
 
-- CRUD Timestamp - will be the timestamp at the time.
+- **CRUD Timestamp** - will be the timestamp at the time;
 
-- Static Balance - will be the deposit amount.
+- **Static Balance** - will be the deposit amount;
 
-- Netflow Rate - will be 0.
+- **Netflow Rate** - will be 0;
 
-- Buffer Balance - will be 0.
+- **Buffer Balance** - will be 0.
 
 ### Formula
 
-*Static Balance = Initial Balance at latest CRUD timestamp*
+*<span style="color:#6495ED">Static Balance</span> = Initial Balance at latest CRUD timestamp*
 
-*Delta Balance = Netflow Rate \* Seconds elapsed since latest CRUD timestamp*
+*<span style="color:#556B2F">Delta Balance</span> = Netflow Rate \* Seconds elapsed since latest CRUD timestamp*
 
-*Current Balance = Static Balance + Delta Balance*
+*<span style="color:#CD5C5C">Current Balance</span> = <span style="color:#6495ED">Static Balance</span> + <span style="color:#556B2F">Delta Balance</span>*
 
-*Buffer Balance = - Netflow Rate \* pre-configed ReserveTime if Netflow Rate is negative*
+*<span style="color:#FFDEAD">Buffer Balance</span> = - Netflow Rate \* pre-configed ReserveTime if Netflow Rate is negative*
 
 <div align="center"><img src="../../../asset/04-Funds-Flow.jpg"  height="80%" width="80%"></div>
 <div align="center"><i>How a User Receives Inflow and Outflow of Funds</i></div>
@@ -121,15 +103,15 @@ payment module will be settled.
 - The net flow for the user's stream account in the payment module
   will be re-calculated to net all of its inbound and outbound flow
   rates by adding/removing the new payment stream against the
-  current NetFlow Rate. E.g. when a user creates a new object whose
-  price is \$0.4/month, its NetFlow Rate will add -\$0.4/month.
+  current NetFlow Rate. (E.g. when a user creates a new object whose
+  price is \$0.4/month, its NetFlow Rate will add -\$0.4/month);
 
 - If the NetFlow rate is negative, the associated amount of BNB will
   be reserved in a buffer balance. It is used to avoid the dynamic
   balance becoming negative. When the dynamic balance becomes under
-  the threshold, the account will be forced settled.
+  the threshold, the account will be forced settled;
 
-- CRUD Timestamp will become the current timestamp.
+- CRUD Timestamp will become the current timestamp;
 
 - Static Balance will be re-calculated. The previous dynamic balance
   will be settled. The new static Balance will be the Current
@@ -139,15 +121,15 @@ payment module will be settled.
 
 ### Deposit and Withdrawal
 
-All users(including SPs) can deposit and withdraw BNB in the payment
-module. The StaticBalance in the StreamPayment data struct will be
-"settled" first: the CRUDTimeStamp will be updated and StaticBalance
-will be netted with DeltaBalance. Then the deposit and withdrawal number
-will try to add/reduce the StaticBalance in the record. If the static
+All users (including SPs) can deposit and withdraw BNB in the payment
+module. The `StaticBalance` in the `StreamPayment` data struct will be
+"settled" first: the `CRUDTimeStamp` will be updated and `StaticBalance`
+will be netted with `DeltaBalance`. Then the deposit and withdrawal number
+will try to add/reduce the `StaticBalance` in the record. If the static
 balance is less than the withdrawal amount, the withdrawal will fail.
 
-Deposit/withdrawal via cross-chain will also be supported to enable
-users to deposit/withdraw from BSC directly.
+Deposit and withdrawal via cross-chain will also be supported to enable
+users to deposit and withdraw from BSC directly.
 
 Specifically, the payment deposit can be triggered automatically during
 the creation of objects or the addition of data packages. As long as
@@ -162,20 +144,20 @@ from their address accounts into the stream accounts (including users'
 default stream account and created payment accounts), the funds first go
 from the users' address accounts to a system account maintained by the
 Payment Module, although the fund size and other payment parameters will
-be recorded on the users' stream account, i.e. the StreamPayment record,
+be recorded on the users' stream account, i.e. the `StreamPayment` record,
 in the Payment Module ledger. When the payment is settled, the funds
 will go from the system account to SPs' address accounts according to
 their in-flow calculation.
 
-Every time users do the actions below, their StreamRecord will
+Every time users do the actions below, their `StreamRecord` will
 be updated:
 
-- Creating an object will create new streams to the SPs
+- Creating an object will create new streams to the SPs;
 
-- Deleting an object will delete associated streams to the SPs
+- Deleting an object will delete associated streams to the SPs;
 
 - Adjusting the read quota will
-  create/delete/update the associated streams
+  create/delete/update the associated streams.
 
 ### Forced Settlement
 
@@ -183,22 +165,24 @@ If a user doesn't deposit for a long time, his previous deposit may be
 all used up for the stored objects. Greenfield has a forced settlement
 mechanism to ensure enough funds are secured for further service fees.
 
-There are two configurations, ReserveTime and ForcedSettleTime. Let's say
-7 days and 1 day. If a user wants to store an object at the price of
+There are two configurations, `ReserveTime` and `ForcedSettleTime`. 
+
+Let's take an example where the `ReserveTime` is 7 days and the `ForcedSettleTime` is 1 day. 
+If a user wants to store an object at the price of
 approximately $0.1 per month($0.00000004/second), he must reserve fees
-for 7 days in buffer balance, which is `$0.00000004 * 7 * 86400 =
-$0.024192`. If the user deposits $1 initially, the stream payment
-record will be as below.
+for 7 days in the buffer balance, which is `$0.00000004 * 7 * 86400 =
+$0.024192`. If the user deposits is $1 initially, the stream payment
+record will be as below:
 
-- CRUD Timestamp: 100
+- **CRUD Timestamp**: 100;
 
-- Static Balance: $0.975808
+- **Static Balance**: $0.975808;
 
-- Netflow Rate: -$0.00000004/sec
+- **Netflow Rate**: -$0.00000004/sec;
 
-- Buffer Balance: $0.024192
+- **Buffer Balance**: $0.024192.
 
-After 10000 seconds, the dynamic balance of the user is `0.975808 - 10000 * 0.00000004 = 0.975408`.
+After 10000 seconds, the dynamic balance of the user will be `0.975808 - 10000 * 0.00000004 = 0.975408`.
 
 After 24395200 seconds(approximately 282 days), the dynamic balance of
 the user will become negative. Users should have some alarms for such
@@ -215,20 +199,20 @@ provided within the predefined threshold.
 The forced settlement will also charge some fees which is another
 incentive for users to replenish funds proactively.
 
-Let's say the ForceSettlementTime is 1 day. After 24913601
+Let's say the `ForceSettlementTime` variable is set to 1 day. After 24913601
 seconds(approximately 288 days), the dynamic balance becomes `0.975808 -
 24913601 *0.00000004 = -0.02073604`, plus the buffer balance is
 $0.00345596. The forced settlement threshold is `86400* 0.00000004 =
 0.003456`. The forced settlement will be triggered, and the record of the
 user will become as below:
 
-- CRUD Timestamp: 24913701
+- **CRUD Timestamp**: 24913701;
 
-- Static Balance: \$0
+- **Static Balance**: \$0;
 
-- Netflow Rate: \$0/sec
+- **Netflow Rate**: \$0/sec;
 
-- Buffer Balance: \$0
+- **Buffer Balance**: \$0.
 
 The validators will get the remaining $0.00345596 as a reward. The
 account will be marked as "frozen" and his objects get downgraded
@@ -278,15 +262,15 @@ The payment accounts have the below traits:
 If a payment account is out of balance, it will be settled and set a
 flag as out of balance.
 
-The NetflowRate will be set to 0, while the current settings of the
+The `NetflowRate` will be set to 0, while the current settings of the
 stream pay will be backed up in another data structure. The download
 speed for all objects under this account will be downgraded.
 
-If someone deposits into a frozen account and the static balance is
+If someone deposits BNB tokens into a frozen account and the static balance is
 enough for reserved fees, the account will be resumed automatically. The
 stream pay will be recovered from the backup.
 
-During the OutOfBalance period, no objects can be associated with this
+During the `OutOfBalance` period, no objects can be associated with this
 payment account again, which results in no object can be created under
 the bucket associated with the account.
 
@@ -298,14 +282,14 @@ is resumed.
 
 The storage fee prices are determined by the SPs who supply the storage service.
 The cost of the SPs are composed of 3 parts:
-- The primary SP will store the whole object file.
-- The secondary SPs will store part of the object file as a replica.
+- The primary SP will store the whole object file;
+- The secondary SPs will store part of the object file as a replica;
 - The primary SP will supply all the download requests of the object.
 
-There are 3 different on-chain prices.
-- Primary SP Store Price
-- Primary SP Read Price
-- Secondary SP Store Price
+There are 3 different on-chain prices:
+- Primary SP Store Price;
+- Primary SP Read Price;
+- Secondary SP Store Price.
 
 Every SP can set their own store price and read price via on-chain transactions.
 While the secondary SP store price is calculated by averaging all SPs' store price.
@@ -322,19 +306,19 @@ The charge size will be used instead of the real size, e.g. files under 1KB will
 The payment bill will be calculated by the size statistics and prices, and it will be charged from
 the stream account specified in the bucket to the SPs.
 
-## State
+## Payment States
 
 The payment module keeps state of the following primary objects:
-- The stream payment ledger.
-- The payment accounts and total account created by users.
+- The stream payment ledger;
+- The payment accounts and total account created by users;
 - An AutoSettleRecord list to keep track of the auto-settle timestamp of the stream accounts.
 
 In addition, the payment module keeps the following indexes to manage the aforementioned state:
 
-- StreamRecord Index. `address -> StreamRecord`
-- PaymentAccount Index. `address -> PaymentAccount`
-- PaymentAccountCount Index. `address -> PaymentAccountCount`
-- AutoSettleRecord Index. `settle-timestamp | address -> 0`
+- StreamRecord Index. `address -> StreamRecord`;
+- PaymentAccount Index. `address -> PaymentAccount`;
+- PaymentAccountCount Index. `address -> PaymentAccountCount`;
+- AutoSettleRecord Index. `settle-timestamp | address -> 0`.
 
 ```
 message StreamRecord {
@@ -382,7 +366,7 @@ message AutoSettleRecord {
 }
 ```
 
-## Parameters
+## Payment module parameters
 
 The payment module contains the following parameters,
 they can be updated with governance.
@@ -411,7 +395,7 @@ message Params {
 |  max_auto_force_settle_num  | uint64 |         100         |
 |          fee_denom          | string |         BNB         |
 
-## Keepers
+## Payment moduel keepers
 
 The payment module keeper provides access to query the parameters,
 payment account owner, storage price and several ways to update the ledger.
@@ -446,7 +430,7 @@ message MsgCreatePaymentAccount {
 
 ### MsgDeposit
 
-Used to deposit to a stream account.
+Used to deposit BNB tokens to a stream account.
 
 ```
 message MsgDeposit {
@@ -467,7 +451,7 @@ message MsgDeposit {
 
 ### MsgWithdraw
 
-Used to withdraw from a stream account.
+Used to withdraw BNB tokens from a stream account.
 
 ```
 message MsgWithdraw {

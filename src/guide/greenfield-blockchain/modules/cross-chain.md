@@ -5,32 +5,12 @@ order: 5
 
 ## Framework
 
-<div align="center"><img src="../../../asset/03-Cross-chain-Architecture.jpg"  height="95%" width="95%"></div>
-<div align="center"><i>Figure Cross-chain Architecture</i></div>
+:::note
+#### Pre-requisite Readings
 
-The Greenfield ecosystem consists of three distinct layers.
-
-### Communication Layer 
-Communication Layer is responsible for handling and verifying
-the communication packages between different blockchain networks. This layer serves as the backbone of
-the entire ecosystem, ensuring the smooth and secure transfer of information between different platforms.
-
-### Resource Mirror Layer 
-Resource Mirror Layer provides a bridge between Greenfield and BNB Smart Chain (BSC).
-This layer manages the resource assets defined on Greenfield, which are then mirrored onto BSC.
-The Resource Mirror Layer enables users to interact with these assets on BSC using smart contracts,
-which operate on the primitives defined by Greenfield. This layer plays a critical role in the
-Greenfield ecosystem, enabling seamless cross-chain asset management and more efficient resource allocation.
-
-### Application Layer
-At the top of the Greenfield ecosystem is the Application Layer. This layer consists of smart contracts
-that are developed by the community on BSC, enabling them to operate the mirrored resource entities on
-the Resource Mirror Layer. While Greenfield itself does not currently offer programmability, the Application
-Layer allows for the creation of decentralized applications (dApps) that can interact with Greenfield
-Core and other supporting infrastructures. The Application Layer represents the true power and
-potential of the Greenfield ecosystem, enabling developers and users to create and leverage a
-wide range of innovative and decentralized applications while benefiting from Greenfield's robust
-infrastructure and cross-chain capabilities.
+The Greenfield ecosystem consists of three distinct layers. To have more information about them
+we invite you to read [this page](../../concept/programmability.md#framework).
+:::
 
 ## Communication Layer
 
@@ -41,11 +21,10 @@ The communication layer is composed of a set of **Greenfield Relayers**:
   of the validator's mandatory information.
 
 - The relayer watches all cross-chain events happen on BSC and the
-  Greenfield blockchain independently. After enough blocks of
-  confirmation to reach finality, the relayer will sign a message by
-  the BLS key to confirm the events, and broadcast the signing
-  attestment, which is called "the vote", through a p2p network to
-  other relayers.
+  Greenfield blockchain independently. Once a sufficient number of blocks 
+  have been confirmed to reach finality, the relayer will sign a message 
+  using the BLS key to confirm the events. This signed message is called the "vote." 
+  The relayer will then broadcast the vote through a p2p network to other relayers.
 
 - Once enough votes from the relayer are collected, the relayer will
   assemble a cross-chain package transaction and submit it to BSC or
@@ -55,7 +34,7 @@ Here more details about the communication layer and economics will be explained.
 
 ### Vote Poll
 A new p2p communication across the cross-chain relayers will be
-introduced, called "Vote Poll". This Vote Poll will gossip about the
+introduced, called `Vote Poll`. This `Vote Poll` will gossip about the
 signed votes within the network. To avoid message flooding, all the
 signed votes will expire after a fixed time. The Greenfield relayers can
 either put votes to or fetch votes from the poll and assemble it as
@@ -64,7 +43,7 @@ cross-chain package transactions.
 ### Channel and Sequence
 To allow multiplexing and replay attack resistance, "Channel" and
 "Sequence" concepts are introduced to manage any type of communication.
-Following is an example definition:
+The following type is an example of a definition:
 
 ```go
 type Package struct {
@@ -87,7 +66,7 @@ different channels. For example, buckets and storage objects belong to
 different channels.
 
 ### Reliability Protocol
-Here a protocol is defined to ensure reliable stream delivery of data
+A protocol is defined to ensure reliable stream delivery of data
 between BSC and Greenfield.
 
 The protocol must recover the scenarios when the cross-chain data is
@@ -172,8 +151,8 @@ The purposes of almost all the cross-chain packages are to change the
 state of the resource entities on the Greenfield blockchain. Thus, the
 below resource entities should be able to be mirrored on BSC: Account, BNB, Bucket, Object and Group.
 
-The account mapping is natural: as BSC and Greenfield use the same
-address scheme. The same address values on both sides mean the same
+The account mapping is natural as BSC and Greenfield use the same
+address scheme. The same address values on both sides mean that it is the same
 account. They do not require an actual mirror.
 
 BNB is a natively pegged token from the genesis of Greenfield. The
@@ -191,9 +170,9 @@ Greenfield, these NFTs are not transferable on BSC.
 
 To avoid state racing, the following rules are introduced:
 
-- Any resources that are initiated to create by BSC can only be controlled by BSC.
+- Any resources that are initiated to create by BSC can only be controlled by BSC;
 
-- Any resources that are controlled by BSC can not transfer control rights to Greenfield.
+- Any resources that are controlled by BSC can not transfer control rights to Greenfield;
 
 - Any resources that are controlled by Greenfield can transfer control rights to BSC.
 
@@ -205,22 +184,22 @@ operate on these resource entities.
 It is worth highlighting that smart contracts can call these primitives
 in a similar way as EOAs.
 
-Accounts
+**Accounts**:
 
 - create payment accounts on BSC
 
-BNB:
+**BNB**:
 
 - transfer bidirectionally between BSC and Greenfield among accounts
   (including even payment accounts)
 
-Bucket:
+**Bucket**:
 
 - create a bucket on BSC
 
 - mirror bucket from Greenfield to BSC
 
-Object:
+**Object**:
 
 - mirror object from Greenfield to BSC
 
@@ -234,7 +213,7 @@ Object:
 
 - associate buckets to payment accounts on BSC
 
-Group:
+**Group**:
 
 - mirror group from Greenfield to BSC
 
@@ -244,7 +223,7 @@ Group:
 
 - leave a group on BSC
 
-Once these primitives are called by EOA or smart contracts, the
+Once these primitives are called by an EOA or smart contracts, the
 predefined events will be emitted. Greenfield Relayers should pick up
 these events and relay them over to Greenfield and BSC. As the change
 will happen asynchronously, there will be specific cross-chain packages

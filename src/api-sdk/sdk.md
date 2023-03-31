@@ -1,10 +1,10 @@
 ---
-title: SDK
+title: SDKs
 icon: stack
 order: 3
 ---
 
-# SDK
+# SDKs
 
 ## Official SDK
 - [Official Go implementation SDK](https://github.com/bnb-chain/greenfield-go-sdk)
