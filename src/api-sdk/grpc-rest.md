@@ -8,6 +8,8 @@ order: 1
 
 This document presents an overview of all the endpoints a node exposes: gRPC, REST as well as some other endpoints.
 
+For more details Swagger API documentation, please refer to [Greenfield Blockchain API](https://greenfield.bnbchain.org/openapi).
+
 ## An Overview of All the Endpoints
 
 Each node exposes the following endpoints for users to interact with a node, each endpoint is served on a different port. 

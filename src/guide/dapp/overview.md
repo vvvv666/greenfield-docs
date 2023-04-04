@@ -5,6 +5,14 @@ order: 1
 
 # Overview
 
+:::note
+
+#### Pre-requisite Readings
+
+* [Native cross chain communication protocol](../greenfield-blockchain/modules/cross-chain.md)
+
+:::
+
 The real power of the Greenfield ecosystem lies in that the platform is not only designed to store the data, but also to
 support the creation of value based on the data assets and its related economy.
 
@@ -16,14 +24,6 @@ variety of possibilities to integrate these assets with the existing DeFi protoc
 This gets even further enhanced by the smart contracts on BSC, which enjoy the same address format as accounts on the
 Greenfield blockchain and can be the owners of the data objects and inherit different permissions. This will unleash
 many new business opportunities based on the data and its operations.
-
-:::note
-
-#### Pre-requisite Readings
-
-* [Native cross chain communication protocol](../greenfield-blockchain/modules/cross-chain.md)
-
-:::
 
 
 ## Resource Mirror

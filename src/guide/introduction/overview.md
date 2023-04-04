@@ -80,6 +80,8 @@ developers to:
 In summary, BNB Greenfield seeks to offer users greater freedom in creating, owning, sharing, executing, and trading
 their data assets, while also providing transparency on how their data is owned and used.
 
-## Get Started with BNB Greenfield
+## Explore BNB Greenfield
 
 - [Quick Start with BNB Greenfield](../get-started.md)
+- [Overview about Greenfield Blockchain](../greenfield-blockchain/overview.md)
+- [Overview about Storage Provider](../storage-provider/overview.md)

@@ -1,4 +1,3 @@
-
 ---
 title: Interacting with the Node
 order: 1

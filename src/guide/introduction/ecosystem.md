@@ -1,9 +1,9 @@
 ---
-title: Ecosystem Players
+title: Ecosystem
 order: 2
 ---
 
-# Ecosystem Players
+# Ecosystem
 From `storage provider` and BNB staker to developers, there are a variety of individuals and entities that play a critical 
 role in the growth and success of Greenfield. We'll dive into the unique contributions and responsibilities of 
 each group, and explore how they work together to shape the future of Greenfield.
@@ -80,4 +80,4 @@ continuously improve their services to avoid penalties and stay in the network.
   proposing, verifying and finalizing blocks.
 - [Become A Storage Provider](../greenfield-blockchain/cli/storage-provider.md): SPs store the objects' real data, i.e. the payload data. and get paid
   by providing storage services.
-- [Store Data](../greenfield-blockchain/cli/storage.md): store and manage your data in a decentralized way, control and own it all by yourself.
+- [Control Your Data](../greenfield-blockchain/cli/storage.md): store and manage your data in a decentralized way, control and own it all by yourself.

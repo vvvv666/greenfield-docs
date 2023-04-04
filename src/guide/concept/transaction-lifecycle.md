@@ -156,7 +156,7 @@ passes all checks at this stage, it is still possible to be found invalid later 
 
 Consensus occurs in **rounds**, during which validator nodes agree on which transactions to accept.
 Each round begins with a proposer creating a block of the most
-recent transactions and ends with [**validators**](../introduction/ecosystem-player.md#validators), 
+recent transactions and ends with [**validators**](../introduction/ecosystem.md#validators), 
 special full-nodes with voting power responsible
 for consensus, agreeing to accept the block or go with a `nil` block instead. Validator nodes
 execute the consensus algorithm, the [Tendermint BFT](https://docs.tendermint.com/master/spec/consensus/consensus.html#terms),
