@@ -59,4 +59,4 @@ and trade your data through various DApps and data trading platforms.
 Testnet is used for testing, so it won't keep user's data for a long time. It is expected to be dropped after 7 days.
 
 ### Where can I get Developer support?
-Check out the Greenfield Developer Discord for technical support.
+Check out the Greenfield Developer Discord for technical support. (pending...)

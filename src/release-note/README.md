@@ -16,7 +16,7 @@ was the first testnet version of BNB Greenfield. It represented a fundamental im
 [Greenfield Whitepaper](https://github.com/bnb-chain/greenfield-whitepaper). 
 
 This version contained a variety of functions, including payment, storage, storage provider, 
-cross-chain, challenge, staking, and governance. It is an important milestone for Greenfield Blockchain, 
+cross-chain, challenge, staking, and governance. It is an important milestone for BNB Greenfield, 
 implementing many core functions and laying the foundation for future development and improvement.
 
 ### Features List
