@@ -5,6 +5,12 @@ dir:
 order: 2
 ---
 
+::: warning
+**Please note that data and test assets on the test network may be periodically cleared, and please do not rely on 
+Greenfield to save important data on the test network.**
+:::
+
+
 # Getting Started
 
 Greenfield is a decentralized storage infrastructure within the broader BNB chain ecosystem where users and dApps can
