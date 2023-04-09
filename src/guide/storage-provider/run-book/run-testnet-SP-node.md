@@ -195,8 +195,12 @@ The SP needs to initiate an on-chain proposal that specifies the Msg information
 ### 4. deposit tokens to the proposal
 Each proposal needs to have enough tokens deposited to enter the voting stage.
 
+::: info
+To be a SP of the Greenfield testnet, now the minimum amount required for staking is 1000 BNB.
+:::
+
 ```shell
-./build/bin/gnfd tx gov deposit 1 10000bnb --from sp0 --keyring-backend test --home ./deployment/localup/.local/sp0  --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443
+./build/bin/gnfd tx gov deposit 1 1000bnb --from sp0 --keyring-backend test --home ./deployment/localup/.local/sp0  --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443
 ```
 
 ### 5. Validator voting 
