@@ -17,11 +17,13 @@ of Greenfield. For instance, creating and deleting a storage object use similar 
 resources, but Greenfield encourages users to delete unused storage objects to optimize storage space, 
 resulting in lower transaction fees.
 
-**Greenfield Blockchain has taken a different approach from the gas meter design in Cosmos SDK. Instead, it has redesigned the gashub module to calculate gas consumption based on the type and content of the transaction, rather than just the consumption of storage and computational resources.**
+**Greenfield Blockchain has taken a different approach from the gas meter design in Cosmos SDK. Instead, 
+it has redesigned the gashub module to calculate gas consumption based on the type and content of the transaction, 
+rather than just the consumption of storage and computational resources.**
 
 Unlike networks like Ethereum, Greenfield transactions do not feature a gas price field. 
-Instead, they consist of a fee and a gas wanted field. The gas price is inferred during 
-the execution process and competes for entry into the transaction pool based on the gas price.
+Instead, they consist of a fee and a gas wanted field. The gas price is inferred during the transaction pre-execution process, 
+and the transactions are queued based on the gas price
 
 ::: warning
 **This means that Greenfield does not refund any excess gas fees to the transaction sender. 
@@ -76,7 +78,7 @@ There is no gas limitation of a block on Greenfield Blockchain.
 
 ## Fee Table
 
-Please note that the following information can be updated at any time and may not be immediately reflected in the 
+Please note that the gas fee can be updated through governance and may not be immediately reflected in this 
 documentation.
 
 | Msg Type                                    | Gas Used           | Gas Price | Expected Fee(assuming BNB $300) |
