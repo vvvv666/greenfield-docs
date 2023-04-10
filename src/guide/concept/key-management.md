@@ -50,7 +50,7 @@ The greenfield-cosmos-sdk provides different options for key storage, each with 
 
 ### System Options
 
-- **os**: This backend backend uses the `operating system`'s default credentials store to handle key storage operations securely. 
+- **os**: This backend uses the `operating system`'s default credentials store to handle key storage operations securely. 
 The keyring may be kept unlocked for the whole duration of the user session.
 
 - **memory**: This backend uses a transient storage, meaning that Keys are discarded when the process terminates or the type 
