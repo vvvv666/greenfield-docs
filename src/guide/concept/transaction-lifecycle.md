@@ -5,8 +5,9 @@ order: 7
 
 # Transaction Lifecycle
 
-This document describes the lifecycle of a transaction from creation to the committed state changes. Transaction definition 
-is described in a [different doc](https://github.com/bnb-chain/greenfield-cosmos-sdk/blob/master/docs/core/transactions.md). 
+This document describes the lifecycle of a transaction from creation to the committed state changes.
+The majority of this page is copied from the [Cosmos-sdk Docs](https://docs.cosmos.network/main/basics/tx-lifecycle).
+Transaction definition is described in a [different doc](https://github.com/bnb-chain/greenfield-cosmos-sdk/blob/master/docs/core/transactions.md). 
 The transaction will be referred to as `Tx`.
 
 ## Creation

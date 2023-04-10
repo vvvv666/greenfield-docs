@@ -7,6 +7,11 @@ dir:
 
 # Command-Line Interface
 
+::: info
+Since Greenfield Command Line interface is derived from Cosmos, The majority of the content in this page is copied from the 
+[Cosmos SDK](https://docs.cosmos.network/main/core/cli).
+:::
+
 There is no set way to create a CLI, but Greenfield typically use the [Cobra Library](https://github.com/spf13/cobra). 
 Building a CLI with Cobra entails defining commands, arguments, and flags. Commands understand the 
 actions users wish to take, such as `tx` for creating a transaction and `query` for querying the application. 

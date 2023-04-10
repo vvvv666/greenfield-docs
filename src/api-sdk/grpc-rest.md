@@ -10,6 +10,11 @@ This document presents an overview of all the endpoints a node exposes: gRPC, RE
 
 For more details Swagger API documentation, please refer to [Greenfield Blockchain API](https://greenfield.bnbchain.org/openapi).
 
+::: info
+Since Greenfield Blockchain is based on Cosmos, The majority of the content in this page is copied from the
+[Cosmos SDK](https://docs.cosmos.network/main/core/grpc_rest).
+:::
+
 ## An Overview of All the Endpoints
 
 Each node exposes the following endpoints for users to interact with a node, each endpoint is served on a different port. 

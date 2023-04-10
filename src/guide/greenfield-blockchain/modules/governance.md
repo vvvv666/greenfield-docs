@@ -5,7 +5,12 @@ order: 7
 
 # Governance
 
-The Greenfield BlockChain utilizes on-chain governance, which is achieved by steps listed below:
+::: info
+Since Greenfield Governance is derived from Cosmos, The majority of the content in this page is copied from the
+[Cosmos SDK](hhttps://hub.cosmos.network/main/governance/process.html).
+:::
+
+The Greenfield BlockChain utilizes on-chain governance, which achieved by steps listed below:
 
 - **Proposal submission**: Proposal is submitted to the blockchain with a deposit;
 - **Vote**: Once deposit reaches threshold `MinDeposit`, proposal is confirmed and vote opens. Bonded BNB holders can vote on the proposal;
@@ -29,7 +34,7 @@ There are various types of proposals. This includes, but is not limited to:
 
 ## Submit proposal:
 
-In `Greenfield`, any account can submit proposals by sending `MsgSubmitProposal` transaction
+In `Greenfield`, any account can submit proposals by sending `MsgSubmitProposal` transaction.
 
 ## Deposit:
 

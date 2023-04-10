@@ -7,6 +7,11 @@ order: 1
 
 There are multiple ways to interact with a node: using the CLI, using gRPC or using the REST endpoints.
 
+::: info
+Since Greenfield Blockchain is based on Cosmos, The majority of the content in this page is copied from the
+[Cosmos SDK](https://docs.cosmos.network/main/run-node/interact-node).
+:::
+
 ## Using the CLI
 
 Now that your chain is running, it is time to try sending tokens from the first account you created to a second account. 
