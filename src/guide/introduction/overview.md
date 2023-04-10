@@ -84,4 +84,4 @@ their data assets, while also providing transparency on how their data is owned 
 
 - [Quick Start with BNB Greenfield](../get-started.md)
 - [Overview about Greenfield Blockchain](../greenfield-blockchain/overview.md)
-- [Overview about Storage Provider](../storage-provider/overview.md)
+- [Overview about Storage Provider](../storage-provider/introduction/overview.md)
