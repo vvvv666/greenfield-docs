@@ -43,8 +43,8 @@ The request does not have a request body.
 
 ## Request Syntax
 
-```shell
-GET /greenfield/admin/v1/challenge
+```HTTP
+GET /greenfield/admin/v1/challenge HTTP/1.1
 Host: gnfd-testnet-sp-*.bnbchain.org
 X-Gnfd-Object-ID: ObjectID
 X-Gnfd-Redundancy-Index: RedundancyIndex
@@ -72,7 +72,7 @@ If you failed to send request to get approval, you will get error response body 
 
 ## Response Syntax
 
-```shell
+```HTTP
 HTTP/1.1 200
 X-Gnfd-Request-ID: RequestID
 X-Gnfd-Integrity-Hash: IntegrityHash
@@ -85,7 +85,7 @@ Body
 
 ### Example 1: Challenge object data
 
-```shell
+```HTTP
 GET /greenfield/admin/v1/challenge HTTP/1.1
 Host: gnfd-testnet-sp-*.bnbchain.org
 Date: Fri, 31 March 2023 17:32:00 GMT
@@ -97,7 +97,7 @@ X-Gnfd-Piece-Index: 2
 
 ### Sample Response: Challenge object data successfully
 
-```shell
+```HTTP
 HTTP/1.1 200 OK
 X-Gnfd-Request-ID: 4208447844380058399
 Date: Fri, 31 March 2023 17:32:10 GMT

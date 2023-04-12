@@ -43,8 +43,8 @@ The replicated binary data.
 
 ## Request Syntax
 
-```shell
-PUT /greenfield/receiver/v1/sync-piece
+```HTTP
+PUT /greenfield/receiver/v1/sync-piece HTTP/1.1
 Host: gnfd-testnet-sp-*.bnbchain.org
 X-Gnfd-Object-Info: ObjectInfo
 X-Gnfd-Redundancy-Index: RedundancyIndex
@@ -74,7 +74,7 @@ If you failed to send request to get approval, you will get error response body 
 
 ## Response Syntax
 
-```shell
+```HTTP
 HTTP/1.1 200
 X-Gnfd-Request-ID: RequestID
 X-Gnfd-Integrity-Hash: IntegrityHash
@@ -85,7 +85,7 @@ X-Gnfd-Integrity-Hash-Signature: IntegrityHashSignature
 
 ### Example 1: Replica object data
 
-```shell
+```HTTP
 GET /greenfield/receiver/v1/sync-piece HTTP/1.1
 Host: gnfd-testnet-sp-*.bnbchain.org
 Date: Fri, 31 March 2023 17:32:00 GMT
@@ -99,7 +99,7 @@ X-Gnfd-Replica-Approval: ReplicaApproval
 
 ### Sample Response: List bucket read records successfully
 
-```shell
+```HTTP
 HTTP/1.1 200 OK
 X-Gnfd-Request-ID: 4208447844380058399
 X-Gnfd-Integrity-Hash: b60a9f213e55e99e8d010b1eb76929c294097aefa623ec1dffe2f67035df0726
