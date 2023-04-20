@@ -11,19 +11,27 @@ manage greenfield resources on the BSC directly.
 The [Greenfield-Contracts Repo](https://github.com/bnb-chain/greenfield-contracts) is the underlying backbone of the
 cross chain communication protocol. It is responsible for implementing the core cross-chain communication functionality that
 enables seamless interaction between Greenfield and BSC networks. The library handles the complexities of
-cross-chain operations, ensuring secure and efficient communication between various resources and networks.
+cross-chain operations, ensuring secure and efficient communication.
 
-During the development process, developers are most likely to interact with the following contracts: `CrossChain`,
-and `BucketHub/ObjectHub/GroupHub`. They provide the following interfaces respectively:
+During the development process, developers are most likely to interact with the following contracts: `CrossChain`, `BucketHub`, `ObjectHub` and `GroupHub`. 
+They provide the following interfaces respectively:
 
 **ICrossChain**
 
-Additional fees need to be paid to the relayer during the cross-chain process, and the current value can be obtained through the `CrossChain` contract.
+Additional fees need to be paid to the relayer during the cross-chain process, and the latest value can be obtained through the `CrossChain` contract.
    ```solidity
    interface ICrossChain {
-   		// get relayFee and minAckRelayFee. They are the basic fees required for sending cross-chain transactions
+       /** @dev Query relayFee and minAckRelayFee. 
+        * @return relayFee, the fee required for the relayer to relay the package to GNFD.
+        * @return minAckRelayFee, the minimum fee required for the relayer to circulate the ACK package to BSC.
+        * The caller will need to pay no less than this [relayFee+minAckRelayFee] to send the cross-chain request.
+        */
        function getRelayFees() external returns (uint256 relayFee, uint256 minAckRelayFee);
-   		// get callbacckGasPrice. The system required gas price when execute callback call
+   
+       /** @dev Query the latest callback gas price.
+        * @return If the dapp contract has a callback function, the caller will need to pay extra [gas price * callback gas limit] fee 
+        * when the caller send the initial cross-chain request.
+        */
        function callbackGasPrice() external returns (uint256);
    }
    ```
@@ -34,44 +42,85 @@ The `GroupHub` contract provides the following interfaces to manage Group on BSC
 
    ```solidity
    interface IGroupHub {
-       // get the contract address of group token
+       /** 
+        * @dev  Query the contract address of group NFT
+        * @return The contract address of group token
+        * Each group will be mapped as a NFT on BSC. 
+        * Group ID and NFT token ID are the same.
+        */
        function ERC721Token() external view returns (address);
-       // get the contract address of group token
+      /** 
+        * @dev  Query the contract address of member NFT
+        * @return The contract address of member token
+        * The member inside a group  will be mapped as a ERC1155 token on BSC. 
+        * The ID of the ERC1155 token is same with the group ID.
+        */
        function ERC1155Token() external view returns (address);
-   
-       // send create group cross-chain transaction with callback data
+
+      /**
+        * @dev create a group and send cross-chain request from BSC to GNFD
+        *
+        * @param creator The group's owner
+        * @param name The group's name
+        */
        function createGroup(address creator, string memory name) external payable returns (bool);
-       // send create group cross-chain transaction
+   
+      /**
+        * @dev create a group and send cross-chain request from BSC to GNFD.
+        * Callback function will be called when the request is processed.
+        *
+        * @param creator The group's owner
+        * @param name The group's name
+        * @param callbackGasLimit The gas limit for callback function
+        * @param extraData Extra data for callback function. The `appAddress` in `extraData` will be ignored.
+        * It will be reset as the `msg.sender` all the time.
+        */
        function createGroup(
            address creator,
            string memory name,
            uint256 callbackGasLimit,
            CmnStorage.ExtraData memory extraData
        ) external payable returns (bool);
-       // send delete group cross-chain transaction
-       function deleteGroup(uint256 tokenId) external payable returns (bool);
-       // send delete group cross-chain transaction with callback data
-       function deleteGroup(uint256 tokenId, uint256 callbackGasLimit, CmnStorage.ExtraData memory extraData) external payable returns (bool);
-       // send update group cross-chain transaction
-       function updateGroup(GroupStorage.UpdateGroupSynPackage memory extraData) external payable returns (bool);
-       // send update group cross-chain transaction with callback data
+   
+       /**
+        * @dev delete a group and send cross-chain request from BSC to GNFD
+        *
+        * @param id The group's id
+        */
+       function deleteGroup(uint256 id) external payable returns (bool);
+   
+       /**
+        * @dev delete a group and send cross-chain request from BSC to GNFD
+        * Callback function will be called when the request is processed.
+        *
+        * @param id The group's id
+        * @param callbackGasLimit The gas limit for callback function
+        * @param extraData Extra data for callback function. The `appAddress` in `extraData` will be ignored.
+        * It will be reset as the `msg.sender` all the time.
+        */
+       function deleteGroup(uint256 id, uint256 callbackGasLimit, CmnStorage.ExtraData memory extraData) external payable returns (bool);
+
+       /**
+        * @dev update a group's member and send cross-chain request from BSC to GNFD
+        *
+        * @param synPkg Package containing information of the group to be updated
+        */
+       function updateGroup(GroupStorage.UpdateGroupSynPackage memory synPkg) external payable returns (bool);
+   
+       /**
+        * @dev update a group's member and send cross-chain request from BSC to GNFD
+        * Callback function will be called when the request is processed.
+        *
+        * @param synPkg Package containing information of the group to be updated
+        * @param callbackGasLimit The gas limit for callback function
+        * @param extraData Extra data for callback function. The `appAddress` in `extraData` will be ignored.
+        * It will be reset as the `msg.sender` all the time.
+        */
        function updateGroup(
-           GroupStorage.UpdateGroupSynPackage memory createPackage,
+           GroupStorage.UpdateGroupSynPackage memory synPkg,
            uint256 callbackGasLimit,
            CmnStorage.ExtraData memory extraData
        ) external payable returns (bool);
-   
-       // to see if an `account` has specific `role` of `granter`
-       function hasRole(bytes32 role, address granter, address account) external view returns (bool);
-       // grant an `account` specific role with `expireTime`
-       function grant(address account, uint32 authCode, uint256 expireTime) external;
-       // revoke an `account` with specific role 
-       function revoke(address account, uint32 authCode) external;
-   
-       // retry the first failed package in the queue
-       function retryPackage() external;
-       // skip the first failed package in the queue
-       function skipPackage() external;
    }
    ```
 
@@ -80,35 +129,53 @@ The `GroupHub` contract provides the following interfaces to manage Group on BSC
 The `BucketHub` contract provides the following interfaces to manage bucket on BSC directly.
    ```solidity
    interface IBucketHub {
-   	    // get the contract address of bucket token
+      /** 
+        * @dev  Query the contract address of bucket NFT
+        * @return The contract address of bucket token
+        * Each bucket will be mapped as a NFT on BSC. 
+        * Bucket ID and NFT token ID are the same.
+        */
        function ERC721Token() external view returns (address);
-   		// send create bucket cross-chain transaction
-       function createBucket(BucketStorage.CreateBucketSynPackage memory createPackage) external payable returns (bool);
-   		// send create bucket cross-chain transaction with callback data
+   
+       /**
+        * @dev create a bucket and send cross-chain request from BSC to GNFD
+        *
+        * @param synPkg Package containing information of the bucket to be created
+        */
+       function createBucket(BucketStorage.CreateBucketSynPackage memory synPkg) external payable returns (bool);
+   
+        /**
+        * @dev create a bucket and send cross-chain request from BSC to GNFD.
+        * Callback function will be called when the request is processed.
+        *
+        * @param synPkg Package containing information of the bucket to be created
+        * @param callbackGasLimit The gas limit for callback function
+        * @param extraData Extra data for callback function. The `appAddress` in `extraData` will be ignored.
+        * It will be reset as the `msg.sender` all the time.
+        */
        function createBucket(
-           BucketStorage.CreateBucketSynPackage memory createPackage,
+           BucketStorage.CreateBucketSynPackage memory synPkg,
            uint256 callbackGasLimit,
            CmnStorage.ExtraData memory extraData
        ) external payable returns (bool);
-   		// send delete bucket cross-chain transaction
-       function deleteBucket(uint256 tokenId) external payable returns (bool);
-   		// send delete bucket cross-chain transaction with callback data
-       function deleteBucket(uint256 tokenId, uint256 callbackGasLimit, CmnStorage.ExtraData memory extraData) external payable returns (bool);
-   
-   
-       // to see if an `account` has specific `role` of `granter`
-       function hasRole(bytes32 role, address granter, address account) external view returns (bool);
-   		// grant an `account` specific role with `expireTime`
-       function grant(address account, uint32 authCode, uint256 expireTime) external;
-   		// revoke an `account` with specific role 
-       function revoke(address account, uint32 authCode) external;
-   
-   
-        // advance functions for callback handling
-   		// retry the first failed package in the queue
-       function retryPackage() external;
-   		// skip the first failed package in the queue
-       function skipPackage() external;
+
+      /**
+        * @dev delete a bucket and send cross-chain request from BSC to GNFD
+        *
+        * @param id The bucket's id
+        */
+       function deleteBucket(uint256 id) external payable returns (bool);
+
+      /**
+        * @dev delete a bucket and send cross-chain request from BSC to GNFD.
+        * Callback function will be called when the request is processed.
+        *
+        * @param id The bucket's id
+        * @param callbackGasLimit The gas limit for callback function
+        * @param extraData Extra data for callback function. The `appAddress` in `extraData` will be ignored.
+        * It will be reset as the `msg.sender` all the time.
+        */
+       function deleteBucket(uint256 id, uint256 callbackGasLimit, CmnStorage.ExtraData memory extraData) external payable returns (bool);
    }
    ```
 
@@ -118,29 +185,131 @@ The `ObjectHub` contract provides the following interfaces to manage object on B
 
    ```solidity
    interface IObjectHub {
-       // get the contract address of object token
+       /** 
+        * @dev  Query the contract address of object NFT
+        * @return The contract address of object token
+        * Each object will be mapped as a NFT on BSC. 
+        * Object ID and NFT token ID are the same.
+        */
        function ERC721Token() external view returns (address);
-       // send delete object cross-chain transaction
-       function deleteObject(uint256 tokenId) external payable returns (bool);
-       // send delete object cross-chain transaction with callback data
-       function deleteObject(uint256 tokenId, uint256 callbackGasLimit, CmnStorage.ExtraData memory extraData) external payable returns (bool);
-   
-   
-       // to see if an `account` has specific `role` of `granter`
-       function hasRole(bytes32 role, address granter, address account) external view returns (bool);
-       // grant an `account` specific role with `expireTime`
-       function grant(address account, uint32 authCode, uint256 expireTime) external;
-       // revoke an `account` with specific role 
-       function revoke(address account, uint32 authCode) external;
 
-       // advance functions for callback handling
-       // retry the first failed package in the queue
-       function retryPackage() external;
-       // skip the first failed package in the queue
-       function skipPackage() external;
+      /**
+       * @dev delete a object and send cross-chain request from BSC to GNFD
+       *
+       * @param id, the Id of the object
+       */
+       function deleteObject(uint256 id) external payable returns (bool);
+      /**
+       * @dev delete a object and send cross-chain request from BSC to GNFD
+       * Callback function will be called when the request is processed
+       *
+       * @param id, the Id of the object
+       * @param callbackGasLimit The gas limit for callback function
+       * @param extraData Extra data for callback function. The `appAddress` in `extraData` will be ignored.
+       * It will be reset as the `msg.sender` all the time
+       */
+       function deleteObject(uint256 id, uint256 callbackGasLimit, CmnStorage.ExtraData memory extraData) external payable returns (bool);
    }
    ```
 
+## Permission Control
+
+### General Permission Control
+As all GNFD resources are mapped as ERC721 tokens, we fully reuse the ERC721 interface 
+for general permission management without introducing any additional complexity. 
+First, let's understand the ERC721 interface for permission management:
+
+```solidity
+interface ERC721 {
+   /// @notice Change or reaffirm the approved address for an NFT
+   /// @dev The zero address indicates there is no approved address.
+   ///  Throws unless `msg.sender` is the current NFT owner, or an authorized
+   ///  operator of the current owner.
+   /// @param _approved The new approved NFT controller
+   /// @param _tokenId The NFT to approve
+   function approve(address _approved, uint256 _tokenId) external payable;
+
+   /// @notice Enable or disable approval for a third party ("operator") to manage
+   ///  all of `msg.sender`'s assets
+   /// @dev Emits the ApprovalForAll event. The contract MUST allow
+   ///  multiple operators per owner.
+   /// @param _operator Address to add to the set of authorized operators
+   /// @param _approved True if the operator is approved, false to revoke approval
+   function setApprovalForAll(address _operator, bool _approved) external;
+
+   /// @notice Get the approved address for a single NFT
+   /// @dev Throws if `_tokenId` is not a valid NFT.
+   /// @param _tokenId The NFT to find the approved address for
+   /// @return The approved address for this NFT, or the zero address if there is none
+   function getApproved(uint256 _tokenId) external view returns (address);
+
+   /// @notice Query if an address is an authorized operator for another address
+   /// @param _owner The address that owns the NFTs
+   /// @param _operator The address that acts on behalf of the owner
+   /// @return True if `_operator` is an approved operator for `_owner`, false otherwise
+   function isApprovedForAll(address _owner, address _operator) external view returns (bool);
+   ...
+}
+```
+
+`ERC721` provides two levels of permission control:
+- `TokenID` level: `approve`, `getApproved` are used to control the permission of a specific token.
+- `Owner` level: `setApprovalForAll`, `isApprovedForAll` are used to control the permission of all tokens owned by an address.
+
+So is the permission control of GNFD resources. For example, if you want to grant the permission of a bucket to another account,
+you can call `approve` function of the `BucketHub` contract. If you want to grant the permission of all buckets to an address,
+you can call `setApprovalForAll` function of the `BucketHub` contract.
+
+
+### Role based Permission Control
+
+As different operations can be performed on GNFD resources, some applications require permission control on the 
+granularity of operations, like grant other accounts to create bucket but not allow to delete bucket. This cannot 
+be achieved through the ERC721 token standard. Therefore, 
+we introduce the following interface for implementing permission control for each resource contract:
+
+```solidity
+
+/**
+ * @dev Returns `true` if `account` has been granted `role` from `granter`.
+ */
+ function hasRole(bytes32 roleCode, address granter, address account) external view returns (bool);
+
+/**
+ * @dev grant some authorization to an account
+ *
+ * @param account The address of the account to be granted
+ * @param roleCode, the operation code, like create, update, delete, etc.
+ * @param expireTime The expiration time of the authorization
+ */
+ function grant(address account, uint32 roleCode, uint256 expireTime) external;
+
+/**
+ * @dev revoke some authorization from an account
+ *
+ * @param account The address of the account to be revoked
+ * @param roleCode The authorization code
+ */
+ function revoke(address account, uint32 roleCode) external;
+```
+
+## CallBack Handling
+BSC dApps, i.e. smart contracts on BSC, are allowed to implement their own logic to handle ACK or FAIL_ACK packages. 
+The smart contracts can register callback functions to handle the ACK packages. 
+As it is impossible for the cross-chain infrastructure to predict the gas consumption of the callback, 
+a gas limitation estimate should be defined from the smart contracts that register the callbacks.
+
+Errors and failures can occur during cross-chain communication. BSC dApps can handle these by retrying the package with
+a higher gas limit, skipping the package to tolerate failure, or upgrading their contract to handle corner cases.
+
+The following are the interfaces for dapps to handle failures:
+
+```solidity
+ // retry the first failed package in the queue
+ function retryPackage() external;
+ // skip the first failed package in the queue
+ function skipPackage() external;
+```
 
 ## Contract SDK
 
