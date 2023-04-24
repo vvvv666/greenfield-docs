@@ -31,9 +31,8 @@ service quality.
 Various microservice clients inside SP, including Uploader, Downloader, etc.
 
 ### Universal Endpoint
-Universal endpoint provides url for download public files without authentication needed. It supports using any 
-valid endpoint in the download url, and will automatically redirect to the correct endpoint contains
-the object for download. 
+Universal endpoint supports using any valid endpoint in the download url, and will automatically redirect to the correct endpoint contains
+the object for download.
 
 For instance, when user access an example endpoint greenfield.sp1.com of SP1 in some environment, the request url will be:
 https://greenfield.sp1.com/download/mybucket/myobject.jpg.
@@ -43,5 +42,10 @@ https://greenfield.sp3.com/download/mybucket/myobject.jpg and download the file.
 <div align=center><img src="../../..//asset/501-SP-Gateway-Universal-Endpoint.png"></div>
 <div align="center"><i>Universal Endpoint Logic Flow</i></div>
 
+#### Public file
+Universal endpoint provides url for download public files without authentication needed.
+
+#### Private file
+In design
 
 
