@@ -31,21 +31,57 @@ service quality.
 Various microservice clients inside SP, including Uploader, Downloader, etc.
 
 ### Universal Endpoint
-Universal endpoint supports using any valid endpoint in the download url, and will automatically redirect to the correct endpoint contains
+We implement the Universal Endpoint according to [Greenfield Whitepaper's this chapter](https://github.com/bnb-chain/greenfield-whitepaper/blob/main/part3.md#231-universal-endpoint).
+
+All objects can be identified and accessed via a universal path:
+
+gnfd://<bucket_name><object_name>?[parameter]*
+
+where:
+
+* "gnfd://" is the fixed leading identifier, which is mandatory
+
+* bucket_name is the bucket name of the object, which is mandatory
+
+* object_name is the name of the object, which is mandatory
+
+* parameter is a list of key-value pair for the additional information for the URI, which is optional
+
+Each SP will register multiple endpoints to access their services, e.g. "SP1" may ask their users to download objects via https://greenfield.sp1.com/download.
+And the full download RESTful API would be like: https://greenfield.sp1.com/download/mybucket/myobject.jpg.
+
+Universal Endpoint supports using any valid endpoint for any SP, and automatically redirects to the correct endpoint containing
 the object for download.
 
-For instance, when user access an example endpoint greenfield.sp1.com of SP1 in some environment, the request url will be:
+For instance, when users access a testnet endpoint greenfield.sp1.com of SP1, the request url will be:
 https://greenfield.sp1.com/download/mybucket/myobject.jpg.
-Universal endpoint will find the correct endpoint for myobject.jpg, here SP3, and redirect the user to:
+Universal Endpoint will find the correct endpoint for myobject.jpg, here SP3, and redirect the user to:
 https://greenfield.sp3.com/download/mybucket/myobject.jpg and download the file.
 
 <div align=center><img src="../../..//asset/501-SP-Gateway-Universal-Endpoint.png"></div>
 <div align="center"><i>Universal Endpoint Logic Flow</i></div>
 
-#### Public file
-Universal endpoint provides url for download public files without authentication needed.
+#### Download File
+If you want to download a file using Universal Endpoint, the url is like: https://greenfield.sp1.com/download/mybucket/myobject.jpg.
+This is enforced by adding to the header:
+```md
+    Content-Disposition=attachment
+```
 
-#### Private file
-In design
+#### View File
+If you want to view a file using Universal Endpoint without download, the url is like: https://greenfield.sp1.com/view/mybucket/myobject.jpg.
+This is enforced by adding to the header:
+```md
+    Content-Disposition=inline
+```
+
+#### Public File Access
+Public files can be downloaded/viewed with the following points to notice:
+1. Downloader/viewer's quota will not be deducted, but the file provider's quota will be deducted per download/view.
+2. If a file is not specified public or private, the status (public/private) of the bucket containing the file determines if the file can be downloaded/viewd as public file.
+3. If a file is not sealed, it cannot be downloaded/viewed.
+
+#### Private File Access
+In design and will be provided in the new few releases. Currently, if you try to download/view a private file, an error will be thrown to let you know the object key is illegal for use.
 
 
