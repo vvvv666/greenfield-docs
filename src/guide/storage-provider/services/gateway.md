@@ -77,7 +77,7 @@ This is enforced by adding to the header:
 
 #### Public File Access
 Public files can be downloaded/viewed with the following points to notice:
-1. Downloader/viewer's quota will not be deducted, but the file provider's quota will be deducted per download/view.
+1. Downloader/viewer's quota will not be deducted, but the object owner's quota will be deducted per download/view.
 2. If a file is not specified public or private, the status (public/private) of the bucket containing the file determines if the file can be downloaded/viewd as public file.
 3. If a file is not sealed, it cannot be downloaded/viewed.
 
