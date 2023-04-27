@@ -17,7 +17,7 @@ The following lists the recommended hardware requirements:
 
 ## Quickly setup local Greenfield Blockchain network
 
-1. Build
+1. Build Greenfield Blockchain
 
 ```shell
 git clone https://github.com/bnb-chain/greenfield.git
@@ -25,14 +25,14 @@ cd greenfield
 make build
 ```
 
-2. Start
+2. Start Greenfield Blockchain
 
 ```shell
 # 1 validator and 7 storage providers
 bash ./deployment/localup/localup.sh all 1 7
 ```
 
-1. Export the keys of sps
+3. Export the keys of sps
 
 ```shell
 bash ./deployment/localup/localup.sh export_sps 1 7
@@ -60,7 +60,7 @@ bash ./deployment/localup/localup.sh export_sps 1 7
 
 2. Generate localup env
 
-Generate directories/configs, create databases after building gnfd binary.
+Generate directories/configs.
 
 ```shell
 cd greenfield-storage-provider
@@ -75,30 +75,32 @@ bash ./deployment/localup/localup.sh --reset ${GEN_CONFIG_TEMPLATE}
 Overwrite all sps' db and sp info according to the real environment.
 
 ```shell
-deployment/localup/local_env/
+ls deployment/localup/local_env/sp0
 ├── sp0
-│   ├── config.toml   # templated config
-│   ├── db.info       # to overwrite real db info
-│   ├── gnfd-sp0      # sp binary
-│   └── sp.info       # to overwrite real sp info
+│   ├── config.toml   # generated template config file
+│   ├── db.info       # generated db.info is a template file, you need to overwrite real db info
+│   ├── gnfd-sp0      # gnfd-sp binary
+│   └── sp.info       # generated sp.info is a template file, you need to overwrite real sp info
 ├── sp1
 ├── ...
 
-[root@locahost sp0]# cat sp.info
+# print the content of sp.info
+cat sp.info
 #!/usr/bin/env bash
 SP_ENDPOINT=""              # gateway endpoint, e.g. "127.0.0.1:9033"
-OPERATOR_ADDRESS=""         # OperatorAddr which is exported in step 1
-OPERATOR_PRIVATE_KEY=""     # OperatorPrivKey which is exported in step 1
-FUNDING_PRIVATE_KEY=""      # FundingPrivKey which is exported in step 1
-SEAL_PRIVATE_KEY=""         # SealPrivKey which is exported by in step 1
-APPROVAL_PRIVATE_KEY=""     # ApprovalPrivKey which is exported in step 1
+OPERATOR_ADDRESS=""         # OperatorAddr which is generated in setup local Greenfield blockchain step 3
+OPERATOR_PRIVATE_KEY=""     # OperatorPrivKey which is generated in setup local Greenfield blockchain step 3
+FUNDING_PRIVATE_KEY=""      # FundingPrivKey which is generated in setup local Greenfield blockchain step 3
+SEAL_PRIVATE_KEY=""         # SealPrivKey which is generated in setup local Greenfield blockchain step 3
+APPROVAL_PRIVATE_KEY=""     # ApprovalPrivKey which is generated in setup local Greenfield blockchain step 3
 
-[root@locahost sp0]# cat db.info
+# print the content of db.info
+cat db.info
 #!/usr/bin/env bash
-USER=""                     # database user name
-PWD=""                      # database pass word
-ADDRESS=""                  # db endpoint, e.g. "localhost:3306"
-DATABASE=""                 # database name, need to make sure this database exists
+USER=""                     # users locally started database username
+PWD=""                      # users locally started database password
+ADDRESS=""                  # users locally started db endpoint, e.g. "localhost:3306"
+DATABASE=""                 # database name, you can set DATABASE to what you like
 ```
 
 The following configuration will be updated by sp.info and db.info in step 4.

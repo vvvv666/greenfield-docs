@@ -11,7 +11,7 @@ Compilation dependencies:
 - [Buf](https://buf.build/docs/installation/): A new way of working with Protocol Buffers. SP uses Buf to manage proto files.
 - [protoc-gen-gogofaster](https://github.com/gogo/protobuf): Protocol Buffers for Go with Gadgets. SP use the protobuf compiler to generate pb.go files.
 - [Mockgen](https://github.com/golang/mock): A mocking framework for the Go programming language that is used in unit test.
-- [jq](https://stedolan.github.io/jq/): Command-line JSON processor. Users can install jq according your operating system.
+- [jq](https://stedolan.github.io/jq/): Command-line JSON processor. Users should can jq according to your operating system.
 
 ```shell
 # clone source code
@@ -57,16 +57,16 @@ If you've already executed `make install-tools` instruction in your shell, but y
 # error message 1
 buf: command not found
 # you can execute the following instruction
-GO111MODULE=on GOBIN=/usr/local/bin go install github.com/bufbuild/buf/cmd/buf@v1.17.0
+GO111MODULE=on GOBIN=/usr/local/go/bin go install github.com/bufbuild/buf/cmd/buf@v1.17.0
 
 # error message 2
 Failure: plugin gogofaster: could not find protoc plugin for name gogofaster - please make sure protoc-gen-gogofaster is installed and present on your $PATH
 # you can execute the fowllowing instruction
-GO111MODULE=on GOBIN=/usr/local/bin go install go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
-GO111MODULE=on GOBIN=/usr/local/bin go install github.com/gogo/protobuf/protoc-gen-gogofaster@latest
+GO111MODULE=on GOBIN=/usr/local/go/bin go install go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+GO111MODULE=on GOBIN=/usr/local/go/bin go install github.com/gogo/protobuf/protoc-gen-gogofaster@latest
 
 # if you want to execute unit test of sp, you should execute the following instruction
-GO111MODULE=on GOBIN=/usr/local/bin go install github.com/golang/mock/mockgen@v1.6.0
+GO111MODULE=on GOBIN=/usr/local/go/bin go install github.com/golang/mock/mockgen@v1.6.0
 ```
 
 ## SP Dependencies
