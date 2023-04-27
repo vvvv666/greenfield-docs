@@ -15,7 +15,7 @@ The following lists the recommended hardware requirements:
 * At least 100GB disk space for backend storage;
 * 10GB+ SQL Database.
 
-## Quickly setup local Greenfield BlockChain network
+## Quickly setup local Greenfield Blockchain network
 
 1. Build
 
@@ -35,7 +35,7 @@ bash ./deployment/localup/localup.sh all 1 7
 1. Export the keys of sps
 
 ```shell
-bash ./deployment/localup/localup.sh export_sps 1 1
+bash ./deployment/localup/localup.sh export_sps 1 7
 
 # result example
 # {
