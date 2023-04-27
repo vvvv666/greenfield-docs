@@ -7,10 +7,11 @@ order: 1
 
 Compilation dependencies:
 
-- [Golang](https://go.dev/): SP is written in Golang, you need to install it. The version should be greater than or equal to `go1.18.x`.
+- [Golang](https://go.dev/): SP is written in Golang, you need to install it. Golang version requires `1.18+`.
 - [Buf](https://buf.build/docs/installation/): A new way of working with Protocol Buffers. SP uses Buf to manage proto files.
 - [protoc-gen-gogofaster](https://github.com/gogo/protobuf): Protocol Buffers for Go with Gadgets. SP use the protobuf compiler to generate pb.go files.
 - [Mockgen](https://github.com/golang/mock): A mocking framework for the Go programming language that is used in unit test.
+- [jq](https://stedolan.github.io/jq/): Command-line JSON processor. Users should can jq according to your operating system.
 
 ```shell
 # clone source code
@@ -55,17 +56,17 @@ If you've already executed `make install-tools` instruction in your shell, but y
 ```shell
 # error message 1
 buf: command not found
+# you can execute the following instruction
+GO111MODULE=on GOBIN=/usr/local/go/bin go install github.com/bufbuild/buf/cmd/buf@v1.17.0
 
 # error message 2
 Failure: plugin gogofaster: could not find protoc plugin for name gogofaster - please make sure protoc-gen-gogofaster is installed and present on your $PATH
-```
+# you can execute the fowllowing instruction
+GO111MODULE=on GOBIN=/usr/local/go/bin go install go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+GO111MODULE=on GOBIN=/usr/local/go/bin go install github.com/gogo/protobuf/protoc-gen-gogofaster@latest
 
-You can execute one of the fowlloing instructions in shell:
-
-```shell
-GO111MODULE=on GOBIN=/usr/local/bin go install github.com/bufbuild/buf/cmd/buf@v1.17.0
-GO111MODULE=on GOBIN=/usr/local/bin go install github.com/gogo/protobuf/protoc-gen-gogofaster@latest
-GO111MODULE=on GOBIN=/usr/local/bin go install github.com/golang/mock/mockgen@v1.6.0
+# if you want to execute unit test of sp, you should execute the following instruction
+GO111MODULE=on GOBIN=/usr/local/go/bin go install github.com/golang/mock/mockgen@v1.6.0
 ```
 
 ## SP Dependencies
@@ -92,3 +93,41 @@ The following lists the supported data storage systems:
 1. [AWS S3](https://aws.amazon.com/s3/): An object storage can be used in production environment.
 2. [MinIO](https://min.io/): An object storage can be used in production environment which is compatible with AWS S3.
 3. [POSIX Filesystem](https://en.wikipedia.org/wiki/POSIX): Local filesystem is used for experiencing the basic features of SP and understanding how SP works. The piece data created by SP cannot be getted within the network and can only be used on a single machine.
+
+### Install Dependencies
+
+#### Install MySQL in CentOS
+
+1. Install MySQL yum package
+
+```shell
+# 1. Install MySQL yum package
+wget http://repo.mysql.com/mysql57-community-release-el7-10.noarch.rpm
+
+# 2. Install MySQL source
+wget http://repo.mysql.com/mysql57-community-release-el7-10.noarch.rpm
+
+# 3. Install public key
+rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
+
+# 4. Install MySQL server
+yum install -y mysql-community-server
+
+# 5. Start MySQL
+systemctl start mysqld.service
+
+# 6. Check whether the startup is successful
+systemctl status mysqld.service
+
+# 7. Get temporary password
+grep 'temporary password' /var/log/mysqld.log 
+
+# 8. Login MySQL through temporary password
+# After you log in with the temporary password, do not perform any other operations. Otherwise, an error will occur. In this case, you need to change the password
+mysql -uroot -p
+
+# 9. change MySQL password rules
+mysql> set global validate_password_policy=0;
+mysql> set global validate_password_length=1;
+mysql> ALTER USER 'root'@'localhost' IDENTIFIED BY 'yourpassword';
+```
