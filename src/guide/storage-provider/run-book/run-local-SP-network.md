@@ -63,6 +63,7 @@ bash ./deployment/localup/localup.sh export_sps 1 7
 Generate directories/configs, create databases after building gnfd binary.
 
 ```shell
+cd greenfield-storage-provider
 # The first time setup GEN_CONFIG_TEMPLATE=1, and the other time is 0.
 # When equal to 1, the configuration template will be generated.
 GEN_CONFIG_TEMPLATE=1
@@ -82,25 +83,48 @@ deployment/localup/local_env/
 │   └── sp.info       # to overwrite real sp info
 ├── sp1
 ├── ...
+
+[root@locahost sp0]# cat sp.info
+#!/usr/bin/env bash
+SP_ENDPOINT=""              # gateway endpoint, e.g. "127.0.0.1:9033"
+OPERATOR_ADDRESS=""         # OperatorAddr which is exported in step 1
+OPERATOR_PRIVATE_KEY=""     # OperatorPrivKey which is exported in step 1
+FUNDING_PRIVATE_KEY=""      # FundingPrivKey which is exported in step 1
+SEAL_PRIVATE_KEY=""         # SealPrivKey which is exported by in step 1
+APPROVAL_PRIVATE_KEY=""     # ApprovalPrivKey which is exported in step 1
+
+[root@locahost sp0]# cat db.info
+#!/usr/bin/env bash
+USER=""                     # database user name
+PWD=""                      # database pass word
+ADDRESS=""                  # db endpoint, e.g. "localhost:3306"
+DATABASE=""                 # database name, need to make sure this database exists
 ```
 
-Update the `config.toml` of the SP with the private key and address exported above.
+The following configuration will be updated by sp.info and db.info in step 4.
 
 ```toml
 ...
 SpOperatorAddress = "<OperatorAddress>"
 ...
-
+[ListenAddress]
+...
+gateway = "<SP_ENDPOINT>"
+...
 [SignerCfg]
-GRPCAddress = "localhost:10633"
-APIKey = ""
-WhitelistCIDR = ["0.0.0.0/0"]
-GasLimit = 210000
+...
 OperatorPrivateKey = "<PrivateKey>"
 FundingPrivateKey = "<PrivateKey>"
 SealPrivateKey = "<PrivateKey>"
 ApprovalPrivateKey = "<PrivateKey>"
 GcPrivateKey = "<PrivateKey>"
+...
+[SpDBConfig]
+User = "<USER>"
+Passwd = "<PWD>"
+Address = "<ADDRESS>"
+Database = "<DATABASE>"
+...
 ```
 
 4. Start SP
