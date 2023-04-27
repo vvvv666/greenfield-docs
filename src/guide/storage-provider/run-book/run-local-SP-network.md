@@ -63,7 +63,6 @@ bash ./deployment/localup/localup.sh export_sps 1 7
 Generate directories/configs.
 
 ```shell
-cd greenfield-storage-provider
 # The first time setup GEN_CONFIG_TEMPLATE=1, and the other time is 0.
 # When equal to 1, the configuration template will be generated.
 GEN_CONFIG_TEMPLATE=1
@@ -83,50 +82,25 @@ ls deployment/localup/local_env/sp0
 │   └── sp.info       # generated sp.info is a template file, you need to overwrite real sp info
 ├── sp1
 ├── ...
-
-# print the content of sp.info
-cat sp.info
-#!/usr/bin/env bash
-SP_ENDPOINT=""              # gateway endpoint, e.g. "127.0.0.1:9033"
-OPERATOR_ADDRESS=""         # OperatorAddr which is generated in setup local Greenfield blockchain step 3
-OPERATOR_PRIVATE_KEY=""     # OperatorPrivKey which is generated in setup local Greenfield blockchain step 3
-FUNDING_PRIVATE_KEY=""      # FundingPrivKey which is generated in setup local Greenfield blockchain step 3
-SEAL_PRIVATE_KEY=""         # SealPrivKey which is generated in setup local Greenfield blockchain step 3
-APPROVAL_PRIVATE_KEY=""     # ApprovalPrivKey which is generated in setup local Greenfield blockchain step 3
-
-# print the content of db.info
-cat db.info
-#!/usr/bin/env bash
-USER=""                     # users locally started database username
-PWD=""                      # users locally started database password
-ADDRESS=""                  # users locally started db endpoint, e.g. "localhost:3306"
-DATABASE=""                 # database name, you can set DATABASE to what you like
 ```
 
-The following configuration will be updated by sp.info and db.info in step 4.
+Update the `config.toml` of the SP with the private key and address exported above.
 
 ```toml
 ...
 SpOperatorAddress = "<OperatorAddress>"
 ...
-[ListenAddress]
-...
-gateway = "<SP_ENDPOINT>"
-...
+
 [SignerCfg]
-...
+GRPCAddress = "localhost:10633"
+APIKey = ""
+WhitelistCIDR = ["0.0.0.0/0"]
+GasLimit = 210000
 OperatorPrivateKey = "<PrivateKey>"
 FundingPrivateKey = "<PrivateKey>"
 SealPrivateKey = "<PrivateKey>"
 ApprovalPrivateKey = "<PrivateKey>"
 GcPrivateKey = "<PrivateKey>"
-...
-[SpDBConfig]
-User = "<USER>"
-Passwd = "<PWD>"
-Address = "<ADDRESS>"
-Database = "<DATABASE>"
-...
 ```
 
 4. Start SP
