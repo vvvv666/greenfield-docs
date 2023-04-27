@@ -93,3 +93,41 @@ The following lists the supported data storage systems:
 1. [AWS S3](https://aws.amazon.com/s3/): An object storage can be used in production environment.
 2. [MinIO](https://min.io/): An object storage can be used in production environment which is compatible with AWS S3.
 3. [POSIX Filesystem](https://en.wikipedia.org/wiki/POSIX): Local filesystem is used for experiencing the basic features of SP and understanding how SP works. The piece data created by SP cannot be getted within the network and can only be used on a single machine.
+
+### Install Dependencies
+
+#### Install MySQL in CentOS
+
+1. Install MySQL yum package
+
+```shell
+# 1. Install MySQL yum package
+wget http://repo.mysql.com/mysql57-community-release-el7-10.noarch.rpm
+
+# 2. Install MySQL source
+wget http://repo.mysql.com/mysql57-community-release-el7-10.noarch.rpm
+
+# 3. Install public key
+rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
+
+# 4. Install MySQL server
+yum install -y mysql-community-server
+
+# 5. Start MySQL
+systemctl start mysqld.service
+
+# 6. Check whether the startup is successful
+systemctl status mysqld.service
+
+# 7. Get temporary password
+grep 'temporary password' /var/log/mysqld.log 
+
+# 8. Login MySQL through temporary password
+# After you log in with the temporary password, do not perform any other operations. Otherwise, an error will occur. In this case, you need to change the password
+mysql -uroot -p
+
+# 9. change MySQL password rules
+mysql> set global validate_password_policy=0;
+mysql> set global validate_password_length=1;
+mysql> ALTER USER 'root'@'localhost' IDENTIFIED BY 'yourpassword';
+```

@@ -60,7 +60,7 @@ bash ./deployment/localup/localup.sh export_sps 1 7
 
 2. Generate localup env
 
-Generate directories/configs.
+Use the following instruction to generate template config files in different directories.
 
 ```shell
 # The first time setup GEN_CONFIG_TEMPLATE=1, and the other time is 0.
@@ -84,28 +84,29 @@ ls deployment/localup/local_env/sp0
 ├── ...
 ```
 
-Update the `config.toml` of the SP with the private key and address exported above.
+**Note** In local mode, you don't need to modify config.toml. You just need to manually add db config to db.info and add sp config to sp.info. There will provide a tool to fill db.info and sp.info in the future.
 
-```toml
-...
-SpOperatorAddress = "<OperatorAddress>"
-...
+```shell
+[root@yourmachine sp0]# cat db.infocat db.info
+#!/usr/bin/env bash
+USER=""                     # database username
+PWD=""                      # database password
+ADDRESS=""                  # db endpoint, e.g. "localhost:3306"
+DATABASE=""                 # database name. You can set this var to what you like, but to be different in different sp directories.
 
-[SignerCfg]
-GRPCAddress = "localhost:10633"
-APIKey = ""
-WhitelistCIDR = ["0.0.0.0/0"]
-GasLimit = 210000
-OperatorPrivateKey = "<PrivateKey>"
-FundingPrivateKey = "<PrivateKey>"
-SealPrivateKey = "<PrivateKey>"
-ApprovalPrivateKey = "<PrivateKey>"
-GcPrivateKey = "<PrivateKey>"
+[root@locahost sp0]# cat sp.info
+#!/usr/bin/env bash
+SP_ENDPOINT=""              # gateway endpoint, e.g. "127.0.0.1:9033"
+OPERATOR_ADDRESS=""         # OperatorAddr which is generated in setup local Greenfield blockchain step 3.
+OPERATOR_PRIVATE_KEY=""     # OperatorPrivKey which is generated in setup local Greenfield blockchain step 3.
+FUNDING_PRIVATE_KEY=""      # FundingPrivKey which is generated in setup local Greenfield blockchain step 3.
+SEAL_PRIVATE_KEY=""         # SealPrivKey which is generated in setup local Greenfield blockchain step 3.
+APPROVAL_PRIVATE_KEY=""     # ApprovalPrivKey which is generated in setup local Greenfield blockchain step 3.
 ```
 
-4. Start SP
+4. Start Seven SPs
 
-Make config.toml real according to db and sp info, and start sps.
+Make config.toml according to db.info, sp.info and start seven sps.
 
 ```shell
 # In first time setup GEN_CONFIG_TEMPLATE=1, and the other time is 0.
