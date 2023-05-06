@@ -7,11 +7,11 @@ order: 1
 
 Compilation dependencies:
 
-- [Golang](https://go.dev/): SP is written in Golang, you need to install it. Golang version requires `1.18+`.
+- [Golang](https://go.dev/dl): SP is written in Golang, you need to install it. Golang version requires `1.18+`.
 - [Buf](https://buf.build/docs/installation/): A new way of working with Protocol Buffers. SP uses Buf to manage proto files.
-- [protoc-gen-gogofaster](https://github.com/gogo/protobuf): Protocol Buffers for Go with Gadgets. SP use the protobuf compiler to generate pb.go files.
-- [Mockgen](https://github.com/golang/mock): A mocking framework for the Go programming language that is used in unit test.
-- [jq](https://stedolan.github.io/jq/): Command-line JSON processor. Users should can jq according to your operating system.
+- [protoc-gen-gogofaster](https://github.com/gogo/protobuf): Protocol Buffers for Go with Gadgets. SP uses this protobuf compiler to generate pb.go files.
+- [mockgen](https://github.com/golang/mock): A mocking framework for the Go programming language that is used in unit test.
+- [jq](https://stedolan.github.io/jq/): Command-line JSON processor. Users should install jq according to your operating system.
 
 ```shell
 # clone source code
@@ -86,7 +86,7 @@ More types of database such as `PostgreSQL` or NewSQL will be supported in the f
 
 ### PieceStore
 
-Greenfield is a decentralized data storage system which uses object storage as the main data storage system. SP encapsulates data storage as [PieceStore](../services/piece-store.md) which provides common interfaces to be compatible with multiple data storage system. Therefore, if a user wants to join SP or test the function of SP, you must use a data storage system.
+Greenfield is a decentralized data storage system which uses object storage as the main data storage system. SP encapsulates data storage as [PieceStore](../services/piece-store.md) which provides common interfaces to be compatible with multiple data storage systems. Therefore, if a user wants to join SP or test the function of SP, you must use a data storage system.
 
 The following lists the supported data storage systems:
 
