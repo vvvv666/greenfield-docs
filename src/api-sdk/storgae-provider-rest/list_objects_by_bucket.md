@@ -2,28 +2,27 @@
 title: List Objects By Bucket
 order: 7
 ---
-
 # ListObjectsByBucket
 
 ## RESTful API Description
 
-This API is used to query a bucket's all objects metadata info.
+This API is used to query a bucket's all objects metadata info. And it supports both `virutal-hosted-style` and `path-style` requests.
 
 ## HTTP Request Format
 
-| Description | Definition                                |
-| ----------- | ----------------------------------------- |
-| Host        | BucketName.gnfd-testnet-sp-*.bnbchain.org |
-| Path        | /                                         |
-| Method      | GET                                       |
+| Description                | Definition                                |
+| -------------------------- | ----------------------------------------- |
+| Host(virutal-hosted-style) | BucketName.gnfd-testnet-sp-*.bnbchain.org |
+| Path(virutal-hosted-style) | /                                         |
+| Method                     | GET                                       |
 
 You should set `BucketName` in url host to list objects of the bucket.
 
 ## HTTP Request Header
 
-| ParameterName | Type   | Required | Description                                  |
-| ------------- | ------ | -------- | -------------------------------------------- |
-| Authorization | string | yes      | The authorization string of the HTTP request |
+| ParameterName                                                      | Type   | Required | Description                                  |
+| ------------------------------------------------------------------ | ------ | -------- | -------------------------------------------- |
+| [Authorization](./referenece/gnfd_headers.md#authorization-header) | string | yes      | The authorization string of the HTTP request |
 
 ## HTTP Request Parameter
 
@@ -72,6 +71,8 @@ JSON Body
 ```
 
 ## Examples
+
+The examples given all use virutal-hosted-style.
 
 ### Example 1: Query a bucket's objects
 

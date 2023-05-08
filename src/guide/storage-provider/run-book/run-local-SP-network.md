@@ -21,7 +21,7 @@ The following lists the recommended hardware requirements:
 
 ```shell
 git clone https://github.com/bnb-chain/greenfield.git
-cd greenfield
+cd greenfield/
 make build
 ```
 
@@ -72,8 +72,9 @@ Users who want to compile SP can refer this [doc](./compile-dependences.md#compi
 Use the following instruction to generate template config file, sp.info and db.info in seven different directories. This command is used for generating sp env the first time or regenerating sp env.
 
 ```shell
-# This command accepts four args, the first arg is json file path, the second arg is db user name,
+# This command accepts four args, the first arg is json file path that only supports absolute path, the second arg is db user name,
 # the third arg is db password and the fourth arg is db address.
+cd greenfield-storage-provider/
 bash ./deployment/localup/localup.sh --generate json_file_path db_username db_password db_address
 ```
 
@@ -94,7 +95,8 @@ ls deployment/localup/local_env/sp0
 
 ```shell
 # An example for generating local sp env
-bash ./deployment/localup/localup.sh --generate ./sp.json root greenfield localhost:3306
+cd greenfield-storage-provider/
+bash ./deployment/localup/localup.sh --generate /root/sp.json root greenfield localhost:3306
 
 [root@yourmachine sp0]# cat db.info
 #!/usr/bin/env bash
@@ -119,6 +121,7 @@ GC_PRIVATE_KEY="2fad16031b4fd9facb7dacda3da4ca4dd5f005f4166891bf9f7be13e02abb12d
 Make config.toml according to db.info, sp.info and start seven sps.
 
 ```shell
+cd greenfield-storage-provider/
 bash ./deployment/localup/localup.sh --reset
 bash ./deployment/localup/localup.sh --start
 ```
@@ -142,6 +145,7 @@ deployment/localup/local_env/
 5. Supported commands
 
 ```shell
+# this command should be executed in greenfield-storage-provider/ directory.
 bash ./deployment/localup/localup.sh --help
 
 Usage: deployment/localup/localup.sh [option...] {help|generate|reset|start|stop|print}
@@ -156,9 +160,10 @@ Usage: deployment/localup/localup.sh [option...] {help|generate|reset|start|stop
 
 6. Supplement
 
-If users want to modify config.toml in different sp directories or compile gnfd-sp binary file, you can use the following commands to start and deploy local sp:
+If users want to modify config.toml in different sp directories or recompile gnfd-sp binary file, you can use the following commands to reset and start local sp:
 
 ```shell
+cd greenfield-storage-provider/
 bash ./deployment/localup/localup.sh --reset
 bash ./deployment/localup/localup.sh --start
 ```

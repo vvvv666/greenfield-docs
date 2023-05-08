@@ -6,22 +6,27 @@ order: 1
 
 ## RESTful API Description
 
-This API is used to sign an approval for creating a bucket action or creating an object action.
+This API is used to sign an approval for creating a bucket action or creating an object action. And it only supports `path-style` requests.
 
 ## HTTP Request Format
 
-| Desscription | Definition                        |
-| ------------ | --------------------------------- |
-| Host         | gnfd-testnet-sp-*.bnbchain.org    |
-| Path         | /greenfield/admin/v1/get-approval |
-| Method       | GET                               |
+This API only supports path-style requests.
+
+| Desscription     | Definition                        |
+| ---------------- | --------------------------------- |
+| Host(path-style) | gnfd-testnet-sp-*.bnbchain.org    |
+| Path(path-style) | /greenfield/admin/v1/get-approval |
+| Method           | GET                               |
 
 ## HTTP Request Header
 
-| ParameterName                                          | Type   | Required | Description                                  |
-| ------------------------------------------------------ | ------ | -------- | -------------------------------------------- |
-| [X-Gnfd-Unsigned-Msg](./common/get_approval_header.md) | string | yes      | defines unsigned msg                         |
-| Authorization                                          | string | yes      | The authorization string of the HTTP request |
+| ParameterName                                                      | Type   | Required | Description                                  |
+| ------------------------------------------------------------------ | ------ | -------- | -------------------------------------------- |
+| X-Gnfd-Unsigned-Msg                                                | string | yes      | defines unsigned msg                         |
+| [Authorization](./referenece/gnfd_headers.md#authorization-header) | string | yes      | The authorization string of the HTTP request |
+
+- X-Gnfd-Unsigned-Msg: [CreateBucketApproval](./referenece/gnfd_headers.md#createbucket-approval)
+- X-Gnfd-Unsigned-Msg: [CreateObjectApproval](./referenece/gnfd_headers.md#createobject-approval)
 
 ## HTTP Request Parameter
 
@@ -53,10 +58,10 @@ Authorization: Authorization
 
 The response returns the following HTTP headers.
 
-| ParameterName                                        | Type   | Description                           |
-| ---------------------------------------------------- | ------ | ------------------------------------- |
-| X-Gnfd-Request-ID                                    | string | defines trace id, trace request in sp |
-| [X-Gnfd-Signed-Msg](./common/get_approval_header.md) | string | defines signed msg                    |
+| ParameterName                                                       | Type   | Description                           |
+| ------------------------------------------------------------------- | ------ | ------------------------------------- |
+| X-Gnfd-Request-ID                                                   | string | defines trace id, trace request in sp |
+| [X-Gnfd-Signed-Msg](./referenece/gnfd_headers.md#x-gnfd-signed-msg) | string | defines signed msg                    |
 
 ## HTTP Response Parameter
 
@@ -75,6 +80,8 @@ X-Gnfd-Signed-Msg: SignedMsg
 ```
 
 ## Examples
+
+The examples given all use path-style.
 
 ### Example 1: Create bucket
 

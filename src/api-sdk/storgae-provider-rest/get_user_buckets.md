@@ -2,27 +2,26 @@
 title: Get User Buckets
 order: 6
 ---
-
 # GetUserBuckets
 
 ## RESTful API Description
 
-This API is used to query a user's own buckets metadata info.
+This API is used to query a user's own buckets metadata info. This API only supports `path-style` requests.
 
 ## HTTP Request Format
 
-| Description | Definition                     |
-|-------------|--------------------------------|
-| Host        | gnfd-testnet-sp-*.bnbchain.org |
-| Path        | /                              |
-| Method      | GET                            |
+| Description      | Definition                     |
+| ---------------- | ------------------------------ |
+| Host(path-style) | gnfd-testnet-sp-*.bnbchain.org |
+| Path(path-style) | /                              |
+| Method           | GET                            |
 
 ## HTTP Request Header
 
-| ParameterName       | Type   | Required | Description                                  |
-|---------------------|--------|----------|----------------------------------------------|
-| Authorization       | string | yes      | The authorization string of the HTTP request |
-| X-Gnfd-User-Address | string | yes      | The address of user                          |
+| ParameterName                                                      | Type   | Required | Description                                  |
+| ------------------------------------------------------------------ | ------ | -------- | -------------------------------------------- |
+| [Authorization](./referenece/gnfd_headers.md#authorization-header) | string | yes      | The authorization string of the HTTP request |
+| X-Gnfd-User-Address                                                | string | yes      | The address of user                          |
 
 ## HTTP Request Parameter
 
@@ -52,7 +51,7 @@ X-Gnfd-User-Address: Address
 The response returns the following HTTP headers.
 
 | ParameterName | Type   | Description                 |
-|---------------|--------|-----------------------------|
+| ------------- | ------ | --------------------------- |
 | Content-Type  | string | value is `application/json` |
 
 ## HTTP Response Parameter
@@ -72,6 +71,8 @@ JSON Body
 ```
 
 ## Examples
+
+The examples given all use path-style.
 
 ### Example 1: Query a user's buckets
 
