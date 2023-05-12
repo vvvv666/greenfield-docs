@@ -2,29 +2,26 @@
 title: Get Object
 order: 3
 ---
-
 # GetObject
 
 ## RESTful API Description
 
-This API is used to download an object from Greenfield SP.
+This API is used to download an object from Greenfield SP. And it supports both `virutal-hosted-style` and `path-style` requests.
 
 ## HTTP Request Format
 
-| Desscription | Definition                                |
-| ------------ | ----------------------------------------- |
-| Host         | BucketName.gnfd-testnet-sp-1.bnbchain.org |
-| Path         | /ObjectName                               |
-| Method       | GET                                       |
-
-You should set `BucketName` in url host to download an object.
+| Desscription               | Definition                                |
+| -------------------------- | ----------------------------------------- |
+| Host(virutal-hosted-style) | BucketName.gnfd-testnet-sp-*.bnbchain.org |
+| Path(virutal-hosted-style) | /ObjectName                               |
+| Method                     | GET                                       |
 
 ## HTTP Request Header
 
-| ParameterName | Type   | Required | Description                                                                                   |
-| ------------- | ------ | -------- | --------------------------------------------------------------------------------------------- |
-| Authorization | string | yes      | The authorization string of the HTTP request.                                                 |
-| Range         | string | yes      | The Range HTTP request header indicates the part of a document that the server should return. |
+| ParameterName                                                      | Type   | Required | Description                                                                                   |
+| ------------------------------------------------------------------ | ------ | -------- | --------------------------------------------------------------------------------------------- |
+| [Authorization](./referenece/gnfd_headers.md#authorization-header) | string | yes      | The authorization string of the HTTP request.                                                 |
+| Range                                                              | string | no       | The Range HTTP request header indicates the part of a document that the server should return. |
 
 ## HTTP Request Parameter
 
@@ -73,6 +70,8 @@ Body
 ```
 
 ## Examples
+
+The examples given all use virutal-hosted-style.
 
 ### Example 1: Download an object
 

@@ -2,28 +2,27 @@
 title: List Bucket Read Records
 order: 5
 ---
-
 # ListBucketReadRecords
 
 ## RESTful API Description
 
-This API is used to list bucket read records.
+This API is used to list bucket read records. And it supports both `virutal-hosted-style` and `path-style` requests.
 
 ## HTTP Request Format
 
-| Desscription | Definition                                |
-| ------------ | ----------------------------------------- |
-| Host         | BucketName.gnfd-testnet-sp-*.bnbchain.org |
-| Path         | /                                         |
-| Method       | GET                                       |
+| Desscription               | Definition                                |
+| -------------------------- | ----------------------------------------- |
+| Host(virutal-hosted-style) | BucketName.gnfd-testnet-sp-*.bnbchain.org |
+| Path(virutal-hosted-style) | /                                         |
+| Method                     | GET                                       |
 
 You should set `BucketName` in url host to determine which bucket do you want to query.
 
 ## HTTP Request Header
 
-| ParameterName | Type   | Required | Description                                  |
-| ------------- | ------ | -------- | -------------------------------------------- |
-| Authorization | string | yes      | The authorization string of the HTTP request |
+| ParameterName                                                      | Type   | Required | Description                                  |
+| ------------------------------------------------------------------ | ------ | -------- | -------------------------------------------- |
+| [Authorization](./referenece/gnfd_headers.md#authorization-header) | string | yes      | The authorization string of the HTTP request |
 
 ## HTTP Request Parameter
 
@@ -89,6 +88,8 @@ XML Body
 ```
 
 ## Examples
+
+The examples given all use virutal-hosted-style.
 
 ### Example 1: List bucket read records
 

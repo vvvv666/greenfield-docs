@@ -2,31 +2,29 @@
 title: Put Object
 order: 2
 ---
-
 # PutObject
 
 ## RESTful API Description
 
-This API is used to upload an object to Greenfield SP.
+This API is used to upload an object to Greenfield SP. And it supports both `virutal-hosted-style` and `path-style` requests.
 
 ## HTTP Request Format
 
-| Desscription | Definition                                |
-| ------------ | ----------------------------------------- |
-| Host         | BucketName.gnfd-testnet-sp-*.bnbchain.org |
-| Path         | /ObjectName                               |
-| Method       | PUT                                       |
-
-You should set `BucketName` in url host to upload an object.
-
-`Content-Type` is determined by specific object, such as the content type of an image could be image/jpeg.
+| Desscription               | Definition                                |
+| -------------------------- | ----------------------------------------- |
+| Host(virutal-hosted-style) | BucketName.gnfd-testnet-sp-*.bnbchain.org |
+| Path(virutal-hosted-style) | /ObjectName                               |
+| Method                     | PUT                                       |
 
 ## HTTP Request Header
 
-| ParameterName   | Type   | Required | Description                                                             |
-| --------------- | ------ | -------- | ----------------------------------------------------------------------- |
-| X-Gnfd-Txn-Hash | string | yes      | The transaction hash of the Greenfield chain creates object transaction |
-| Authorization   | string | yes      | The authorization string of the HTTP request                            |
+| ParameterName                                                      | Type   | Required | Description                                                                                        |
+| ------------------------------------------------------------------ | ------ | -------- | -------------------------------------------------------------------------------------------------- |
+| [Authorization](./referenece/gnfd_headers.md#authorization-header) | string | yes      | The authorization string of the HTTP request                                                       |
+| Content-Type                                                       | string | no       | The Content-Type representation header is used to indicate the original media type of the resource |
+| Content-Length                                                     | string | no       | The Content-Length header indicates the size of the message body, in bytes, sent to the recipient. |
+
+`Content-Type` is determined by specific object, such as the content type of an image could be image/jpeg.
 
 ## HTTP Request Parameter
 
@@ -79,6 +77,8 @@ Etag: Etag
 ```
 
 ## Examples
+
+The examples given all use virutal-hosted-style.
 
 ### Example 1: Upload an object
 
