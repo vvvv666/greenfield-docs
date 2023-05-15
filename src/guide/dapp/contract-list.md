@@ -9,17 +9,17 @@ order: 5
 
 | contract name | address                                    |
 |---------------|--------------------------------------------|
-| CrossChain    | 0xeEBe00Ac0756308ac4AaBfD76c05c4F3088B8883 |
-| TokenHub      | 0x10C6E9530F1C1AF873a391030a1D9E8ed0630D26 |
-| BucketHub     | 0x9CfA6D15c80Eb753C815079F2b32ddEFd562C3e4 |
-| ObjectHub     | 0x427f7c59ED72bCf26DfFc634FEF3034e00922DD8 |
-| GroupHub      | 0x275039fc0fd2eeFac30835af6aeFf24e8c52bA6B |
+| CrossChain    | 0x6Cc4A0F61EaF939028CFAE911D6180b4cA20835a |
+| TokenHub      | 0xf7562279e0163828f63F9e1A345C84C8B7FE603E |
+| BucketHub     | 0xB92C50F7b4BA3279018cda542bC9F0aa152e2F0A |
+| ObjectHub     | 0x2D456556ba8c6846B833533780a66aa0f9A1cC82 |
+| GroupHub      | 0xCABb5f2B2b1a9496231290Bb64743a57c5637501 |
 
 Extra:
 
 | contract name | address                                    |
 |---------------|--------------------------------------------|
-| Deployer      | 0x5FbDB2315678afecb367f032d93F642f64180aa3 |
-| ProxyAdmin    | 0xa16E02E87b7454126E5E10d957A927A7F5B5d2be |
-| LightClient   | 0x603E1BD79259EbcbAaeD0c83eeC09cA0B89a5bcC |
-| RelayerHub    | 0x86337dDaF2661A069D0DcB5D160585acC2d15E9a |
+| Deployer      | 0x609E4825908aFfe37538471E19D1a64937879122 |
+| ProxyAdmin    | 0xBdCAefa742C2dFeD37A713bcDc8F0939Efb267fb |
+| LightClient   | 0x7D85eefb5696Fa8D66159A829beFe9f7F96D5c51 |
+| RelayerHub    | 0x09d8e420c9f3da2be4cC3Aec22cB1c2e7063979C |
