@@ -8,6 +8,37 @@ order: 7
 
 # Release Note
 
+## Greenfield v0.1.2 - The maintenance testnet release.
+
+[Greenfield Blockchain v0.1.2](https://github.com/bnb-chain/greenfield/releases/tag/v0.1.2) and
+[Storage Provider v0.1.2](https://github.com/bnb-chain/greenfield-storage-provider/releases/tag/v0.1.2)
+was a regular maintenance testnet version of BNB Greenfield. This version fixed several bugs from the
+previous version and introduced some features.
+
+### Bugfix List
+- Modification of Storage Fee Destination: Previously, storage fees were directed to the SP operator address.
+ This has been adjusted to the funding address, ensuring smoother transactions and fee collection.
+- Default SP Price Adjustment: To better reflect actual prices, the default prices in create_sp.json and payment.
+ Param have been modified to align more closely with the current market rates.
+- Fixing List Group Error: A crucial fix has been made to the listGroup function to adapt it to the new indexing
+ structure of the group, which uses two levels of indexing.
+- Fixing CLI Bugs: We have addressed some command usage issues, such as those relating to update-group-member and
+ put-policy, and improved the description of some commands.
+
+### Feature List
+- Off-Chain-Auth Solution:  Implementing an off-chain-auth solution, which includes APIs for "request nonce",
+ "update user key", and "verify off chain auth sig". This will greatly improve the user experience for Dapp users,
+ eliminating the need for repetitive wallet popups for signatures.
+- Path-style API and Upload Progress API: Introducing support for the path-style API and a new query upload progress API.
+- Seal Object Metrics and Code Refinement: The TaskNode service now includes seal object metrics. We have also refined
+ the replicate task and added some DB logs.
+- Verify Permission API: The new verify permission API replaces the current chain interface, improving overall
+ performance and reducing latency.
+- Block Syncer TXHash & Juno Version Update: Updating the block syncer to add txhash info when exporting events.
+ Additionally, updating the Juno version to support the new "stop serving" feature and included the SP module and GC function.
+- Metadata Block Syncer Schema Update & ListExpiredBucketsBySp: Updating the block syncer schema according to changes
+ on the chain and events. Also introducing a new method, ListExpiredBucketsBySp, to support GC operations within SP.
+
 ## Greenfield v0.1.0 - The initial testnet release.
 
 [Greenfield Blockchain v0.1.0](https://github.com/bnb-chain/greenfield/releases/tag/v0.1.0) and
