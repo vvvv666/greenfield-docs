@@ -54,12 +54,7 @@ Example:
 Example Output:
 
 ```yml
-balances:
-  - amount: "10000000000000000000000"
-    denom: BNB
-pagination:
-  next_key: null
-  total: "0"
+challengeIds: [10, 30]
 ```
 
 #### inturn-attest-submitter
@@ -79,7 +74,10 @@ Example:
 Example Output:
 
 ```yml
-
+bls_pub_key: 828e81c5c39..
+submit_interval:
+  end: "1681960490"
+  start: "1681960480"
 ```
 
 #### params
@@ -94,12 +92,6 @@ Example:
 
 ```sh
 gnfd query challenge params --home ./deployment/localup/.local/validator0  --node http://localhost:26750
-```
-
-Example Output:
-
-```yml
-
 ```
 
 ### Transactions
