@@ -19,9 +19,6 @@ Users can submit a challenge and query the latest attested challenges through cl
 ## Start a local cluster
 $ bash ./deployment/localup/localup.sh all 3
 $ alias gnfd="./build/bin/gnfd"
-$ receiver=0x32Ff14Fa1547314b95991976DB432F9Aa648A423
-## query the balance of receiver
-
 ```
 
 ## Detailed CLI
