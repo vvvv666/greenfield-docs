@@ -7,7 +7,7 @@ order: 1
 
 Compilation dependencies:
 
-- [Golang](https://go.dev/dl): SP is written in Golang, you need to install it. Golang version requires `1.18+`.
+- [Golang](https://go.dev/dl): SP is written in Golang, you need to install it. Golang version requires `1.20+`.
 - [Buf](https://buf.build/docs/installation/): A new way of working with Protocol Buffers. SP uses Buf to manage proto files.
 - [protoc-gen-gocosmos](https://github.com/cosmos/gogoproto): Protocol Buffers for Go with Gadgets. SP uses this protobuf compiler to generate pb.go files.
 - [mockgen](https://github.com/golang/mock): A mocking framework for the Go programming language that is used in unit test.
@@ -51,21 +51,20 @@ Build   : go1.20.3 darwin arm64 2023-05-16 10:31
 
 ### Note
 
-If you've already executed `make install-tools` instruction in your shell, but you failed to make build and encountered one of the following error messages:
+If you've already executed `make install-tools` command in your shell, but you failed to make build and encountered one of the following error messages:
 
 ```shell
 # error message 1
 buf: command not found
-# you can execute the following instruction
+# you can execute the following command
 GO111MODULE=on GOBIN=/usr/local/go/bin go install github.com/bufbuild/buf/cmd/buf@v1.17.0
 
 # error message 2
-Failure: plugin gogofaster: could not find protoc plugin for name gocosmos - please make sure protoc-gen-gocosmos is installed and present on your $PATH
-# you can execute the fowllowing instruction
-GO111MODULE=on GOBIN=/usr/local/go/bin go install go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+Failure: plugin gocosmos: could not find protoc plugin for name gocosmos - please make sure protoc-gen-gocosmos is installed and present on your $PATH
+# you can execute the fowllowing command
 GO111MODULE=on GOBIN=/usr/local/go/bin go install github.com/cosmos/gogoproto/protoc-gen-gocosmos@latest
 
-# if you want to execute unit test of sp, you should execute the following instruction
+# if you want to execute unit test of sp, you should execute the following command
 GO111MODULE=on GOBIN=/usr/local/go/bin go install github.com/golang/mock/mockgen@v1.6.0
 ```
 
@@ -101,11 +100,11 @@ The following lists the supported data storage systems:
 1. Install MySQL yum package
 
 ```shell
-# 1. Install MySQL yum package
+# 1. Download MySQL yum package
 wget http://repo.mysql.com/mysql57-community-release-el7-10.noarch.rpm
 
 # 2. Install MySQL source
-wget http://repo.mysql.com/mysql57-community-release-el7-10.noarch.rpm
+rpm -Uvh mysql57-community-release-el7-10.noarch.rpm
 
 # 3. Install public key
 rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022

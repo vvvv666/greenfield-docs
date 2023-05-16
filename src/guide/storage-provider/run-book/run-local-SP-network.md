@@ -2,7 +2,6 @@
 title: Run Local SP Network
 order: 2
 ---
-
 This guide helps you to set up a local Greenfield Storage Provider network for testing
 and other development related purposes.
 
@@ -103,7 +102,7 @@ bash ./deployment/localup/localup.sh --generate /root/sp.json root greenfield lo
 USER="root"                     # database username
 PWD="greenfield"                # database password
 ADDRESS="localhost:3306"        # db endpoint, e.g. "localhost:3306"
-DATABASE="sp_0"                 # database name.
+DATABASE="sp_0"                 # database name
 
 [root@yourmachine sp0]# cat sp.info
 #!/usr/bin/env bash
