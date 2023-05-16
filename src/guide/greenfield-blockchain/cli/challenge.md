@@ -112,7 +112,7 @@ Example:
 
 #### attest
 
-The `attest` command allows users to query the latest attested challenges. It returns an array of challengeIs.  
+The `attest` command allows users to query the latest attested challenges.    
 
 ```sh
 gnfd tx challenge attest [challenge-id] [object-id] [sp-operator-address] [vote-result] [challenger-address] [vote-validator-set] [vote-agg-signature] [flags]
