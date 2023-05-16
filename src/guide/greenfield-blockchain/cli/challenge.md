@@ -1,10 +1,7 @@
 ---
 title: Challenge
-order: 2
-category:
-  - cli
+order:
 ---
-
 
 # Challenge
 
