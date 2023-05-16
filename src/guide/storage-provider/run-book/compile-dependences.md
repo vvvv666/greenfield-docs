@@ -9,7 +9,7 @@ Compilation dependencies:
 
 - [Golang](https://go.dev/dl): SP is written in Golang, you need to install it. Golang version requires `1.18+`.
 - [Buf](https://buf.build/docs/installation/): A new way of working with Protocol Buffers. SP uses Buf to manage proto files.
-- [protoc-gen-gogofaster](https://github.com/gogo/protobuf): Protocol Buffers for Go with Gadgets. SP uses this protobuf compiler to generate pb.go files.
+- [protoc-gen-gocosmos](https://github.com/cosmos/gogoproto): Protocol Buffers for Go with Gadgets. SP uses this protobuf compiler to generate pb.go files.
 - [mockgen](https://github.com/golang/mock): A mocking framework for the Go programming language that is used in unit test.
 - [jq](https://stedolan.github.io/jq/): Command-line JSON processor. Users should install jq according to your operating system.
 
@@ -42,8 +42,8 @@ Greenfield Storage Provider
 
 Version : vx.x.x
 Branch  : master
-Commit  : 6eb30c3bda1a29fc97a4345559944c35cd560517
-Build   : go1.18.4 darwin amd64 2023-03-04 23:54
+Commit  : 342930b89466c15653af2f3695cfc72f6466d4b8
+Build   : go1.20.3 darwin arm64 2023-05-16 10:31
 
 # show the gnfd-sp help info
 ./gnfd-sp -h
@@ -60,10 +60,10 @@ buf: command not found
 GO111MODULE=on GOBIN=/usr/local/go/bin go install github.com/bufbuild/buf/cmd/buf@v1.17.0
 
 # error message 2
-Failure: plugin gogofaster: could not find protoc plugin for name gogofaster - please make sure protoc-gen-gogofaster is installed and present on your $PATH
+Failure: plugin gogofaster: could not find protoc plugin for name gocosmos - please make sure protoc-gen-gocosmos is installed and present on your $PATH
 # you can execute the fowllowing instruction
 GO111MODULE=on GOBIN=/usr/local/go/bin go install go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
-GO111MODULE=on GOBIN=/usr/local/go/bin go install github.com/gogo/protobuf/protoc-gen-gogofaster@latest
+GO111MODULE=on GOBIN=/usr/local/go/bin go install github.com/cosmos/gogoproto/protoc-gen-gocosmos@latest
 
 # if you want to execute unit test of sp, you should execute the following instruction
 GO111MODULE=on GOBIN=/usr/local/go/bin go install github.com/golang/mock/mockgen@v1.6.0
