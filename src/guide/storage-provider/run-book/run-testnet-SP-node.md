@@ -26,13 +26,14 @@ Each storage provider will hold 5 different accounts serving different purposes:
 * Approval Account(**cold wallet**): Used to approve user's requests. This account does not require holding BNB tokens.
 * GC Account(**cold wallet**): It is a special address for sp and is used by sp to clean up local expired or unwanted storage. Please make sure it has enough BNB beacuse it's going to keep sending transactions up the chain.
 
-You can use the below command to generate this four account:
+You can use the below command to generate this five accounts:
 
 ```shell
 ./build/bin/gnfd keys add operator --keyring-backend os
 ./build/bin/gnfd keys add funding --keyring-backend os
 ./build/bin/gnfd keys add seal --keyring-backend os
 ./build/bin/gnfd keys add approval --keyring-backend os
+./build/bin/gnfd keys add gc --keyring-backend os
 ```
 
 and then export the private key to prepare for SP deployment
@@ -42,6 +43,7 @@ and then export the private key to prepare for SP deployment
 ./build/bin/gnfd keys export funding --unarmored-hex --unsafe  --keyring-backend os
 ./build/bin/gnfd keys export seal --unarmored-hex --unsafe --keyring-backend os
 ./build/bin/gnfd keys export approval --unarmored-hex --unsafe --keyring-backend os
+./build/bin/gnfd keys export gc --unarmored-hex --unsafe --keyring-backend os
 ```
 :::
 
