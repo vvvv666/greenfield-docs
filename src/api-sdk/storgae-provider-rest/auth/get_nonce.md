@@ -2,7 +2,6 @@
 title: Get Nonce
 order: 1
 ---
-
 # GetNonce
 
 ## RESTful API Description
@@ -64,7 +63,7 @@ The following data is returned in JSON format by the service.
 | ParameterName      | Type    | Description                                                                                              |
 | ------------------ | ------- | -------------------------------------------------------------------------------------------------------- |
 | current_nonce      | integer | current nonce for given account address and app domain                                                   |
-| integer            | integer | next nonce for given account address and app domain, which will be used for new account key registration |
+| next_nonce         | integer | next nonce for given account address and app domain, which will be used for new account key registration |
 | current_public_key | string  | current public key for given account address and app domain                                              |
 | expiry_date        | integer | expire date for the current public key                                                                   |
 
