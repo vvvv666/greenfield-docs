@@ -9,11 +9,13 @@ order: 2
 
 ### Authentication type
 
-Authentication type represents which authentication mode the users want to use. Now there are two supported authentication mode: `authTypeV1` and `authTypeV2`.
+Authentication type represents which authentication mode the users want to use. Now there are three supported authentication modes: `authTypeV1`, `PersonalSign`, `OffChainAuth`.
 
-`authTypeV1` represenets users use `private key` for authentication. This mode is used in `greenfield-go-sdk`. We recommand users using this mode when calling Greenfield SP RESTful APIs.
+`authTypeV1` require users to use `private key` for authentication. This mode is used in `greenfield-go-sdk`. We recommend users using this mode when calling Greenfield SP RESTful APIs.
 
-`authTypeV2` represents `off-chain auth`.
+`PersonalSign` is used for verify wallet personal signature from a certain dapp website, which is not able to access users' `private key` but can interact with users by using wallets.
+
+`OffChainAuth` Once the dapp and user setup the "off chain auth" user account key in SPs (see [details](https://greenfield.bnbchain.org/docsguide/storage-provider/services/auth.html)) , users can communicate with SP without needing to make any explicit signature for most interactions (e.g. download private files, get SP approvals when create objects/buckets)
 
 ### Encryption algorithm type
 
