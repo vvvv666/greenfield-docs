@@ -4,7 +4,7 @@ export const enSidebar = sidebar({
         "/":[],
         "/guide/": "structure",
         "/api-sdk/": "structure",
-        "/release-note/": "structure",
+        "/release-notes/": "structure",
         "/faq/": "structure",
     }
 );

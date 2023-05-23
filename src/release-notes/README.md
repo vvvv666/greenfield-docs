@@ -1,12 +1,37 @@
 ---
-title: Release Note
+title: Release Notes
 icon: proposal
 dir:
   order: 7
 order: 7
 ---
 
-# Release Note
+# Release Notes
+
+## Greenfield v0.2.1 - Mekong Testnet reset.
+
+On May 25th, between 6:00 am - 10:00 am UTC, we'll be resetting the Greenfield Testnet and upgrading the Greenfield version to v0.2.1. We're excited to introduce this as the Mekong Testnet. Here are key changes to note.
+
+🔸The Greenfield BSC Testnet (Chain ID: 5601) will be discontinued. Instead, we'll deploy the Greenfield Cross-Chain contracts on the BSC Chapel Testnet (Chain ID: 97).  This means you can fully utilize all the infrastructure of the current BSC Chapel Testnet, such as bscscan, tenderly, theGraph, and so on. BNB and Greenfield resources can still flow freely between Greenfield testnet and BSC testnet.
+
+🔸The Greenfield Blockchain gRPC Endpoint will no longer be provided. The ETH-API endpoint has now been integrated with the Tendermint endpoint. All you need is the Tendermint endpoint for the Greenfield Blockchain. Please use [Chainlist](https://www.bnbchainlist.org/) to quickly add BSC Testnet and Greenfield Mekong Testnet.
+
+🔸All buckets/objects previously stored on Greenfield Testnet will be cleared and won't be available for query anymore. Friendly reminder: Please do not save important data on the testnet. The team will periodically delete outdated data.
+
+🔸All account balances will also be reset. However, accounts with a balance under 10 tBNBs can look forward to an airdrop after the reset. For new users, Greenfield will not provide redundant faucets any longer, please get the test BNB from the official faucet [discord channel](https://discord.gg/bnbchain) and use [Dcellar](https://dcellar.io/) to convert it to the BNB on Greenfield.
+
+🔸As this is a breaking upgrade, the team will update the document as soon as possible the maintenance is done.
+
+Greenfield v0.2.1 - Release for Mekong Testnet 🎉
+
+The [Greenfield Blockchain v0.2.1](https://github.com/bnb-chain/greenfield/releases/tag/v0.2.0) and [Storage Provider v0.2.1](https://github.com/bnb-chain/greenfield-storage-provider/releases/tag/v0.2.1) introduces several enhancement exciting features. Let's take a look at these:
+
+### Enhancement and Feature List 📝
+- Bump cosmos-sdk core to version v0.47.2. Cosmos-sdk v0.47.x and v0.46.x have significant differences in consensus engine, ABCI, encoding, dependency injection, and other aspects. Greenfield hopes to update to this version this morning to avoid future upgrade difficulties.
+- [Challenge Verifier](https://greenfield.bnbchain.org/docs/guide/introduction/ecosystem.html#challenge-verifier) is introduced in  Mekong Testnet. By using Challenge Verifier, the network can ensure that only reliable and trustworthy storage providers are allowed to participate, protecting the network from any potential data loss, corruption, or low-quality service.
+- Discontinue object and stale permission GC is introduced in v0.2.1. These two features allow for a lighter blockchain state and allow SPs on the testnet to periodically clean up data to maintain long-term operation even without incentives.
+- Support for more diverse methods of file searches, such as listing objects by prefix or by folder.
+- Implemented a garbage collection module for the storage provider, reducing the operating costs of the storage provider.
 
 ## Greenfield v0.1.2 - The maintenance testnet release.
 

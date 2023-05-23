@@ -11,6 +11,6 @@ export const enNavbar = navbar([
           icon: "code",
           link: "/api-sdk/grpc-rest",
      },
-     "/release-note/",
+     "/release-notes/",
      "/faq/"
 ]);
