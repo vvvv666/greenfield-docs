@@ -51,19 +51,19 @@ $ echo "this is a fun story" > story.txt
 3. Create a bucket named `funbucket`.
 
 ```shell
-$ gnfd-cmd -c config.toml make-bucket gnfd://funbucket
+$ gnfd-cmd -c config.toml storage make-bucket gnfd://funbucket
 ```
 
 4. Create a private object named `story.txt` in the bucket `funbucket`.
 
 ```shell
-$ gnfd-cmd -c config.toml  put  --contentType "text/xml" --visibility private ./story.txt  gnfd://funbucket/story.txt
+$ gnfd-cmd -c config.toml storage put  --contentType "text/xml" --visibility private ./story.txt  gnfd://funbucket/story.txt
 ```
 
 5. Create a group named `fungroup`.
 
 ```shell
-$ gnfd-cmd -c config.toml make-group gnfd://fungroup
+$ gnfd-cmd -c config.toml group make-group gnfd://fungroup
 create group: fungroup succ, txn hash:17B6AE2C8D30B6D6EEABEE81DB8B37CF735655E9087CB02DC98EFF1DCA9FBE3A, group id: 136 
 ```
 
@@ -74,23 +74,23 @@ The console will return the id of the group, which is `136` in this case.
 ```shell
 ## Example, replace the ${GroupId} with the group id you get in the previous step
 $ export GroupId=136
-$ gnfd-cmd -c config.toml put-obj-policy --groupId ${GroupId}  --actions get  gnfd://funbucket/story.txt   
+$ gnfd-cmd -c config.toml permission put-obj-policy --groupId ${GroupId}  --actions get  gnfd://funbucket/story.txt   
 ```
 
 6. Mirror the group to BSC network.
 
 ```shell
 ## Example, replace the ${GroupId} with the group id you get in the previous step
-$ gnfd-cmd -c config.toml mirror --resource group --id  ${GroupId} 
+$ gnfd-cmd -c config.toml crosschain mirror --resource group --id  ${GroupId} 
 ```
 
 7. Change the `PrivateKey` of config.toml to AccountB, and try to access the file through AccountB.
     
 ```shell
 ## Example
-$ gnfd-cmd -c config.toml head-member  --groupOwner ${AccountA} --headMember ${AccountB} gnfd://fungroup
+$ gnfd-cmd -c config.toml group head-member  --groupOwner ${AccountA} --headMember ${AccountB} gnfd://fungroup
 the user does not exist in the group
-$ gnfd-cmd -c config.toml get gnfd://funbucket/story.txt ./story.txt
+$ gnfd-cmd -c config.toml storage get gnfd://funbucket/story.txt ./story.txt
 run command error: statusCode 403 : code : AccessDenied  (Message: Access Denied)
 ```
 
@@ -116,9 +116,9 @@ ${AccountA} ${GroupId} ${AccountB} \
 9. Wait 30 seconds, and try to access the file through AccountB again.
 ```shell
 ## Example
-$ gnfd-cmd -c config.toml head-member  --groupOwner ${AccountA} --headMember ${AccountB} gnfd://fungroup
+$ gnfd-cmd -c config.toml group head-member  --groupOwner ${AccountA} --headMember ${AccountB} gnfd://fungroup
 the user is a member of the group
-$ gnfd-cmd -c config.toml get gnfd://funbucket/story.txt ./story-copy.txt
+$ gnfd-cmd -c config.toml storage get gnfd://funbucket/story.txt ./story-copy.txt
 download object story.txt successfully, the file path is ./story-copy.txt
 ```
 
