@@ -99,6 +99,18 @@ User = "root"
 Passwd = "test_pwd"
 Address = "localhost:3306"
 Database = "storage_provider_db"
+# BsDB configuration
+[BsDBConfig]
+User = ""
+Passwd = ""
+Address = ""
+Database = "block_syncer"
+# BsDBSwitched configuration
+[BsDBSwitchedConfig]
+User = ""
+Passwd = ""
+Address = ""
+Database = "block_syncer_backup"
 # piece store configuration
 [PieceStoreConfig]
 Shards = 0
@@ -173,7 +185,7 @@ BucketKeepAliveDays = 7
 # metadata configuration
 [MetadataCfg]
 IsMasterDB = true
-BsDBSwitchCheckIntervalSec = 3600
+BsDBSwitchCheckIntervalSec = 30
 ```
 
 ### 3. Start
