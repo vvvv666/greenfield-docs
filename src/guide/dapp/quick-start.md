@@ -20,19 +20,16 @@ Ensure you get an account that get funds on both BSC and Greenfield network.
 
 ### Steps
 
-In the following example, Account A(0x0fEd1aDD48b497d619EF50160f9135c6E221D5F0) will grant Account B(0x3bD70E10D71C6E882E3C1809d26a310d793646eB)
+In the following example, Account A(0x0fEd1aDD48b497d619EF50160f9135c6E221D5F0, stored in `keyA.json`) will grant Account B(0x3bD70E10D71C6E882E3C1809d26a310d793646eB, stored in `keyB.json`)
 the access to his private file through BSC contract.
 
-Before starting, please make sure you have the config.toml file in the current directory. 
+Before starting, please make sure you created related accounts by `gnfd-cmd create-keystore` and have the config.toml file in the current directory. 
 The content of the config.toml is as follows:
 
 ```toml
-endpoint = "https://gnfd-testnet-sp-1.bnbchain.org"
-grpcAddr = "gnfd-testnet-fullnode-cosmos-us.bnbchain.org:9090"
+rpcAddr = "https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443"
 chainId = "greenfield_5600-1"
-
-## Please replace the ${PrivateKey} with your own Account A's private key
-privateKey = "${PrivateKey}"
+passwordFile = "password.txt"
 ```
 
 1. Prepare environment
@@ -51,19 +48,19 @@ $ echo "this is a fun story" > story.txt
 3. Create a bucket named `funbucket`.
 
 ```shell
-$ gnfd-cmd -c config.toml storage make-bucket gnfd://funbucket
+$ gnfd-cmd -c config.toml -k keyA.json bucket create gnfd://funbucket
 ```
 
 4. Create a private object named `story.txt` in the bucket `funbucket`.
 
 ```shell
-$ gnfd-cmd -c config.toml storage put  --contentType "text/xml" --visibility private ./story.txt  gnfd://funbucket/story.txt
+$ gnfd-cmd -c config.toml -k keyA.json object put --contentType "text/xml" --visibility private ./story.txt  gnfd://funbucket/story.txt
 ```
 
 5. Create a group named `fungroup`.
 
 ```shell
-$ gnfd-cmd -c config.toml group make-group gnfd://fungroup
+$ gnfd-cmd -c config.toml -k keyA.json group create gnfd://fungroup
 create group: fungroup succ, txn hash:17B6AE2C8D30B6D6EEABEE81DB8B37CF735655E9087CB02DC98EFF1DCA9FBE3A, group id: 136 
 ```
 
@@ -74,30 +71,29 @@ The console will return the id of the group, which is `136` in this case.
 ```shell
 ## Example, replace the ${GroupId} with the group id you get in the previous step
 $ export GroupId=136
-$ gnfd-cmd -c config.toml permission put-obj-policy --groupId ${GroupId}  --actions get  gnfd://funbucket/story.txt   
+$ gnfd-cmd -c config.toml -k keyA.json policy put-object-policy --groupId ${GroupId} --actions get gnfd://funbucket/story.txt   
 ```
 
 6. Mirror the group to BSC network.
 
 ```shell
 ## Example, replace the ${GroupId} with the group id you get in the previous step
-$ gnfd-cmd -c config.toml crosschain mirror --resource group --id  ${GroupId} 
+$ gnfd-cmd -c config.toml -k keyA.json crosschain mirror --resource group --id ${GroupId} 
 ```
 
-7. Change the `PrivateKey` of config.toml to AccountB, and try to access the file through AccountB.
+7. Try to access the file through AccountB.
     
 ```shell
 ## Example
-$ gnfd-cmd -c config.toml group head-member  --groupOwner ${AccountA} --headMember ${AccountB} gnfd://fungroup
+$ gnfd-cmd -c config.toml -k keyA.json group head-member --groupOwner ${AccountA} --headMember ${AccountB} gnfd://fungroup
 the user does not exist in the group
-$ gnfd-cmd -c config.toml storage get gnfd://funbucket/story.txt ./story.txt
+$ gnfd-cmd -c config.toml -k keyB.json object get gnfd://funbucket/story.txt ./story-copy.txt
 run command error: statusCode 403 : code : AccessDenied  (Message: Access Denied)
 ```
 
 It turns out that AccountB is not permitted to access the file, which is expected.
 
 8. Clone the [gnfd-contract](https://github.com/bnb-chain/greenfield-contracts) repository and install the dependencies.
-
 
 9. Grant the access to Account B through the contract.
 
@@ -113,13 +109,11 @@ ${AccountA} ${GroupId} ${AccountB} \
 --broadcast
 ```
 
-9. Wait 30 seconds, and try to access the file through AccountB again.
+10. Wait 30 seconds, and try to access the file through AccountB again.
 ```shell
 ## Example
-$ gnfd-cmd -c config.toml group head-member  --groupOwner ${AccountA} --headMember ${AccountB} gnfd://fungroup
+$ gnfd-cmd -c config.toml -k keyA.json group head-member --groupOwner ${AccountA} --headMember ${AccountB} gnfd://fungroup
 the user is a member of the group
-$ gnfd-cmd -c config.toml storage get gnfd://funbucket/story.txt ./story-copy.txt
-download object story.txt successfully, the file path is ./story-copy.txt
+$ gnfd-cmd -c config.toml -k keyB.json object get gnfd://funbucket/story.txt ./story-copy.txt
+download object story.txt successfully, the file path is ./story-copy.txt, content length:20,
 ```
-
-
