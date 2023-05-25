@@ -16,7 +16,7 @@ The hardware must meet certain requirements to run a Full Node.
 ## Setting Up a New Node
 
 ::: info 
-Please check the [greenfield repo](https://github.com/bnb-chain/greenfield/releases/latest) for information on the testnet,
+Please check the [greenfield repo](https://github.com/bnb-chain/greenfield/releases/latest for information on the testnet,
 including the correct version of the binaries to use and details about the config file
 :::
 
