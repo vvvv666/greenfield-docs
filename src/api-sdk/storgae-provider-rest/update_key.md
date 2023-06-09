@@ -1,12 +1,14 @@
 ---
 title: Update User Account Key
-order: 2
+order: 9
 ---
 # UpdateKey 
 
 ## RESTful API Description
 
 This API is used to update the current user account key record.
+
+See [off-chain authentication specification](https://greenfield.bnbchain.org/docs/guide/storage-provider/services/auth.html)
 
 
 
