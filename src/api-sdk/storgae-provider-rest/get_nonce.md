@@ -1,12 +1,14 @@
 ---
 title: Get Nonce
-order: 1
+order: 8
 ---
 # GetNonce
 
 ## RESTful API Description
 
 This API is used to query the current user account key record.
+
+See [off-chain authentication specification](https://greenfield.bnbchain.org/docs/guide/storage-provider/services/auth.html)
 
 ## HTTP Request Format
 
